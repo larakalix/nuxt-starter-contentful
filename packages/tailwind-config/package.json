@@ -1,0 +1,12 @@
+{
+    "name": "@starter/tailwind-config",
+    "version": "0.0.0",
+    "type": "module",
+    "private": true,
+    "exports": {
+        "./tailwindcss": "./tw.css"
+    },
+    "devDependencies": {
+        "tailwindcss": "^4.1.17"
+    }
+}

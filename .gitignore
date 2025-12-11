@@ -1,0 +1,134 @@
+# -----------------------------------------------------------
+# Core Node / Turborepo ignores
+# -----------------------------------------------------------
+node_modules/
+pnpm-lock.yaml
+.yarn/
+.pnpm-store/
+.turbo/
+dist/
+build/
+.cache/
+.temp/
+
+# Turbo local cache
+**/.turbo/
+
+# -----------------------------------------------------------
+# OS & Editor junk
+# -----------------------------------------------------------
+.DS_Store
+Thumbs.db
+*.log
+*.pid
+*.seed
+*.cover
+*.tgz
+
+# VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# JetBrains
+.idea/
+
+# -----------------------------------------------------------
+# Nuxt 3 specific
+# -----------------------------------------------------------
+.nuxt/
+.output/
+.nitro/
+.server/
+functions/.nuxt/
+
+# Nuxt dev files
+**/app/.nuxt/
+**/app/.output/
+**/app/.nitro/
+
+# -----------------------------------------------------------
+# Astro specific
+# -----------------------------------------------------------
+**/astro/.astro/
+**/astro/dist/
+**/apps/astro/dist/
+
+# Astro local cache
+**/apps/astro/.astro/
+
+# -----------------------------------------------------------
+# Storybook
+# -----------------------------------------------------------
+storybook-static/
+sb-static/
+**/apps/sb/storybook-static/
+**/apps/sb/dist/
+
+# Storybook cache
+.storybook-cache/
+**/.storybook-cache/
+
+# -----------------------------------------------------------
+# Tailwind JIT & generated artifacts
+# -----------------------------------------------------------
+.tailwind/
+tailwind.out.css
+*.generated.css
+
+# -----------------------------------------------------------
+# TypeScript
+# -----------------------------------------------------------
+*.tsbuildinfo
+*.d.ts.map
+
+# -----------------------------------------------------------
+# Env files
+# -----------------------------------------------------------
+.env
+.env.*
+!.env.example
+.env.local
+.env.development.local
+.env.production.local
+
+# -----------------------------------------------------------
+# Logs
+# -----------------------------------------------------------
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# -----------------------------------------------------------
+# Locks & runtime files
+# -----------------------------------------------------------
+package-lock.json
+.lock-wscript
+*.pid.lock
+
+# -----------------------------------------------------------
+# Contentful-related (optional)
+# -----------------------------------------------------------
+.contentful/
+contentful-export.json
+contentful-import.json
+
+# -----------------------------------------------------------
+# Misc
+# -----------------------------------------------------------
+coverage/
+*.swp
+*.swo
+*.tmp
+*.temp
+
+# -----------------------------------------------------------
+# Output folders inside app packages
+# -----------------------------------------------------------
+**/public/build/
+**/public/_nuxt/
+**/public/assets/
