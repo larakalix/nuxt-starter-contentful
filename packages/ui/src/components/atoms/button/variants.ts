@@ -19,6 +19,7 @@ export const buttonVariants = tv({
             danger: "bg-danger text-danger-foreground hover:bg-danger/90 border border-transparent",
         },
         size: {
+            xs: "text-xs px-2 py-2 size-8",
             sm: "text-xs px-3 py-1.5 h-8",
             md: "text-sm px-4 py-2 h-9",
             lg: "text-base px-5 py-2.5 h-11",
