@@ -1,0 +1,61 @@
+<!-- packages/ui/src/components/organisms/cta-banner/CtaBanner.vue -->
+<script lang="ts" setup>
+import { computed } from "vue";
+import clsx from "clsx";
+import { ctaBannerVariants } from "./variants";
+import { Button } from "../../atoms/button";
+import { SectionHeading } from "../section-heading";
+import type { CtaBannerProps } from "./types";
+
+const props = withDefaults(defineProps<CtaBannerProps>(), {
+    tone: "soft",
+    size: "md",
+    paragraphs: () => [],
+});
+
+const classes = computed(() =>
+    clsx(
+        ctaBannerVariants({
+            tone: props.tone,
+            size: props.size,
+        }),
+        props.class,
+    ),
+);
+</script>
+
+<template>
+    <section :class="classes">
+        <div class="flex w-full max-w-xl flex-col items-center text-center gap-2">
+            <!-- Brand title -->
+            <SectionHeading v-if="props.sectionHeading" v-bind="props.sectionHeading" />
+
+            <!-- Main title -->
+            <h3 class="text-base md:text-lg font-semibold text-foreground">
+                {{ title }}
+            </h3>
+
+            <!-- Subtitle / description -->
+            <div class="space-y-2 text-xs md:text-sm leading-relaxed text-foreground-muted-subtitle">
+                <p v-if="subtitle">
+                    {{ subtitle }}
+                </p>
+
+                <!-- If user provides slot content, use that instead of paragraphs -->
+                <slot v-if="$slots.default" />
+
+                <template v-else>
+                    <p v-for="(paragraph, idx) in paragraphs" :key="idx">
+                        {{ paragraph }}
+                    </p>
+                </template>
+            </div>
+
+            <!-- CTA Button -->
+            <Button v-if="buttonProps" v-bind="buttonProps" :as="'a'" variant="outline" rounded="md" size="md"
+                class="mt-2 inline-flex items-center gap-2 border-primary text-primary hover:bg-primary/10">
+                {{ buttonProps?.label }}
+            </Button>
+        </div>
+    </section>
+</template>

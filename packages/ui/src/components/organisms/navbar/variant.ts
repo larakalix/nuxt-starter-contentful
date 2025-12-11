@@ -8,6 +8,7 @@ export const navbarVariants = tv({
             solid: "bg-background",
             transparent: "bg-transparent",
             blur: "bg-background/80 backdrop-blur",
+            secondary: "bg-secondary text-secondary-foreground",
         },
         sticky: {
             true: "sticky top-0",
@@ -19,7 +20,7 @@ export const navbarVariants = tv({
         },
     },
     defaultVariants: {
-        variant: "solid",
+        variant: "secondary",
         sticky: true,
         showBorder: true,
     },

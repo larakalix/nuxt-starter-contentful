@@ -1,6 +1,7 @@
 import type { ButtonVariantsProps } from "./variants";
 
 export type ButtonProps = ButtonVariantsProps & {
+    label?: string;
     id?: string;
     as?: "button" | "a";
     type?: "button" | "submit" | "reset";
