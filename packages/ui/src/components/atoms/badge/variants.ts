@@ -12,6 +12,8 @@ export const badgeVariants = tv({
         variant: {
             solid: "",
             outline: "bg-transparent border",
+            "primary-outline":
+                "bg-primary/10 border border-primary/80 text-primary",
             soft: "bg-muted text-muted-foreground",
         },
         color: {
@@ -20,6 +22,13 @@ export const badgeVariants = tv({
             secondary: "",
             success: "",
             danger: "",
+        },
+        weight: {
+            light: "font-light",
+            normal: "font-medium",
+            semibold: "font-semibold",
+            bold: "font-bold",
+            black: "font-black",
         },
         rounded: {
             none: "rounded-none",
@@ -105,22 +114,30 @@ export const badgeVariants = tv({
             color: "danger",
             class: "bg-destructive/10 text-destructive",
         },
+        // Primary Outline
+        {
+            variant: "primary-outline",
+            color: "default",
+            class: "bg-primary/10 border border-primary/80 text-primary",
+        },
     ],
-
     defaultVariants: {
         variant: "solid",
-        color: "secondary",
+        color: "primary",
         rounded: "sm",
+        weight: "normal",
     },
 });
 
 type BadgeVariant = keyof typeof badgeVariants.variants.variant;
 type BadgeColor = keyof typeof badgeVariants.variants.color;
 type BadgeRounded = keyof typeof badgeVariants.variants.rounded;
+type BadgeWeight = keyof typeof badgeVariants.variants.weight;
 
 export type BadgeVariantsProps = {
     variant?: BadgeVariant;
     color?: BadgeColor;
     rounded?: BadgeRounded;
     class?: string;
+    weight?: BadgeWeight;
 };

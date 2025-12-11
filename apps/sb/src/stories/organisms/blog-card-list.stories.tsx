@@ -37,6 +37,20 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const defaultProps = {
+    sectionHeading: {
+        label: "Featured",
+        title: "This Month",
+        align: "left",
+        size: "md",
+        as: "h2",
+        tag: {
+            variant: "solid",
+            color: "primary",
+            rounded: "none",
+            class: "px-2 py-1 text-base! font-semibold",
+        },
+        class: "mb-12",
+    },
     items: [
         {
             id: "blog-card-1",

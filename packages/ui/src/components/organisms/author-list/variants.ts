@@ -1,12 +1,8 @@
 import { tv } from "tailwind-variants";
 
-export const blogCardListVariants = tv({
-    base: "w-full",
+export const authorListVariants = tv({
+    base: "grid",
     variants: {
-        layout: {
-            grid: "grid items-stretch auto-rows-fr",
-            stacked: "flex flex-col",
-        },
         columns: {
             1: "grid-cols-1 gap-6",
             2: "grid-cols-1 md:grid-cols-2 gap-8",
@@ -17,14 +13,10 @@ export const blogCardListVariants = tv({
         },
     },
     defaultVariants: {
-        layout: "grid",
-        columns: 3,
+        columns: 1,
     },
 });
 
-type BlogCardListLayout = keyof typeof blogCardListVariants.variants.layout;
-
-export type BlogCardListVariantsProps = {
-    layout?: BlogCardListLayout;
+export type AuthorListVariantsProps = {
     columns?: 1 | 2 | 3 | 4 | 5 | 6;
 };

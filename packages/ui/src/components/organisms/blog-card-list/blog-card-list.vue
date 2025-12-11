@@ -1,10 +1,10 @@
-<!-- packages/ui/src/components/molecules/blog-card-list/BlogCardList.vue -->
 <script setup lang="ts">
 import { computed } from "vue";
 import clsx from "clsx";
 import { blogCardListVariants } from "./variants";
 import BlogCard from "../../molecules/blog-card/blog-card.vue";
 import type { BlogCardListProps } from "./types";
+import { SectionHeading } from "../../molecules";
 
 const props = withDefaults(defineProps<BlogCardListProps>(), {
     layout: "grid",
@@ -12,7 +12,7 @@ const props = withDefaults(defineProps<BlogCardListProps>(), {
 });
 
 const classes = computed(() =>
-    clsx(
+    clsx("blog-card-list",
         blogCardListVariants({
             layout: props.layout,
             columns: props.columns,
@@ -23,6 +23,8 @@ const classes = computed(() =>
 </script>
 
 <template>
+    <SectionHeading v-if="props.sectionHeading" v-bind="props.sectionHeading" />
+
     <div :class="classes">
         <BlogCard v-for="item in items" :key="item.id ?? item.href ?? item.title" v-bind="item" />
     </div>

@@ -26,7 +26,7 @@ const classes = computed(() =>
             <Badge v-if="tag" v-bind="tag" class="text-xs px-3 py-1" />
 
             <!-- Title -->
-            <h3 class="text-lg md:text-2xl font-semibold leading-tight tracking-tight">
+            <h3 class="text-lg md:text-2xl text-foreground font-semibold leading-tight tracking-tight">
                 {{ title }}
             </h3>
         </header>

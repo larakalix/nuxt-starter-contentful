@@ -1,4 +1,3 @@
-<!-- packages/ui/src/components/molecules/author-card/AuthorCard.vue -->
 <script lang="ts" setup>
 import { computed } from "vue";
 import clsx from "clsx";
@@ -36,7 +35,7 @@ const hasSocials = computed(() => props.socials && props.socials.length > 0);
         <!-- Text + socials -->
         <div class="flex flex-col gap-2">
             <div class="flex flex-col gap-0">
-                <h3 class="text-sm md:text-base font-semibold text-muted-foreground">
+                <h3 class="text-sm md:text-base font-semibold text-foreground">
                     {{ name }}
                 </h3>
                 <p v-if="bio" class="text-xs md:text-sm text-foreground-muted-subtitle/70 font-normal">
