@@ -27,7 +27,7 @@ const classes = computed(() =>
 </script>
 
 <template>
-    <component :is="as" :href="as === 'a' ? href : undefined" :class="classes"
+    <component :id="props.id" :is="as" :href="as === 'a' ? href : undefined" :class="classes"
         :disabled="as === 'button' ? disabled : undefined" @click="onClick">
         <slot />
     </component>

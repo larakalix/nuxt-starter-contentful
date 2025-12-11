@@ -56,7 +56,6 @@ const defaultArgs = {
 export const Default: Story = {
     args: {
         ...defaultArgs,
-        logoText: "MyApp",
     },
 };
 
@@ -72,7 +71,6 @@ export const LoggedIn: Story = {
 export const WithCTA: Story = {
     args: {
         ...defaultArgs,
-        logoText: "MyApp",
         ctaLabel: "Create Account",
         ctaHref: "/signup",
     },
@@ -81,7 +79,6 @@ export const WithCTA: Story = {
 export const StickyNavbar: Story = {
     args: {
         ...defaultArgs,
-        logoText: "MyApp",
         sticky: true,
         showBorder: true,
     },
@@ -90,7 +87,6 @@ export const StickyNavbar: Story = {
 export const NoBorder: Story = {
     args: {
         ...defaultArgs,
-        logoText: "MyApp",
         sticky: true,
         showBorder: false,
         class: "bg-red-100 backdrop-blur-md",

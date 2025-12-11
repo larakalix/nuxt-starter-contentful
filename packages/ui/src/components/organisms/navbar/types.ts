@@ -9,7 +9,6 @@ export type NavItem = {
 
 export type NavbarProps = NavbarVariantsProps & {
     items?: NavItem[];
-    logoText?: string;
     variant?: NavbarVariant;
     sticky?: boolean;
     showBorder?: boolean;
