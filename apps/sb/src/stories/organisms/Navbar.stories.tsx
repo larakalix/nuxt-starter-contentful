@@ -22,7 +22,7 @@ const meta = {
     argTypes: {
         variant: {
             control: { type: "select" },
-            options: ["solid", "transparent", "blur"],
+            options: ["solid", "transparent", "blur", "secondary"],
         },
         sticky: {
             control: { type: "boolean" },
@@ -51,11 +51,13 @@ const defaultArgs = {
         { label: "About", href: "/about" },
         { label: "Contact", href: "/contact" },
     ],
-} satisfies Partial<Story["args"]>;
+} satisfies Meta<typeof Navbar>["args"];
 
 export const Default: Story = {
     args: {
         ...defaultArgs,
+        variant: "secondary",
+        showBorder: false,
     },
 };
 
@@ -81,14 +83,5 @@ export const StickyNavbar: Story = {
         ...defaultArgs,
         sticky: true,
         showBorder: true,
-    },
-};
-
-export const NoBorder: Story = {
-    args: {
-        ...defaultArgs,
-        sticky: true,
-        showBorder: false,
-        class: "bg-red-100 backdrop-blur-md",
     },
 };

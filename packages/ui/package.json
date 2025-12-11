@@ -31,6 +31,10 @@
             "import": "./src/others/index.ts",
             "types": "./src/others/index.ts"
         },
+        "./pages": {
+            "import": "./src/components/pages/index.ts",
+            "types": "./src/components/pages/index.ts"
+        },
         "./constants": {
             "import": "./src/constants/index.ts",
             "types": "./src/constants/index.ts"

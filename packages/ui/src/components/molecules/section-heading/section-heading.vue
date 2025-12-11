@@ -4,7 +4,6 @@ import clsx from "clsx";
 import { sectionHeadingVariants } from "./variants";
 import Badge from "../../atoms/badge/badge.vue";
 import type { SectionHeadingProps } from "./types";
-import { Label } from "reka-ui";
 
 const props = withDefaults(defineProps<SectionHeadingProps>(), {
     as: "h2",

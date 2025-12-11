@@ -32,4 +32,5 @@ export type NavbarVariantsProps = {
     variant?: NavbarVariant;
     sticky?: boolean;
     showBorder?: boolean;
+    class?: string;
 };

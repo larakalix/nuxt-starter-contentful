@@ -1,7 +1,5 @@
 import type { NavbarVariantsProps } from "./variant";
 
-export type NavbarVariant = "solid" | "transparent" | "blur";
-
 export type NavItem = {
     label: string;
     href: string;
@@ -9,7 +7,6 @@ export type NavItem = {
 
 export type NavbarProps = NavbarVariantsProps & {
     items?: NavItem[];
-    variant?: NavbarVariant;
     sticky?: boolean;
     showBorder?: boolean;
     /**

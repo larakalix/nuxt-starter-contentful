@@ -24,8 +24,10 @@ export const buttonVariants = tv({
             md: "text-sm px-4 py-2 h-9",
             lg: "text-base px-5 py-2.5 h-11",
             xl: "text-lg px-6 py-3 h-12",
+            icon: "p-2 size-10",
         },
         rounded: {
+            none: "rounded-none",
             sm: "rounded-sm",
             md: "rounded-md",
             lg: "rounded-lg",
