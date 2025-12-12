@@ -5,6 +5,7 @@ export const getLandingPage = (slug: string): FunnelPage | null => {
 
     const pages: Record<string, FunnelPage> = {
         home: HomeFunnelPage,
+        about: AboutFunnelPage,
     };
 
     return pages[slug];
@@ -26,7 +27,6 @@ const HomeFunnelPage: FunnelPage = {
                 items: [
                     { label: "Home", href: "/" },
                     { label: "About", href: "/about" },
-                    { label: "Contact", href: "/contact" },
                 ],
             },
             {
@@ -67,8 +67,6 @@ const HomeFunnelPage: FunnelPage = {
                         },
                         dateLabel: "20 June 2024",
                         readTimeLabel: "5 Min. To Read",
-                        layout: "grid",
-                        columns: 2,
                     },
                     {
                         __typename: ContentfulType.BLOG_CARD_LIST_ITEM,
@@ -81,7 +79,7 @@ const HomeFunnelPage: FunnelPage = {
                             color: "success",
                             rounded: "sm",
                         },
-                        title: "I Created a Developer Rap Video - Here's What I Learned",
+                        title: "I Created a Developer Rap Video",
                         image: {
                             __typename: ContentfulType.IMAGE_ASSET,
                             title: "Developer rap video image",
@@ -97,7 +95,6 @@ const HomeFunnelPage: FunnelPage = {
                         },
                         dateLabel: "15 June 2024",
                         readTimeLabel: "7 Min. To Read",
-                        layout: "horizontal",
                     },
                     {
                         __typename: ContentfulType.BLOG_CARD_LIST_ITEM,
@@ -126,7 +123,90 @@ const HomeFunnelPage: FunnelPage = {
                         },
                         dateLabel: "10 June 2024",
                         readTimeLabel: "6 Min. To Read",
-                        layout: "horizontal",
+                    },
+                    {
+                        __typename: ContentfulType.BLOG_CARD_LIST_ITEM,
+                        id: "blog-card-4",
+                        tag: {
+                            __typename: ContentfulType.TAG,
+                            id: "tag-4",
+                            label: "Finance",
+                            variant: "solid",
+                            color: "warning",
+                            rounded: "sm",
+                        },
+                        title: "Understanding Cryptocurrency in 2024",
+                        image: {
+                            __typename: ContentfulType.IMAGE_ASSET,
+                            title: "Cryptocurrency concept image",
+                            description:
+                                "An image representing cryptocurrency concepts.",
+                            url: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHRoYWlsYW5kfGVufDB8fDB8fHww",
+                        },
+                        author: {
+                            __typename: ContentfulType.IMAGE_ASSET,
+                            title: "Emily Davis",
+                            description: "Author Emily Davis's avatar",
+                            url: "https://randomuser.me/api/portraits/women/68.jpg",
+                        },
+                        dateLabel: "8 June 2024",
+                        readTimeLabel: "9 Min. To Read",
+                    },
+                    {
+                        __typename: ContentfulType.BLOG_CARD_LIST_ITEM,
+                        id: "blog-card-5",
+                        tag: {
+                            __typename: ContentfulType.TAG,
+                            id: "tag-5",
+                            label: "Lifestyle",
+                            variant: "solid",
+                            color: "info",
+                            rounded: "sm",
+                        },
+                        title: "10 Tips for a Healthy Lifestyle",
+                        image: {
+                            __typename: ContentfulType.IMAGE_ASSET,
+                            title: "Healthy lifestyle concept image",
+                            description:
+                                "An image representing healthy lifestyle concepts.",
+                            url: "https://images.unsplash.com/photo-1513568720563-6a5b8c6caab3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHRoYWlsYW5kfGVufDB8fDB8fHww",
+                        },
+                        author: {
+                            __typename: ContentfulType.IMAGE_ASSET,
+                            title: "Sarah Wilson",
+                            description: "Author Sarah Wilson's avatar",
+                            url: "https://randomuser.me/api/portraits/women/72.jpg",
+                        },
+                        dateLabel: "7 June 2024",
+                        readTimeLabel: "4 Min. To Read",
+                    },
+                    {
+                        __typename: ContentfulType.BLOG_CARD_LIST_ITEM,
+                        id: "blog-card-6",
+                        tag: {
+                            __typename: ContentfulType.TAG,
+                            id: "tag-6",
+                            label: "Education",
+                            variant: "solid",
+                            color: "dark",
+                            rounded: "sm",
+                        },
+                        title: "The Future of Online Education",
+                        image: {
+                            __typename: ContentfulType.IMAGE_ASSET,
+                            title: "Online education concept image",
+                            description:
+                                "An image representing online education concepts.",
+                            url: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjl8fHRoYWlsYW5kfGVufDB8fDB8fHww",
+                        },
+                        author: {
+                            __typename: ContentfulType.IMAGE_ASSET,
+                            title: "Michael Brown",
+                            description: "Author Michael Brown's avatar",
+                            url: "https://randomuser.me/api/portraits/men/52.jpg",
+                        },
+                        dateLabel: "5 June 2024",
+                        readTimeLabel: "8 Min. To Read",
                     },
                 ],
                 layout: "grid",
@@ -152,6 +232,28 @@ const HomeFunnelPage: FunnelPage = {
                 ],
                 newsletterPlaceholder: "Enter your email",
                 newsletterButtonLabel: "Subscribe",
+            },
+        ],
+    },
+};
+
+const AboutFunnelPage: FunnelPage = {
+    __typename: ContentfulType.FUNNEL_PAGE,
+    id: "2",
+    slug: "about",
+    templateType: TemplateType.GENERIC,
+    structure: {
+        __typename: ContentfulType.TEMPLATE,
+        id: "template-2",
+        sections: [
+            {
+                __typename: ContentfulType.NAVBAR,
+                id: "navbar-1",
+                variant: "secondary",
+                items: [
+                    { label: "Home", href: "/" },
+                    { label: "About", href: "/about" },
+                ],
             },
         ],
     },

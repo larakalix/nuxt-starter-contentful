@@ -1,7 +1,7 @@
 import { tv } from "tailwind-variants";
 
 export const blogCardVariants = tv({
-    base: "group h-full p-6",
+    base: "group h-full p-2 md:p-6",
     variants: {
         variant: {
             default: "",
@@ -15,7 +15,6 @@ export const blogCardVariants = tv({
             vertical: "flex flex-col gap-4",
             horizontal:
                 "flex flex-col md:flex-row gap-4 sm:gap-6 items-stretch",
-            // horizontal: "grid grid-cols-3 gap-4 sm:gap-6 items-stretch",
         },
         clickable: {
             true: "cursor-pointer hover:border-primary/60",

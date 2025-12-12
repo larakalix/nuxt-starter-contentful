@@ -2,32 +2,10 @@
 import Layout from "../layouts/Layout.astro";
 import { FunnelPageSections } from "@starter/ui/pages";
 import { getLandingPage } from "@starter/content";
-import { Error } from "@starter/ui/organisms";
 
-const SLUG = "home";
-
-async function useLandingPage(slug: string) {
-    try {
-        const data = await getLandingPage(slug);
-        return { data, error: null };
-    } catch (err) {
-        return { data: undefined, error: err as Error };
-    }
-}
-
-const { data: funnelPage, error } = await useLandingPage(SLUG);
+const funnelPage = await getLandingPage("home");
 ---
 
 <Layout>
-    {
-        error ? (
-            <Error message={error.message} />
-        ) : (
-            <FunnelPageSections
-                funnelPage={funnelPage}
-                pending={false}
-                error={error}
-            />
-        )
-    }
+    <FunnelPageSections funnelPage={funnelPage} />
 </Layout>

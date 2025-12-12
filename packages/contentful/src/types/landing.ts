@@ -75,8 +75,8 @@ export type BlogCardListItem = {
     author?: SectionImageAsset;
     dateLabel?: string;
     readTimeLabel?: string;
-    layout?: string;
-    columns?: number;
+    // layout?: string;
+    // columns?: number;
     excerpt?: string;
     image?: SectionImageAsset;
     href?: string;

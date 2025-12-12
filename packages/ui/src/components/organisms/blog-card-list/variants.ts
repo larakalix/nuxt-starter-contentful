@@ -9,11 +9,11 @@ export const blogCardListVariants = tv({
         },
         columns: {
             1: "grid-cols-1 gap-6",
-            2: "grid-cols-1 md:grid-cols-2 gap-8",
-            3: "grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8",
-            4: "grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8",
-            5: "grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-8",
-            6: "grid-cols-1 md:grid-cols-2 xl:grid-cols-6 gap-8",
+            2: "grid-cols-1 md:grid-cols-2 gap-4 md:gap-8",
+            3: "grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-8",
+            4: "grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-8",
+            5: "grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-4 md:gap-8",
+            6: "grid-cols-1 md:grid-cols-2 xl:grid-cols-6 gap-4 md:gap-8",
         },
     },
     defaultVariants: {

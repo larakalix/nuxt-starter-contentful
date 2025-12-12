@@ -5,8 +5,8 @@ export const mapNavbarProps = (section: SectionNavbar): NavbarProps => {
     return {
         variant: section.variant as NavbarProps["variant"],
         items: section.items,
-        user: {
-            name: "Jurgen Klopp",
-        },
+        // user: {
+        //     name: "Jurgen Klopp",
+        // },
     } satisfies NavbarProps;
 };
