@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import type { Component } from "vue";
-import { ContentfulType } from "@starter/content/types";
-import { Navbar, Footer } from "@starter/ui/organisms";
+import { ContentfulType, type SectionBlogCardList, type SectionFooter, type SectionNavbar } from "@starter/content/types";
+import { Navbar, Footer, BlogCardList } from "@starter/ui/organisms";
 import type { FunnelPageSectionProps } from "./types";
+import { mapFooterProps } from "./mappers/footer-mapper";
+import { mapNavbarProps } from "./mappers/navbar-mapper";
+import { mapBlogCardListProps } from "./mappers/blog-card-list-mapper";
 
 const props = defineProps<FunnelPageSectionProps>();
 
@@ -17,12 +20,13 @@ function keyFor(section: AnySection, index: number): string {
 function getComponentByTypename(section: AnySection): Component {
     switch (section.__typename) {
         case ContentfulType.NAVBAR:
-        case "SectionNavbar":
             return Navbar;
 
         case ContentfulType.FOOTER:
-        case "SectionFooter":
             return Footer;
+
+        case ContentfulType.BLOG_CARD_LIST:
+            return BlogCardList;
 
         default:
             // if you have an UnknownSection, return that instead
@@ -32,37 +36,48 @@ function getComponentByTypename(section: AnySection): Component {
 
 // 🔹 Props are just a plain object for TS (no strict component-props inference)
 function getProps(section: AnySection): Record<string, any> {
-    return {
-        ...section,
-        section,
-        page: props.funnelPage,
-    };
+    let componentProps: Record<string, any> = {};
+
+    switch (section.__typename) {
+        case ContentfulType.NAVBAR:
+            componentProps = mapNavbarProps(section as SectionNavbar);
+            break;
+
+        case ContentfulType.FOOTER:
+            componentProps = mapFooterProps(section as SectionFooter);
+            break;
+
+        case ContentfulType.BLOG_CARD_LIST:
+            componentProps = mapBlogCardListProps(section as SectionBlogCardList);
+            break;
+
+        default:
+            // unknown section – you could return {} or some debug props
+            componentProps = {};
+    }
+
+    // Common context available to all sections
+    return componentProps;
 }
+
+// Extract sections from funnelPage prop
+const sections = (props.funnelPage?.structure.sections ?? []) as AnySection[];
+
+// Separate sections by type for layout purposes
+const headerSections = sections.filter(s => s.__typename === ContentfulType.NAVBAR);
+const footerSections = sections.filter(s => s.__typename === ContentfulType.FOOTER);
+const mainSections = sections.filter(s => s.__typename !== ContentfulType.NAVBAR && s.__typename !== ContentfulType.FOOTER);
 </script>
 
 <template>
-    <!-- pending -->
-    <div v-if="pending" class="flex items-center justify-center space-x-1 py-6">
-        <span class="dot"></span>
-        <span class="dot [animation-delay:0.2s]"></span>
-        <span class="dot [animation-delay:0.4s]"></span>
-    </div>
+    <component v-for="(section, index) in headerSections" :key="keyFor(section, index)"
+        :is="getComponentByTypename(section)" v-bind="getProps(section)" />
 
-    <!-- error -->
-    <div v-else-if="error"
-        class="flex items-start gap-2 rounded-md border border-red-300 bg-red-50 px-3 py-2 text-sm text-red-700">
-        <svg class="size-4 flex-shrink-0 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none"
-            viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M12 9v3m0 4h.01M4.93 4.93l14.14 14.14M12 2a10 10 0 100 20 10 10 0 000-20z" />
-        </svg>
+    <main class="mx-auto max-w-6xl flex flex-col flex-1 gap-4 px-4 py-10 sm:px-6 lg:px-8">
+        <component v-for="(section, index) in mainSections" :key="keyFor(section, index)"
+            :is="getComponentByTypename(section)" v-bind="getProps(section)" />
+    </main>
 
-        <span class="leading-snug">
-            {{ error?.message }}
-        </span>
-    </div>
-
-    <!-- sections -->
-    <component v-else v-for="(section, index) in (funnelPage?.structure.sections as AnySection[] ?? [])"
-        :key="keyFor(section, index)" :is="getComponentByTypename(section)" v-bind="getProps(section)" />
+    <component v-for="(section, index) in footerSections" :key="keyFor(section, index)"
+        :is="getComponentByTypename(section)" v-bind="getProps(section)" />
 </template>

@@ -138,6 +138,6 @@ export type BadgeVariantsProps = {
     variant?: BadgeVariant;
     color?: BadgeColor;
     rounded?: BadgeRounded;
-    class?: string;
     weight?: BadgeWeight;
+    class?: string;
 };

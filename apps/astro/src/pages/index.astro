@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import { FunnelPageSections } from "@starter/ui/pages";
 import { getLandingPage } from "@starter/content";
+import { Error } from "@starter/ui/organisms";
 
 const SLUG = "home";
 
@@ -18,5 +19,15 @@ const { data: funnelPage, error } = await useLandingPage(SLUG);
 ---
 
 <Layout>
-    <FunnelPageSections funnelPage={funnelPage} pending={false} error={error} />
+    {
+        error ? (
+            <Error message={error.message} />
+        ) : (
+            <FunnelPageSections
+                funnelPage={funnelPage}
+                pending={false}
+                error={error}
+            />
+        )
+    }
 </Layout>
