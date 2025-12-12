@@ -1,8 +1,17 @@
+export type ContentfulEntry<T> = T & {
+    __typename?: string;
+    sys: { id: string };
+};
+
+export type ContentfulCollectionResponse<K extends string, T> = {
+    [P in K]?: { items?: T[] };
+};
+
 export const ContentfulType = {
     FUNNEL_PAGE: "FunnelPage",
     TEMPLATE: "Template",
     HEADING: "Heading",
-    BLOG_CARD_LIST: "BlogCardListSection",
+    BLOG_CARD_LIST: "BlogCardList",
     BLOG_CARD_LIST_ITEM: "BlogCardListItem",
     NAVBAR: "Navbar",
     FOOTER: "Footer",
@@ -20,6 +29,10 @@ export const TemplateType = {
 
 export type TemplateType = (typeof TemplateType)[keyof typeof TemplateType];
 
+export type Sys = {
+    id: string;
+};
+
 export type SectionImageAsset = {
     __typename: typeof ContentfulType.IMAGE_ASSET;
     title: string;
@@ -29,7 +42,7 @@ export type SectionImageAsset = {
 
 export type SectionTag = {
     __typename: typeof ContentfulType.TAG;
-    id: string;
+    sys: Sys;
     label: string;
     variant?: string;
     color?: string;
@@ -39,7 +52,7 @@ export type SectionTag = {
 
 export type SectionHeading = {
     __typename: typeof ContentfulType.HEADING;
-    id: string;
+    sys: Sys;
     title: string;
     label: string;
     tag?: SectionTag;
@@ -49,14 +62,14 @@ export type SectionHeading = {
 
 export type SectionNavbar = {
     __typename: typeof ContentfulType.NAVBAR;
-    id: string;
+    sys: Sys;
     variant: string;
     items: { label: string; href: string }[];
 };
 
 export type SectionFooter = {
     __typename: typeof ContentfulType.FOOTER;
-    id: string;
+    sys: Sys;
     brandPrimary?: string;
     brandSecondary?: string;
     description?: string;
@@ -73,7 +86,7 @@ export type SectionFooter = {
 
 export type BlogCardListItem = {
     __typename: typeof ContentfulType.BLOG_CARD_LIST_ITEM;
-    id: string;
+    sys: Sys;
     title?: string;
     author?: SectionImageAsset;
     dateLabel?: string;
@@ -86,7 +99,7 @@ export type BlogCardListItem = {
 
 export type SectionBlogCardList = {
     __typename: typeof ContentfulType.BLOG_CARD_LIST;
-    id: string;
+    sys: Sys;
     heading?: SectionHeading;
     description?: string;
     items: BlogCardListItem[];
@@ -98,7 +111,9 @@ export type SectionType = SectionNavbar | SectionFooter | SectionBlogCardList;
 
 export type StructureTemplate = {
     __typename: typeof ContentfulType.TEMPLATE;
-    id: string;
+    sys: Sys;
+    slug: string;
+    theme: string;
     sections: SectionType[];
 };
 
@@ -107,7 +122,7 @@ export type StructureTemplate = {
  */
 export type FunnelPage = {
     __typename: typeof ContentfulType.FUNNEL_PAGE;
-    id: string;
+    sys: Sys;
     slug: string;
     templateType: TemplateType;
     structure: StructureTemplate;

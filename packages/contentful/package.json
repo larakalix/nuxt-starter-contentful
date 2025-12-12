@@ -23,11 +23,15 @@
             "types": "./src/mock/index.ts"
         }
     },
-    "dependencies": {},
     "devDependencies": {
+        "@types/node": "^24.10.1",
         "eslint-config": "workspace:*",
         "tsconfig": "workspace:*",
         "tsup": "^8.0.0",
         "typescript": "~5.9.3"
+    },
+    "dependencies": {
+        "@apollo/client": "^4.0.10",
+        "graphql": "^16.12.0"
     }
 }

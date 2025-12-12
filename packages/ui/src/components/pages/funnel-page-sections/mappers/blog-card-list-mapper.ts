@@ -10,7 +10,7 @@ export const mapBlogCardListProps = (
             title: section.heading?.title ?? "",
             label: section.heading?.label ?? "",
             tag: {
-                id: section.heading?.tag?.id ?? "",
+                id: section.heading?.tag?.sys.id ?? "",
                 variant: section.heading?.tag?.variant as BadgeProps["variant"],
                 rounded: section.heading?.tag?.rounded as BadgeProps["rounded"],
                 weight: section.heading?.tag?.weight as BadgeProps["weight"],
@@ -19,7 +19,7 @@ export const mapBlogCardListProps = (
         layout: section.layout as BlogCardListProps["layout"],
         columns: section.columns as BlogCardListProps["columns"],
         items: section.items.map((item) => ({
-            id: item.id,
+            id: item.sys.id,
             title: item.title ?? "",
             authorAvatarSrc: item.author?.url ?? "",
             authorName: item.author?.title ?? "",
@@ -30,7 +30,7 @@ export const mapBlogCardListProps = (
             href: item.href ?? "",
             tag: item.tag
                 ? {
-                      id: item.tag.id,
+                      id: item.tag.sys.id,
                       label: item.tag.label ?? "",
                       variant: item.tag.variant as BadgeProps["variant"],
                       rounded: item.tag.rounded as BadgeProps["rounded"],

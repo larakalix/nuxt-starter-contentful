@@ -17,16 +17,18 @@ export const getLandingPage = (slug: string): FunnelPage | null => {
 
 const HomeFunnelPage: FunnelPage = {
     __typename: ContentfulType.FUNNEL_PAGE,
-    id: "1",
+    sys: { id: "1" },
     slug: "home",
     templateType: TemplateType.GENERIC,
     structure: {
         __typename: ContentfulType.TEMPLATE,
-        id: "template-1",
+        sys: { id: "template-1" },
+        slug: "home",
+        theme: "theme-green",
         sections: [
             {
                 __typename: ContentfulType.NAVBAR,
-                id: "navbar-1",
+                sys: { id: "navbar-1" },
                 variant: "secondary",
                 items: [
                     { label: "Home", href: "/" },
@@ -35,10 +37,10 @@ const HomeFunnelPage: FunnelPage = {
             },
             {
                 __typename: ContentfulType.BLOG_CARD_LIST,
-                id: "blog-card-list-1",
+                sys: { id: "blog-card-list-1" },
                 heading: {
                     __typename: ContentfulType.HEADING,
-                    id: "heading-1",
+                    sys: { id: "heading-1" },
                     title: "Latest Blog Posts",
                     label: "Blog",
                 },
@@ -46,10 +48,10 @@ const HomeFunnelPage: FunnelPage = {
                 items: [
                     {
                         __typename: ContentfulType.BLOG_CARD_LIST_ITEM,
-                        id: "blog-card-1",
+                        sys: { id: "blog-card-1" },
                         tag: {
                             __typename: ContentfulType.TAG,
-                            id: "tag-1",
+                            sys: { id: "tag-1" },
                             label: "Technology",
                             variant: "solid",
                             color: "primary",
@@ -74,10 +76,10 @@ const HomeFunnelPage: FunnelPage = {
                     },
                     {
                         __typename: ContentfulType.BLOG_CARD_LIST_ITEM,
-                        id: "blog-card-2",
+                        sys: { id: "blog-card-2" },
                         tag: {
                             __typename: ContentfulType.TAG,
-                            id: "tag-2",
+                            sys: { id: "tag-2" },
                             label: "Health",
                             variant: "solid",
                             color: "success",
@@ -102,10 +104,10 @@ const HomeFunnelPage: FunnelPage = {
                     },
                     {
                         __typename: ContentfulType.BLOG_CARD_LIST_ITEM,
-                        id: "blog-card-3",
+                        sys: { id: "blog-card-3" },
                         tag: {
                             __typename: ContentfulType.TAG,
-                            id: "tag-3",
+                            sys: { id: "tag-3" },
                             label: "Travel",
                             variant: "solid",
                             color: "secondary",
@@ -130,10 +132,10 @@ const HomeFunnelPage: FunnelPage = {
                     },
                     {
                         __typename: ContentfulType.BLOG_CARD_LIST_ITEM,
-                        id: "blog-card-4",
+                        sys: { id: "blog-card-4" },
                         tag: {
                             __typename: ContentfulType.TAG,
-                            id: "tag-4",
+                            sys: { id: "tag-4" },
                             label: "Finance",
                             variant: "solid",
                             color: "warning",
@@ -158,10 +160,10 @@ const HomeFunnelPage: FunnelPage = {
                     },
                     {
                         __typename: ContentfulType.BLOG_CARD_LIST_ITEM,
-                        id: "blog-card-5",
+                        sys: { id: "blog-card-5" },
                         tag: {
                             __typename: ContentfulType.TAG,
-                            id: "tag-5",
+                            sys: { id: "tag-5" },
                             label: "Lifestyle",
                             variant: "solid",
                             color: "info",
@@ -186,10 +188,10 @@ const HomeFunnelPage: FunnelPage = {
                     },
                     {
                         __typename: ContentfulType.BLOG_CARD_LIST_ITEM,
-                        id: "blog-card-6",
+                        sys: { id: "blog-card-6" },
                         tag: {
                             __typename: ContentfulType.TAG,
-                            id: "tag-6",
+                            sys: { id: "tag-6" },
                             label: "Education",
                             variant: "solid",
                             color: "dark",
@@ -218,7 +220,7 @@ const HomeFunnelPage: FunnelPage = {
             },
             {
                 __typename: ContentfulType.FOOTER,
-                id: "footer-1",
+                sys: { id: "footer-1" },
                 brandPrimary: "#000000",
                 brandSecondary: "#FFFFFF",
                 description: "This is a sample footer description.",
@@ -243,16 +245,18 @@ const HomeFunnelPage: FunnelPage = {
 
 const AboutFunnelPage: FunnelPage = {
     __typename: ContentfulType.FUNNEL_PAGE,
-    id: "2",
+    sys: { id: "2" },
     slug: "about",
     templateType: TemplateType.GENERIC,
     structure: {
         __typename: ContentfulType.TEMPLATE,
-        id: "template-2",
+        sys: { id: "template-2" },
+        slug: "about",
+        theme: "theme-green",
         sections: [
             {
                 __typename: ContentfulType.NAVBAR,
-                id: "navbar-1",
+                sys: { id: "navbar-1" },
                 variant: "secondary",
                 items: [
                     { label: "Home", href: "/" },
