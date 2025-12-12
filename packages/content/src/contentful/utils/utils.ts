@@ -1,4 +1,4 @@
-import { ContentfulEntry } from "../../types";
+import type { ContentfulEntry } from "../../types";
 
 interface CollectionField {
     items: ContentfulEntry<unknown>[];

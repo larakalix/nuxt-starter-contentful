@@ -1,7 +1,9 @@
-import { ContentfulCollectionResponse, ContentfulEntry } from "../../types";
+import type {
+    ContentfulCollectionResponse,
+    ContentfulEntry,
+} from "../../types";
+import type { DocumentNode } from "@apollo/client";
 import { getContentfulClient } from "../client";
-import { DocumentNode } from "@apollo/client";
-import { cleanContentfulEntry } from "../utils/utils";
 
 export async function getFirstEntry<T>(
     query: DocumentNode,

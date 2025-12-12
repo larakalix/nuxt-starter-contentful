@@ -18,6 +18,10 @@
             "import": "./src/types/index.ts",
             "types": "./src/types/index.ts"
         },
+        "./services": {
+            "import": "./src/contentful/services/index.ts",
+            "types": "./src/contentful/services/index.ts"
+        },
         "./mock": {
             "import": "./src/mock/index.ts",
             "types": "./src/mock/index.ts"

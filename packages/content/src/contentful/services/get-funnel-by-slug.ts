@@ -1,4 +1,4 @@
-import { FunnelPage } from "../../types";
+import type { FunnelPage } from "../../types/landing";
 import { FUNNEL_PAGE_BY_SLUG } from "../queries/funnel-page";
 import { getFirstEntry } from "../server/server";
 

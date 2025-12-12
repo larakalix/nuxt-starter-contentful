@@ -2,8 +2,10 @@
 import { FunnelPageSections } from "@starter/ui/pages";
 import { useLandingPage } from "./composables/use-landing-page";
 import { Error } from "@starter/ui/organisms";
+import { getPageBySlug } from "@starter/content";
 
 const { data: funnelPage, pending, error } = useLandingPage("home");
+const contentfulRequest = getPageBySlug("home");
 </script>
 
 <template>
