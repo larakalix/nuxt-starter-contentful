@@ -35,10 +35,6 @@
             "import": "./src/components/pages/index.ts",
             "types": "./src/components/pages/index.ts"
         },
-        "./wrappers": {
-            "import": "./src/components/wrappers/index.ts",
-            "types": "./src/components/wrappers/index.ts"
-        },
         "./constants": {
             "import": "./src/constants/index.ts",
             "types": "./src/constants/index.ts"

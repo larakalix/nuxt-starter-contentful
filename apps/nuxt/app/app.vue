@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { FunnelPageSections } from "@starter/ui/wrappers";
+import { FunnelPageSections } from "@starter/ui/pages";
 import { useLandingPage } from "./composables/use-landing-page";
 
 const { data: funnelPage, pending, error } = useLandingPage("home");

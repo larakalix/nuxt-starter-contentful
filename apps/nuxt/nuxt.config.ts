@@ -14,7 +14,7 @@ export default defineNuxtConfig({
     css: ["@starter/tailwind-config/tailwindcss"],
     vite: {
         optimizeDeps: {
-            include: ["@starter/ui"],
+            include: ["@starter/ui", "@starter/tailwind-config/tailwindcss"],
         },
     },
 });
