@@ -36,7 +36,7 @@ const classes = computed(() =>
     <header :class="classes" aria-label="Main navigation">
         <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
             <!-- LEFT: Logo -->
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-3 px-2 md:px-6">
                 <slot name="logo">
                     <svg class="text-highlighted block w-auto h-6" width="800" height="200" viewBox="0 0 800 200"
                         fill="none" xmlns="http://www.w3.org/2000/svg" data-state="closed"
@@ -69,7 +69,7 @@ const classes = computed(() =>
             </nav>
 
             <!-- RIGHT: User + CTA -->
-            <div class="hidden items-center gap-3 md:flex">
+            <div class="hidden items-center gap-3 md:flex px-2 md:px-6">
                 <slot name="right">
                     <!-- Auth state -->
                     <template v-if="user">

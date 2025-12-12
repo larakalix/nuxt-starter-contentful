@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import type { Component } from "vue";
-import { ContentfulType, type SectionBlogCardList, type SectionFooter, type SectionNavbar } from "@starter/content/types";
-import { Navbar, Footer, BlogCardList } from "@starter/ui/organisms";
 import type { FunnelPageSectionProps } from "./types";
+import { ContentfulType, type SectionBlogCardList, type SectionFooter, type SectionNavbar } from "@starter/content";
+import { Navbar, Footer, BlogCardList } from "@starter/ui/organisms";
 import { mapFooterProps } from "./mappers/footer-mapper";
 import { mapNavbarProps } from "./mappers/navbar-mapper";
 import { mapBlogCardListProps } from "./mappers/blog-card-list-mapper";

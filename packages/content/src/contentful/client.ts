@@ -6,7 +6,7 @@ import {
 } from "@apollo/client";
 import { SetContextLink } from "@apollo/client/link/context";
 import { PersistedQueryLink } from "@apollo/client/link/persisted-queries";
-import { createHash } from "crypto";
+import { sha256 } from "js-sha256";
 
 const {
     CONTENTFUL_SPACE_ID: spaceId,
@@ -31,7 +31,7 @@ const httpLink = new HttpLink({
 });
 
 const persistedQueriesLink = new PersistedQueryLink({
-    sha256: (query: string) => createHash("sha256").update(query).digest("hex"),
+    sha256: (query: string) => sha256(query),
     useGETForHashedQueries: true,
 });
 
