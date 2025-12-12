@@ -4,9 +4,16 @@
     "type": "module",
     "private": true,
     "exports": {
+        "./tw.css": "./tw.css",
         "./tailwindcss": "./tw.css"
     },
     "devDependencies": {
         "tailwindcss": "^4.1.17"
-    }
+    },
+    "files": [
+        "tw.css"
+    ],
+    "sideEffects": [
+        "*.css"
+    ]
 }

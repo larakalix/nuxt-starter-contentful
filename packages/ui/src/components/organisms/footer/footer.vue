@@ -5,15 +5,6 @@ import type { FooterProps } from "./types";
 import { footerVariants } from "./variants";
 import clsx from "clsx";
 
-type FooterLink = { label: string; href: string };
-type FooterSocialType = "facebook" | "twitter" | "instagram" | "linkedin";
-
-type FooterSocial = {
-    type: FooterSocialType;
-    href: string;
-    label?: string;
-};
-
 const props = withDefaults(
     defineProps<FooterProps>(),
     {

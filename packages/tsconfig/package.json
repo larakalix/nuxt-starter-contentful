@@ -1,12 +1,17 @@
 {
-  "name": "tsconfig",
-  "version": "0.0.0",
-  "private": true,
-  "license": "MIT",
-  "publishConfig": {
-    "access": "public"
-  },
-  "devDependencies": {
-    "@vue/tsconfig": "^0.5.1"
-  }
+    "name": "tsconfig",
+    "version": "0.0.0",
+    "private": true,
+    "license": "MIT",
+    "publishConfig": {
+        "access": "public"
+    },
+    "exports": {
+        "./base.json": "./base.json",
+        "./nuxt.json": "./nuxt.json",
+        "./vue.json": "./vue.json"
+    },
+    "devDependencies": {
+        "@vue/tsconfig": "^0.5.1"
+    }
 }
