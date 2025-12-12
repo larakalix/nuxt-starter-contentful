@@ -1,29 +1,34 @@
-export enum ContentfulType {
-    FUNNEL_PAGE = "FunnelPage",
-    TEMPLATE = "Template",
-    HEADING = "Heading",
-    BLOG_CARD_LIST = "BlogCardListSection",
-    BLOG_CARD_LIST_ITEM = "BlogCardListItem",
-    NAVBAR = "Navbar",
-    FOOTER = "Footer",
-    TAG = "Tag",
-    IMAGE_ASSET = "Asset",
-}
+export const ContentfulType = {
+    FUNNEL_PAGE: "FunnelPage",
+    TEMPLATE: "Template",
+    HEADING: "Heading",
+    BLOG_CARD_LIST: "BlogCardListSection",
+    BLOG_CARD_LIST_ITEM: "BlogCardListItem",
+    NAVBAR: "Navbar",
+    FOOTER: "Footer",
+    TAG: "Tag",
+    IMAGE_ASSET: "Asset",
+} as const;
 
-export enum TemplateType {
-    GENERIC = "generic",
-    BLOG = "blog",
-}
+export type ContentfulType =
+    (typeof ContentfulType)[keyof typeof ContentfulType];
+
+export const TemplateType = {
+    GENERIC: "generic",
+    BLOG: "blog",
+} as const;
+
+export type TemplateType = (typeof TemplateType)[keyof typeof TemplateType];
 
 export type SectionImageAsset = {
-    __typename: ContentfulType.IMAGE_ASSET;
+    __typename: typeof ContentfulType.IMAGE_ASSET;
     title: string;
     description: string;
     url: string;
 };
 
 export type SectionTag = {
-    __typename: ContentfulType.TAG;
+    __typename: typeof ContentfulType.TAG;
     id: string;
     label: string;
     variant?: string;
@@ -33,7 +38,7 @@ export type SectionTag = {
 };
 
 export type SectionHeading = {
-    __typename: ContentfulType.HEADING;
+    __typename: typeof ContentfulType.HEADING;
     id: string;
     title: string;
     label: string;
@@ -43,14 +48,14 @@ export type SectionHeading = {
 };
 
 export type SectionNavbar = {
-    __typename: ContentfulType.NAVBAR;
+    __typename: typeof ContentfulType.NAVBAR;
     id: string;
     variant: string;
     items: { label: string; href: string }[];
 };
 
 export type SectionFooter = {
-    __typename: ContentfulType.FOOTER;
+    __typename: typeof ContentfulType.FOOTER;
     id: string;
     brandPrimary?: string;
     brandSecondary?: string;
@@ -67,16 +72,12 @@ export type SectionFooter = {
 };
 
 export type BlogCardListItem = {
-    __typename: ContentfulType.BLOG_CARD_LIST_ITEM;
+    __typename: typeof ContentfulType.BLOG_CARD_LIST_ITEM;
     id: string;
     title?: string;
-    // authorName?: string;
-    // authorAvatarSrc?: string;
     author?: SectionImageAsset;
     dateLabel?: string;
     readTimeLabel?: string;
-    // layout?: string;
-    // columns?: number;
     excerpt?: string;
     image?: SectionImageAsset;
     href?: string;
@@ -84,7 +85,7 @@ export type BlogCardListItem = {
 };
 
 export type SectionBlogCardList = {
-    __typename: ContentfulType.BLOG_CARD_LIST;
+    __typename: typeof ContentfulType.BLOG_CARD_LIST;
     id: string;
     heading?: SectionHeading;
     description?: string;
@@ -96,7 +97,7 @@ export type SectionBlogCardList = {
 export type SectionType = SectionNavbar | SectionFooter | SectionBlogCardList;
 
 export type StructureTemplate = {
-    __typename: ContentfulType.TEMPLATE;
+    __typename: typeof ContentfulType.TEMPLATE;
     id: string;
     sections: SectionType[];
 };
@@ -105,7 +106,7 @@ export type StructureTemplate = {
  * Funnel Page type
  */
 export type FunnelPage = {
-    __typename: ContentfulType.FUNNEL_PAGE;
+    __typename: typeof ContentfulType.FUNNEL_PAGE;
     id: string;
     slug: string;
     templateType: TemplateType;

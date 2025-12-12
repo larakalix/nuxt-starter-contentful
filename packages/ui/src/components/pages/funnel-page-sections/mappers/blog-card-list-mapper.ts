@@ -1,6 +1,5 @@
-import type { BadgeProps } from "@/src/components/atoms";
-import type { BlogCardVariantsProps } from "@/src/components/molecules";
-import type { BlogCardListProps } from "@/src/components/organisms";
+import type { BadgeProps } from "./../../../atoms";
+import type { BlogCardListProps } from "./../../..//organisms";
 import type { SectionBlogCardList } from "@starter/content";
 
 export const mapBlogCardListProps = (

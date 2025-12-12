@@ -1,4 +1,8 @@
-import { ContentfulType, FunnelPage, TemplateType } from "../types/landing";
+import {
+    ContentfulType,
+    type FunnelPage,
+    TemplateType,
+} from "../types/landing";
 
 export const getLandingPage = (slug: string): FunnelPage | null => {
     if (!slug || slug.trim() === "") return null;
@@ -8,7 +12,7 @@ export const getLandingPage = (slug: string): FunnelPage | null => {
         about: AboutFunnelPage,
     };
 
-    return pages[slug];
+    return pages[slug] || null;
 };
 
 const HomeFunnelPage: FunnelPage = {
