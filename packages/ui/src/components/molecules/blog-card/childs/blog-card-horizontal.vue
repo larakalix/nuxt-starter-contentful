@@ -41,7 +41,7 @@ const classes = computed(() =>
             </header>
 
             <!-- Meta row: author, date, read time -->
-            <div class="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
+            <div class="flex flex-wrap items-center gap-1 text-xs text-muted-foreground">
                 <!-- Author -->
                 <div class="flex items-center gap-2">
                     <div class="h-8 w-8 overflow-hidden rounded-full bg-muted">
@@ -62,9 +62,9 @@ const classes = computed(() =>
                         <path d="M7 3v3M13 3v3M4 8.5h12" stroke="currentColor" stroke-width="1.5"
                             stroke-linecap="round" />
                     </svg>
-                    <span class="text-xs md:text-sm font-normal text-foreground-muted-subtitle">
+                    <time class="text-xs md:text-sm font-normal text-foreground-muted-subtitle">
                         {{ dateLabel }}
-                    </span>
+                    </time>
                 </div>
 
                 <!-- Read time -->

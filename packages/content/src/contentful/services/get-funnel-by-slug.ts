@@ -15,7 +15,5 @@ export async function getPageBySlug(
         `Failed to fetch page with slug: ${slug}`
     );
 
-    console.log("[GET_PAGE_SLUG -> PAGE] => ", page);
-
     return page;
 }

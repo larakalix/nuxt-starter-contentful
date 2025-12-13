@@ -1,11 +1,34 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { FunnelPageSections } from "@starter/ui/pages";
-import { getLandingPage } from "@starter/content";
+import { setupContentful, getPageBySlug } from "@starter/content";
+import { Error as ErrorComponent } from "@starter/ui/organisms";
 
-const funnelPage = await getLandingPage("home");
+// setupContentful({
+//     spaceId: import.meta.env.CONTENTFUL_SPACE_ID,
+//     environmentId: import.meta.env.CONTENTFUL_ENVIRONMENT_ID ?? "master",
+//     cdaToken: import.meta.env.CONTENTFUL_CDA_TOKEN,
+//     previewToken: import.meta.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN,
+//     preview: false,
+// });
+
+const slug = "home";
+
+const { funnelPage, error } = await (async () => {
+    try {
+        const funnelPage = await getPageBySlug(slug);
+        if (!funnelPage)
+            throw new Error(`Failed to load funnel page with slug: ${slug}`);
+
+        return { funnelPage, error: null };
+    } catch (err) {
+        return { funnelPage: null, error: err as Error };
+    }
+})();
 ---
 
 <Layout>
+    {error && <ErrorComponent message={error?.message} />}
+
     <FunnelPageSections funnelPage={funnelPage} />
 </Layout>

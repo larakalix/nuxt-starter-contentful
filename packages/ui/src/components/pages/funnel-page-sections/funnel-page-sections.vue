@@ -61,7 +61,7 @@ function getProps(section: AnySection): Record<string, any> {
 }
 
 // Extract sections from funnelPage prop
-const sections = (props.funnelPage?.structure.sections ?? []) as AnySection[];
+const sections = (props.funnelPage?.template.sectionsCollection.items ?? []) as AnySection[];
 
 // Separate sections by type for layout purposes
 const headerSections = sections.filter(s => s.__typename === ContentfulType.NAVBAR);

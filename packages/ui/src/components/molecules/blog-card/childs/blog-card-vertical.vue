@@ -38,7 +38,7 @@ const classes = computed(() =>
         </div>
 
         <!-- Meta row: author, date, read time -->
-        <div class="flex flex-wrap items-center gap-3 text-xs text-muted-foreground">
+        <div class="flex flex-wrap items-center gap-1 text-xs text-muted-foreground">
             <!-- Author -->
             <div class="flex items-center gap-2">
                 <div class="h-8 w-8 overflow-hidden rounded-full bg-muted">
@@ -74,7 +74,7 @@ const classes = computed(() =>
                             stroke-linejoin="round" />
                     </svg>
                     <span class="text-xs md:text-sm font-normal text-foreground-muted-subtitle">{{ readTimeLabel
-                    }}</span>
+                        }}</span>
                 </div>
             </template>
         </div>

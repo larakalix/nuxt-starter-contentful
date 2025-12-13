@@ -22,9 +22,9 @@
             "import": "./src/contentful/services/index.ts",
             "types": "./src/contentful/services/index.ts"
         },
-        "./mock": {
-            "import": "./src/mock/index.ts",
-            "types": "./src/mock/index.ts"
+        "./client": {
+            "import": "./src/contentful/client.ts",
+            "types": "./src/contentful/client.ts"
         }
     },
     "devDependencies": {

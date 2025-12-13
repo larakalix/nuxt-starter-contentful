@@ -5,25 +5,41 @@ export const FUNNEL_PAGE_BY_SLUG = gql`
         funnelPageCollection(where: { slug: $slug }, limit: 1) {
             items {
                 __typename
-                sys { id }
+                sys {
+                    id
+                }
                 slug
                 theme
+                navBar {
+                    sys {
+                        id
+                    }
+                    name
+                    sticky
+                    showBorder
+                }
                 template {
                     __typename
-                    sys { id }
+                    sys {
+                        id
+                    }
                     name
                     sectionsCollection(limit: 20) {
                         items {
                             __typename
                             ... on BlogCardList {
-                                sys { id }
+                                sys {
+                                    id
+                                }
                                 name
                                 description
                                 layout
                                 columns
                                 sectionHeading {
                                     __typename
-                                    sys { id }
+                                    sys {
+                                        id
+                                    }
                                     name
                                     title
                                     label
@@ -33,7 +49,9 @@ export const FUNNEL_PAGE_BY_SLUG = gql`
                                 itemsCollection(limit: 50) {
                                     items {
                                         __typename
-                                        sys { id }
+                                        sys {
+                                            id
+                                        }
                                         name
                                         title
                                         excerpt
@@ -42,7 +60,9 @@ export const FUNNEL_PAGE_BY_SLUG = gql`
                                         readTimeLabel
                                         tag {
                                             __typename
-                                            sys { id }
+                                            sys {
+                                                id
+                                            }
                                             label
                                             variant
                                             color
@@ -50,7 +70,9 @@ export const FUNNEL_PAGE_BY_SLUG = gql`
                                         }
                                         image {
                                             __typename
-                                            sys { id }
+                                            sys {
+                                                id
+                                            }
                                             url
                                             title
                                             description

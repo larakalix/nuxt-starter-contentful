@@ -35,6 +35,7 @@ export type Sys = {
 
 export type SectionImageAsset = {
     __typename: typeof ContentfulType.IMAGE_ASSET;
+    sys: Sys;
     title: string;
     description: string;
     url: string;
@@ -97,24 +98,31 @@ export type BlogCardListItem = {
     tag?: SectionTag;
 };
 
+export type SectionBlogCardListItemsCollection = {
+    items: BlogCardListItem[];
+};
+
 export type SectionBlogCardList = {
     __typename: typeof ContentfulType.BLOG_CARD_LIST;
     sys: Sys;
-    heading?: SectionHeading;
+    sectionHeading?: SectionHeading;
     description?: string;
-    items: BlogCardListItem[];
+    itemsCollection: SectionBlogCardListItemsCollection;
     layout?: string;
     columns?: number;
 };
 
 export type SectionType = SectionNavbar | SectionFooter | SectionBlogCardList;
 
+export type StructureTemplateSectionsCollection = {
+    items: SectionType[];
+};
+
 export type StructureTemplate = {
     __typename: typeof ContentfulType.TEMPLATE;
     sys: Sys;
-    slug: string;
-    theme: string;
-    sections: SectionType[];
+    name: string;
+    sectionsCollection: StructureTemplateSectionsCollection;
 };
 
 /*
@@ -124,6 +132,6 @@ export type FunnelPage = {
     __typename: typeof ContentfulType.FUNNEL_PAGE;
     sys: Sys;
     slug: string;
-    templateType: TemplateType;
-    structure: StructureTemplate;
+    theme: string;
+    template: StructureTemplate;
 };
