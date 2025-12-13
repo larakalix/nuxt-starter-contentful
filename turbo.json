@@ -23,7 +23,8 @@
         "lint": {},
         "dev": {
             "cache": false,
-            "persistent": true
+            "persistent": true,
+            "env": ["NUXT_PUBLIC_*", "ASTRO_*", "PUBLIC_*", "CONTENTFUL_*"]
         }
     }
 }

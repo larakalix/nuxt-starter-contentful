@@ -51,11 +51,6 @@ export function createContentfulClient(preview = false) {
         previewToken,
     } = config;
 
-    console.log("[ENV_VARS] -> ", {
-        spaceId,
-        cdaToken,
-    });
-
     if (!spaceId || !cdaToken) {
         console.warn(
             "[contentful] spaceId/cdaToken missing. Contentful queries will fail."
