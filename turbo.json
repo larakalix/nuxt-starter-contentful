@@ -10,6 +10,14 @@
                 ".output/**",
                 "dist/**",
                 "storybook-static/**"
+            ],
+            "env": [
+                "NUXT_PUBLIC_*",
+                "NITRO_*",
+                "ASTRO_*",
+                "PUBLIC_*",
+                "CONTENTFUL_*",
+                "NODE_ENV"
             ]
         },
         "lint": {},
