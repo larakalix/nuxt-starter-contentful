@@ -2,28 +2,31 @@
 # Core Node / Turborepo ignores
 # -----------------------------------------------------------
 node_modules/
-pnpm-lock.yaml
-.yarn/
 .pnpm-store/
+.yarn/
 .turbo/
+**/.turbo/
+
+# Build outputs (generic)
 dist/
 build/
 .cache/
 .temp/
-
-# Turbo local cache
-**/.turbo/
+.tmp/
 
 # -----------------------------------------------------------
 # OS & Editor junk
 # -----------------------------------------------------------
 .DS_Store
 Thumbs.db
+
+# Logs
 *.log
-*.pid
-*.seed
-*.cover
-*.tgz
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
 
 # VS Code
 .vscode/*
@@ -44,7 +47,7 @@ Thumbs.db
 .server/
 functions/.nuxt/
 
-# Nuxt dev files
+# In case some projects put Nuxt output under app/
 **/app/.nuxt/
 **/app/.output/
 **/app/.nitro/
@@ -52,22 +55,19 @@ functions/.nuxt/
 # -----------------------------------------------------------
 # Astro specific
 # -----------------------------------------------------------
-**/astro/.astro/
-**/astro/dist/
-**/apps/astro/dist/
+**/.astro/
+# (Astro output)
+**/dist/
 
-# Astro local cache
-**/apps/astro/.astro/
+# If you want to be more explicit instead of **/dist/, use:
+# apps/astro/.astro/
+# apps/astro/dist/
 
 # -----------------------------------------------------------
 # Storybook
 # -----------------------------------------------------------
 storybook-static/
 sb-static/
-**/apps/sb/storybook-static/
-**/apps/sb/dist/
-
-# Storybook cache
 .storybook-cache/
 **/.storybook-cache/
 
@@ -85,7 +85,7 @@ tailwind.out.css
 *.d.ts.map
 
 # -----------------------------------------------------------
-# Env files
+# Env files (keep templates)
 # -----------------------------------------------------------
 .env
 .env.*
@@ -95,18 +95,14 @@ tailwind.out.css
 .env.production.local
 
 # -----------------------------------------------------------
-# Logs
+# Runtime lockfiles
 # -----------------------------------------------------------
-npm-debug.log*
-pnpm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-lerna-debug.log*
+# ✅ Keep pnpm lockfile COMMITTED for CI/Vercel
+# pnpm-lock.yaml
 
-# -----------------------------------------------------------
-# Locks & runtime files
-# -----------------------------------------------------------
+# If you never use npm/yarn in this repo, you can ignore these:
 package-lock.json
+yarn.lock
 .lock-wscript
 *.pid.lock
 
@@ -118,16 +114,19 @@ contentful-export.json
 contentful-import.json
 
 # -----------------------------------------------------------
-# Misc
+# Coverage
 # -----------------------------------------------------------
 coverage/
-*.swp
-*.swo
-*.tmp
-*.temp
 
 # -----------------------------------------------------------
-# Output folders inside app packages
+# Misc temp files
+# -----------------------------------------------------------
+*.swp
+*.swo
+*.tgz
+
+# -----------------------------------------------------------
+# Public output folders (framework artifacts)
 # -----------------------------------------------------------
 **/public/build/
 **/public/_nuxt/
