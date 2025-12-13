@@ -1,15 +1,6 @@
 <script setup lang="ts">
 import { FunnelPageSections } from "@starter/ui/pages";
 import { Error } from "@starter/ui/organisms";
-import { setupContentful } from "@starter/content";
-
-// setupContentful({
-//   spaceId: process.env.CONTENTFUL_SPACE_ID as string,
-//   environmentId: process.env.CONTENTFUL_ENVIRONMENT_ID ?? "master",
-//   cdaToken: process.env.CONTENTFUL_CDA_TOKEN as string,
-//   previewToken: process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN,
-//   preview: false,
-// });
 
 const slug = "home";
 

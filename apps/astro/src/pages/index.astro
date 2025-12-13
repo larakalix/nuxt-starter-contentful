@@ -1,16 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { FunnelPageSections } from "@starter/ui/pages";
-import { setupContentful, getPageBySlug } from "@starter/content";
+import { getPageBySlug } from "@starter/content";
 import { Error as ErrorComponent } from "@starter/ui/organisms";
-
-// setupContentful({
-//     spaceId: import.meta.env.CONTENTFUL_SPACE_ID,
-//     environmentId: import.meta.env.CONTENTFUL_ENVIRONMENT_ID ?? "master",
-//     cdaToken: import.meta.env.CONTENTFUL_CDA_TOKEN,
-//     previewToken: import.meta.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN,
-//     preview: false,
-// });
 
 const slug = "home";
 
