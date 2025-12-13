@@ -30,7 +30,7 @@ const classes = computed(() =>
 
         <!-- Content column -->
         <div class="flex flex-1 flex-col gap-3">
-            <header class="flex flex-col gap-y-2">
+            <header class="flex flex-col gap-y-2 flex-1">
                 <!-- Tag pill -->
                 <Badge v-if="tag" v-bind="tag" class="text-xs px-3 py-1" />
 
@@ -82,12 +82,13 @@ const classes = computed(() =>
                         </span>
                     </div>
                 </template>
-            </div>
 
-            <!-- Excerpt -->
-            <p v-if="excerpt" class="text-sm leading-relaxed text-muted-foreground line-clamp-2 md:line-clamp-3">
-                {{ excerpt }}
-            </p>
+                <!-- Excerpt -->
+                <p class="text-sm leading-relaxed text-muted-foreground line-clamp-2 min-h-[2.75rem]"
+                    :class="{ invisible: !excerpt }">
+                    {{ excerpt || 'placeholder' }}
+                </p>
+            </div>
         </div>
     </component>
 </template>
