@@ -16,5 +16,9 @@ const props = defineProps<ErrorProps>();
         <span class="leading-snug">
             {{ props.message }}
         </span>
+
+        <button v-if="props.refresh" @click="props.refresh" class="ml-auto text-red-600 hover:underline">
+            Retry
+        </button>
     </div>
 </template>

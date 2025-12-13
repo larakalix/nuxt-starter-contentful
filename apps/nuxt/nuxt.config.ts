@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import type { PluginOption } from "vite";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineNuxtConfig({
@@ -9,7 +10,7 @@ export default defineNuxtConfig({
     },
     typescript: {
         tsConfig: {
-            extends: "@starter/tsconfig/app.json",
+            extends: "tsconfig/nuxt.json",
         },
     },
     css: ["@starter/tailwind-config/tailwindcss"],
@@ -17,6 +18,6 @@ export default defineNuxtConfig({
         optimizeDeps: {
             include: ["@starter/ui"],
         },
-        plugins: [tailwindcss()],
+        plugins: [tailwindcss() as PluginOption],
     },
 });

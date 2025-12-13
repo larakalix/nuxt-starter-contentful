@@ -7,13 +7,15 @@ export async function getPageBySlug(
     preview = false,
     locale: string = "en-US"
 ): Promise<FunnelPage | null> {
-    const page = getFirstEntry<FunnelPage>(
+    const page = await getFirstEntry<FunnelPage>(
         FUNNEL_PAGE_BY_SLUG,
         { slug, preview, locale },
         "funnelPageCollection",
         preview,
         `Failed to fetch page with slug: ${slug}`
     );
+
+    console.log("[GET_PAGE_SLUG -> PAGE] => ", page);
 
     return page;
 }

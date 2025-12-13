@@ -28,9 +28,9 @@ export async function getFirstEntry<T>(
         const collection = data[collectionKey];
         const items = collection?.items ?? null;
 
-        if (!items || items.length <= 0) return null;
+        if (!items || items.length === 0) return null;
 
-        return items[0] ?? null;
+        return items[0] as T;
     } catch (err) {
         console.error("[getFirstEntry]", err);
 
