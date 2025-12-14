@@ -1,18 +1,20 @@
-import { setupContentful } from "@starter/content";
+import { setupContentful, getContentfulClient } from "@starter/content";
 
 export default defineNuxtPlugin(() => {
-    const {
-        contentfulSpaceId,
-        contentfulEnvironmentId,
-        contentfulCdaToken,
-        contentfulPreviewToken,
-    } = useRuntimeConfig();
+    const rc = useRuntimeConfig();
 
-    setupContentful({
-        spaceId: contentfulSpaceId,
-        environmentId: contentfulEnvironmentId ?? "master",
-        cdaToken: contentfulCdaToken,
-        previewToken: contentfulPreviewToken,
+    const cfg = {
+        spaceId: rc.contentfulSpaceId,
+        environmentId: rc.contentfulEnvironmentId ?? "master",
+        cdaToken: rc.contentfulCdaToken,
+        previewToken: rc.contentfulPreviewToken,
         preview: false,
+    };
+
+    console.log("[CFG_PLUGIN]", {
+        cfg,
     });
+
+    setupContentful(cfg);
+    getContentfulClient(false);
 });

@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import { FunnelPageSections } from "@starter/ui/pages";
 import { getPageBySlug } from "@starter/content";
 import { Error as ErrorComponent } from "@starter/ui/organisms";
+import type { OnNavigate } from "@starter/ui/atoms";
 
 export async function getStaticPaths() {
     return [
@@ -28,13 +29,9 @@ const { funnelPage, error } = await (async () => {
     }
 })();
 
-const onNavigate = (href: string, event: Event) => {
-    console.log("[ASTRO_ON_NAVIGATE] -> ", {
-        href,
-        event,
-    });
-
-    window.location.href = href;
+const onNavigate: OnNavigate = (href, event) => {
+    event?.preventDefault();
+    window.location.assign(href);
 };
 ---
 

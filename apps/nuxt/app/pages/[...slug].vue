@@ -2,6 +2,7 @@
 import { FunnelPageSections } from "@starter/ui/pages";
 import { usePage } from '~/composables/use-page'
 import { Error } from "@starter/ui/organisms";
+import type { OnNavigate } from "@starter/ui/atoms";
 
 const route = useRoute()
 const router = useRouter()
@@ -13,16 +14,11 @@ const segments = computed<string[]>(() => {
 })
 
 const { data: funnelPage, pending, error, refresh } = usePage(segments.value);
-const onNavigate = (href: string, event: MouseEvent) => {
-  console.log("[NUXT_ON_NAVIGATE] -> ", {
-    href,
-    event
-  });
 
-  (async () => {
-    await router.push(href);
-  })();
-}
+const onNavigate: OnNavigate = async (href, event) => {
+  event?.preventDefault();
+  await router.push(href);
+};
 </script>
 
 <template>
