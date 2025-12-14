@@ -60,7 +60,7 @@ const classes = computed(() =>
                     <div class="flex items-center gap-1.5">
                         <!-- clock icon... -->
                         <span class="text-xs md:text-sm font-normal text-foreground-muted-subtitle">{{ readTimeLabel
-                        }}</span>
+                            }}</span>
                     </div>
                 </template>
             </div>
@@ -68,7 +68,7 @@ const classes = computed(() =>
             <!-- Excerpt: reserve space even if missing -->
             <p class="text-sm leading-relaxed text-muted-foreground line-clamp-2 min-h-[2.75rem]"
                 :class="{ invisible: !excerpt }">
-                {{ excerpt || 'placeholder' }}
+                {{ excerpt }}
             </p>
         </div>
     </component>

@@ -10,6 +10,8 @@ import { mapNavbarProps } from "../mappers/navbar-mapper";
 import { mapFooterProps } from "../mappers/footer-mapper";
 import { mapBlogCardListProps } from "../mappers/blog-card-list-mapper";
 
+export type SectionArea = "header" | "main" | "footer";
+
 export type BaseSection = {
     __typename?: string;
     id?: string | null;
@@ -26,19 +28,19 @@ export type RenderItem = {
 type RegistryItem = {
     component: Component;
     mapProps: (section: BaseSection) => Record<string, unknown>;
-    area: "header" | "main" | "footer";
+    area: SectionArea;
 };
 
 const registry: Partial<Record<ContentfulType, RegistryItem>> = {
     [ContentfulType.NAVBAR]: {
         component: Navbar,
         mapProps: (s) => mapNavbarProps(s as SectionNavbar),
-        area: "header",
+        area: "main",
     },
     [ContentfulType.FOOTER]: {
         component: Footer,
         mapProps: (s) => mapFooterProps(s as SectionFooter),
-        area: "footer",
+        area: "main",
     },
     [ContentfulType.BLOG_CARD_LIST]: {
         component: BlogCardList,

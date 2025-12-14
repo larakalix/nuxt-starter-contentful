@@ -64,6 +64,9 @@ export type SectionHeading = {
 export type SectionNavbar = {
     __typename: typeof ContentfulType.NAVBAR;
     sys: Sys;
+    name: string;
+    sticky?: boolean;
+    showBorder?: boolean;
     variant: string;
     items: { label: string; href: string }[];
 };
@@ -96,6 +99,7 @@ export type BlogCardListItem = {
     image?: SectionImageAsset;
     href?: string;
     tag?: SectionTag;
+    layout?: string;
 };
 
 export type SectionBlogCardListItemsCollection = {
@@ -133,5 +137,8 @@ export type FunnelPage = {
     sys: Sys;
     slug: string;
     theme: string;
+    navBar: SectionNavbar;
     template: StructureTemplate;
+    // This prop renders navbar/footer from sections instead of getting this from funnel page navbar/footer
+    skipWrapper?: boolean;
 };

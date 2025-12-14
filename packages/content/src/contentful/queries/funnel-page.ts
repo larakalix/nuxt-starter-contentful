@@ -10,6 +10,7 @@ export const FUNNEL_PAGE_BY_SLUG = gql`
                 }
                 slug
                 theme
+                skipWrapper
                 navBar {
                     sys {
                         id
@@ -58,6 +59,7 @@ export const FUNNEL_PAGE_BY_SLUG = gql`
                                         href
                                         dateLabel
                                         readTimeLabel
+                                        layout
                                         tag {
                                             __typename
                                             sys {

@@ -5,12 +5,10 @@ import { Error } from "@starter/ui/organisms";
 import { buildRenderItems, type BaseSection } from "./helpers/section-renderer";
 
 const props = defineProps<FunnelPageSectionProps>();
-
-// Make the section "loose" for the factory, we don't want strict prop inference here
-type AnySection = Record<string, any>;
+const { funnelPage } = props;
 
 const sections = computed(() => {
-    return (props.funnelPage?.template.sectionsCollection.items ?? []) as BaseSection[];
+    return (funnelPage?.template.sectionsCollection.items ?? []) as BaseSection[];
 });
 
 const grouped = computed(() => buildRenderItems(sections.value, Error));
@@ -18,6 +16,12 @@ const grouped = computed(() => buildRenderItems(sections.value, Error));
 </script>
 
 <template>
+    <pre>
+    {{
+        JSON.stringify(funnelPage, null, 2)
+    }}
+    </pre>
+
     <component v-if="grouped.header" :key="grouped.header.key" :is="grouped.header.component"
         v-bind="grouped.header.props" />
 
