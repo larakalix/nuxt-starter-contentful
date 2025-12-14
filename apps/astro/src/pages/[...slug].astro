@@ -1,0 +1,49 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { FunnelPageSections } from "@starter/ui/pages";
+import { getPageBySlug } from "@starter/content";
+import { Error as ErrorComponent } from "@starter/ui/organisms";
+
+export async function getStaticPaths() {
+    return [
+        { params: { slug: "" } },
+        { params: { slug: "home" } },
+        { params: { slug: "about" } },
+        { params: { slug: "blog" } },
+    ];
+}
+
+const { slug } = Astro.params;
+const [path, id] = !slug ? ["home", ""] : slug.split("/");
+
+const { funnelPage, error } = await (async () => {
+    try {
+        const funnelPage = await getPageBySlug(path);
+        if (!funnelPage)
+            throw new Error(`Failed to load funnel page with slug: ${path}`);
+
+        return { funnelPage, error: null };
+    } catch (err) {
+        return { funnelPage: null, error: err as Error };
+    }
+})();
+
+const onNavigate = (href: string, event: Event) => {
+    console.log("[ASTRO_ON_NAVIGATE] -> ", {
+        href,
+        event,
+    });
+
+    window.location.href = href;
+};
+---
+
+<Layout>
+    {error && <ErrorComponent message={error?.message} />}
+
+    <FunnelPageSections
+        client:visible
+        funnelPage={funnelPage}
+        onNavigate={onNavigate}
+    />
+</Layout>
