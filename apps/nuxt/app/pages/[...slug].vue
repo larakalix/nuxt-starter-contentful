@@ -22,18 +22,20 @@ const onNavigate: OnNavigate = async (href, event) => {
 </script>
 
 <template>
-  <NuxtLoadingIndicator />
+  <section class="flex flex-col min-h-screen">
+    <NuxtLoadingIndicator />
 
-  <!-- Pending state -->
-  <div v-if="pending" class="flex items-center justify-center space-x-1 py-6">
-    <span class="dot"></span>
-    <span class="dot [animation-delay:0.2s]"></span>
-    <span class="dot [animation-delay:0.4s]"></span>
-  </div>
+    <!-- Pending state -->
+    <div v-if="pending" class="flex items-center justify-center space-x-1 py-6">
+      <span class="dot"></span>
+      <span class="dot [animation-delay:0.2s]"></span>
+      <span class="dot [animation-delay:0.4s]"></span>
+    </div>
 
-  <!-- Error state -->
-  <Error v-else-if="error" :message="error?.message" :refresh="refresh" />
+    <!-- Error state -->
+    <Error v-else-if="error" :message="error?.message" :refresh="refresh" />
 
-  <!-- Success state -->
-  <FunnelPageSections v-else :funnel-page="funnelPage" :pending="pending" :error="error" :on-navigate="onNavigate" />
+    <!-- Success state -->
+    <FunnelPageSections v-else :funnel-page="funnelPage" :pending="pending" :error="error" :on-navigate="onNavigate" />
+  </section>
 </template>
