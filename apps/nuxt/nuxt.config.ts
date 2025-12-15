@@ -30,6 +30,7 @@ export default defineNuxtConfig({
         },
         plugins: [tailwindcss() as PluginOption],
     },
+    plugins: ["./plugins/contentful.server.ts"],
     runtimeConfig: {
         contentfulSpaceId: CONTENTFUL_SPACE_ID,
         contentfulEnvironmentId: CONTENTFUL_ENVIRONMENT_ID ?? "master",

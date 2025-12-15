@@ -1,22 +1,16 @@
 <script setup lang="ts">
 import type { VersatileLinkProps } from "./types";
-import { computed, resolveComponent, useAttrs } from "vue";
+import { computed, getCurrentInstance, useAttrs } from "vue";
 
 const props = withDefaults(defineProps<VersatileLinkProps>(), {
   external: false,
   replace: false,
-  prefetch: undefined,
-  target: undefined,
-  rel: undefined,
-  ariaLabel: undefined,
   disabled: false,
-  onNavigate: undefined,
 });
 
 const attrs = useAttrs();
 
 function isExternalUrl(v: string) {
-  // covers http(s), mailto, tel, protocol-relative, etc.
   return /^[a-z][a-z0-9+.-]*:|^\/\//i.test(v);
 }
 
@@ -26,40 +20,36 @@ const rawHref = computed(() => {
   return "";
 });
 
+// ✅ REAL detection (works in Nuxt, false in Astro/Storybook)
+const NuxtLink = computed(() => {
+  const inst = getCurrentInstance();
+  return (inst?.appContext.components as any)?.NuxtLink ?? null;
+});
+
 const isExternal = computed(() => {
   if (props.external) return true;
   const h = rawHref.value;
   if (!h) return false;
-  // absolute/protocol links => external, hash links are treated as "external" too (use <a>)
-  if (isExternalUrl(h) || h.startsWith("#")) return true;
-  return false;
+  if (h.startsWith("#")) return true;
+  return isExternalUrl(h);
 });
 
 const computedRel = computed(() => {
-  // safe defaults for target=_blank
   if (props.rel) return props.rel;
   if (props.target === "_blank") return "noopener noreferrer";
   return undefined;
-});
-
-const NuxtLink = computed(() => {
-  try {
-    return resolveComponent("NuxtLink");
-  } catch {
-    return null;
-  }
 });
 
 const shouldUseNuxtLink = computed(() => {
   if (props.disabled) return false;
   if (isExternal.value) return false;
   if (!props.to && !rawHref.value) return false;
-  return !!NuxtLink.value;
+  return Boolean(NuxtLink.value);
 });
 
 const tag = computed(() => (shouldUseNuxtLink.value ? NuxtLink.value : "a"));
 
-const linkProps = computed(() => {
+const linkProps = computed<Record<string, unknown>>(() => {
   if (shouldUseNuxtLink.value) {
     return {
       to: props.to ?? rawHref.value,
@@ -69,7 +59,6 @@ const linkProps = computed(() => {
     };
   }
 
-  // <a> fallback (Astro / Storybook / external)
   return {
     href: rawHref.value || undefined,
     target: props.target,
@@ -86,33 +75,32 @@ const mergedProps = computed(() => ({
 }));
 
 function shouldLetBrowserHandle(e: MouseEvent, href: string) {
-  // allow new tab / new window patterns
   if (e.defaultPrevented) return true;
-  if (e.button !== 0) return true; // not left click
+  if (e.button !== 0) return true;
   if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return true;
-
-  // external links: let browser handle
-  const isExternal = /^[a-z][a-z0-9+.-]*:|^\/\//i.test(href);
-  if (isExternal) return true;
-
+  if (isExternalUrl(href)) return true;
   return false;
 }
 
-const handleClick = async (href: string, event: MouseEvent) => {
-  // if you didn't pass onNavigate, do nothing; browser navigates via <a href>
-  if (!props.onNavigate) return;
+const handleClick = async (event: MouseEvent) => {
+  const href = rawHref.value;
 
-  // respect normal browser behaviors
+  if (props.disabled) {
+    event.preventDefault();
+    event.stopPropagation();
+    return;
+  }
+
+  if (!href || !props.onNavigate) return;
   if (shouldLetBrowserHandle(event, href)) return;
 
-  // we DO want to intercept
   event.preventDefault();
   await props.onNavigate(href, event);
 };
 </script>
 
 <template>
-  <component :is="tag" v-bind="mergedProps" @click="handleClick(rawHref, $event)">
+  <component :is="tag" v-bind="mergedProps" @click="handleClick">
     <slot />
   </component>
 </template>

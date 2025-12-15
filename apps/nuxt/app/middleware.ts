@@ -1,5 +1,4 @@
 import { setupContentful } from "@starter/content";
-import { defineMiddleware } from "astro:middleware";
 
 const {
     CONTENTFUL_SPACE_ID,
@@ -19,12 +18,16 @@ const state = {
     },
 };
 
-export const onRequest = defineMiddleware((context, next) => {
+export default defineNuxtRouteMiddleware((to, from) => {
+    console.log("[MIDDLEWARE_CONTENTFUL] -> ", {
+        initialized: state.initialized,
+        config: state.config,
+    });
     if (!state.initialized) {
         setupContentful(state.config);
 
         state.initialized = true;
     }
 
-    return next();
+    return;
 });

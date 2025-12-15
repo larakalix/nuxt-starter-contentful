@@ -40,6 +40,11 @@ export function getContentfulConfig(): ContentfulConfig | null {
 export function createContentfulClient(preview = false) {
     const config = getContentfulConfig();
 
+    console.log("[CREATE_CLIENT_CONFIG] -> ", {
+        preview,
+        _deliveryClient,
+    });
+
     if (!config) {
         throw new Error(
             "[contentful] Client not initialized. Please call setupContentful first."
@@ -121,6 +126,5 @@ export function getContentfulClient(preview = false) {
     }
 
     if (!_deliveryClient) _deliveryClient = createContentfulClient(false);
-
     return _deliveryClient;
 }

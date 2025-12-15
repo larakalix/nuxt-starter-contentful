@@ -11,10 +11,7 @@ export default defineNuxtPlugin(() => {
         preview: false,
     };
 
-    console.log("[CFG_PLUGIN]", {
-        cfg,
-    });
+    console.log("[NUXT_PLUGIN]");
 
     setupContentful(cfg);
-    getContentfulClient(false);
 });
