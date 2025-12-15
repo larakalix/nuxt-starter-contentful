@@ -138,7 +138,8 @@ export type FunnelPage = {
     sys: Sys;
     slug: string;
     theme: string;
-    navBar: SectionNavbar;
+    navBar?: SectionNavbar;
+    footer?: SectionFooter;
     template: StructureTemplate;
     // This prop renders navbar/footer from sections instead of getting this from funnel page navbar/footer
     skipWrapper?: boolean;

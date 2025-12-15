@@ -15,3 +15,4 @@ export const mapNavbarProps = (section: SectionNavbar): NavbarProps => {
         // },
     } satisfies NavbarProps;
 };
+

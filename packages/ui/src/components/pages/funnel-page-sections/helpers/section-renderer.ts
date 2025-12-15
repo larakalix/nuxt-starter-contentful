@@ -84,7 +84,7 @@ export function buildRenderItems(
 
             if (entry)
                 header.push({
-                    key,
+                    key: sectionKey(funnelPage.navBar, -1),
                     typename: funnelPage.navBar.__typename,
                     component: entry.component,
                     props: {
@@ -94,15 +94,21 @@ export function buildRenderItems(
                 });
         }
 
-        // if (funnelPage.footer) {
-        //     const key = sectionKey(funnelPage.footer, -1);
-        //     footer.push({
-        //         key,
-        //         typename: funnelPage.footer.__typename,
-        //         component: registry[ContentfulType.FOOTER]!.component,
-        //         props: registry[ContentfulType.FOOTER]!.mapProps(funnelPage.footer),
-        //     });
-        // }
+        if (funnelPage.footer) {
+            const key = sectionKey(funnelPage.footer, -1);
+            const entry = registry[ContentfulType.FOOTER];
+
+            if (entry)
+                footer.push({
+                    key: sectionKey(funnelPage.footer, -1),
+                    typename: funnelPage.footer.__typename,
+                    component: entry.component,
+                    props: {
+                        ...entry.mapProps(funnelPage.footer),
+                        onNavigate,
+                    },
+                });
+        }
     }
 
     const sections = funnelPage?.template.sectionsCollection.items;

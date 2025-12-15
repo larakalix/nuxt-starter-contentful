@@ -1,4 +1,8 @@
-import { setupContentful, getContentfulClient } from "@starter/content";
+import {
+    setupContentful,
+    getContentfulClient,
+    getContentfulConfig,
+} from "@starter/content";
 
 export default defineNuxtPlugin(() => {
     const rc = useRuntimeConfig();
@@ -11,7 +15,10 @@ export default defineNuxtPlugin(() => {
         preview: false,
     };
 
-    console.log("[NUXT_PLUGIN]");
-
     setupContentful(cfg);
+
+    console.log("[NUXT_PLUGIN]", {
+        cfg: getContentfulConfig(),
+        client: getContentfulClient(),
+    });
 });

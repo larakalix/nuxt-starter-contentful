@@ -15,9 +15,17 @@ export const FUNNEL_PAGE_BY_SLUG = gql`
                     sys {
                         id
                     }
+                    __typename
                     name
                     sticky
                     showBorder
+                }
+                footer {
+                    sys {
+                        id
+                    }
+                    __typename
+                    name
                 }
                 template {
                     __typename
