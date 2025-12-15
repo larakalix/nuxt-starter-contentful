@@ -1,6 +1,7 @@
 import type { Component } from "vue";
 import {
     ContentfulType,
+    type FunnelPage,
     type SectionBlogCardList,
     type SectionFooter,
     type SectionNavbar,
@@ -9,6 +10,7 @@ import { Navbar, Footer, BlogCardList } from "@starter/ui/organisms";
 import { mapNavbarProps } from "../mappers/navbar-mapper";
 import { mapFooterProps } from "../mappers/footer-mapper";
 import { mapBlogCardListProps } from "../mappers/blog-card-list-mapper";
+import type { OnNavigate } from "@/src/components/atoms";
 
 export type SectionArea = "header" | "main" | "footer";
 
@@ -35,12 +37,12 @@ const registry: Partial<Record<ContentfulType, RegistryItem>> = {
     [ContentfulType.NAVBAR]: {
         component: Navbar,
         mapProps: (s) => mapNavbarProps(s as SectionNavbar),
-        area: "main",
+        area: "header",
     },
     [ContentfulType.FOOTER]: {
         component: Footer,
         mapProps: (s) => mapFooterProps(s as SectionFooter),
-        area: "main",
+        area: "footer",
     },
     [ContentfulType.BLOG_CARD_LIST]: {
         component: BlogCardList,
@@ -58,16 +60,52 @@ export function sectionKey(section: BaseSection, index: number): string {
 }
 
 export function buildRenderItems(
-    sections: BaseSection[],
-    unknown: Component
+    funnelPage: FunnelPage | null | undefined,
+    unknown: Component,
+    onNavigate?: OnNavigate
 ): {
-    header: RenderItem | null;
+    header: RenderItem[];
     main: RenderItem[];
-    footer: RenderItem | null;
+    footer: RenderItem[];
 } {
-    let header: RenderItem | null = null;
-    let footer: RenderItem | null = null;
+    let header: RenderItem[] = [];
+    let footer: RenderItem[] = [];
     const main: RenderItem[] = [];
+
+    if (!funnelPage) return { header, main, footer };
+
+    const skipWrapper = funnelPage.skipWrapper;
+
+    if (!skipWrapper) {
+        // Always render navbar and footer even if not defined in sections
+        if (funnelPage.navBar) {
+            const key = sectionKey(funnelPage.navBar, -1);
+            const entry = registry[ContentfulType.NAVBAR];
+
+            if (entry)
+                header.push({
+                    key,
+                    typename: funnelPage.navBar.__typename,
+                    component: entry.component,
+                    props: {
+                        ...entry.mapProps(funnelPage.navBar),
+                        onNavigate,
+                    },
+                });
+        }
+
+        // if (funnelPage.footer) {
+        //     const key = sectionKey(funnelPage.footer, -1);
+        //     footer.push({
+        //         key,
+        //         typename: funnelPage.footer.__typename,
+        //         component: registry[ContentfulType.FOOTER]!.component,
+        //         props: registry[ContentfulType.FOOTER]!.mapProps(funnelPage.footer),
+        //     });
+        // }
+    }
+
+    const sections = funnelPage?.template.sectionsCollection.items;
 
     sections.forEach((section, index) => {
         const key = sectionKey(section, index);
@@ -79,7 +117,10 @@ export function buildRenderItems(
                   key,
                   typename,
                   component: entry.component,
-                  props: entry.mapProps(section),
+                  props: {
+                      ...entry.mapProps(section),
+                      onNavigate,
+                  },
               }
             : {
                   key,
@@ -88,8 +129,8 @@ export function buildRenderItems(
                   props: { section },
               };
 
-        if (entry?.area === "header") header = item;
-        else if (entry?.area === "footer") footer = item;
+        if (entry?.area === "header") header.push(item);
+        else if (entry?.area === "footer") footer.push(item);
         else main.push(item);
     });
 

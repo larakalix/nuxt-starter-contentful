@@ -13,9 +13,11 @@ const CONTENTFUL_GRAPHQL_URL =
     "https://graphql.contentful.com/content/v1/spaces/";
 
 const _contentfulConfig: { config: ContentfulConfig | null } = { config: null };
+let _deliveryClient: ApolloClient | null = null;
+let _previewClient: ApolloClient | null = null;
 
 export function setupContentful(config: ContentfulConfig | null) {
-    if (!config) return;
+    if (!config || _contentfulConfig.config) return;
 
     _contentfulConfig.config = {
         environmentId: "master",
@@ -113,5 +115,12 @@ export function createContentfulClient(preview = false) {
 }
 
 export function getContentfulClient(preview = false) {
-    return createContentfulClient(preview);
+    if (preview) {
+        if (!_previewClient) _previewClient = createContentfulClient(true);
+        return _previewClient;
+    }
+
+    if (!_deliveryClient) _deliveryClient = createContentfulClient(false);
+
+    return _deliveryClient;
 }

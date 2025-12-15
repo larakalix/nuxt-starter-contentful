@@ -1,3 +1,4 @@
+import type { OnNavigate } from "../../atoms";
 import type { NavbarVariantsProps } from "./variant";
 
 export type NavItem = {
@@ -16,4 +17,5 @@ export type NavbarProps = NavbarVariantsProps & {
     ctaLabel?: string;
     ctaHref?: string;
     user?: { name: string } | null;
+    onNavigate?: OnNavigate;
 };

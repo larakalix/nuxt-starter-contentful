@@ -9,13 +9,7 @@ export type BlogCardProps = BlogCardVariantsProps & {
     imageAlt?: string;
     authorName: string;
     authorAvatarSrc?: string;
-    /**
-     * Preformatted date label, e.g. "02 December 2022"
-     */
     dateLabel: string;
-    /**
-     * Preformatted reading time, e.g. "3 Min. To Read"
-     */
     readTimeLabel?: string;
     excerpt?: string;
     href?: string;

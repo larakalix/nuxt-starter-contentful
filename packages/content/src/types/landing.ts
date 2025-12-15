@@ -114,6 +114,7 @@ export type SectionBlogCardList = {
     itemsCollection: SectionBlogCardListItemsCollection;
     layout?: string;
     columns?: number;
+    onNavigate?: (href: string, event?: MouseEvent) => void | Promise<void>;
 };
 
 export type SectionType = SectionNavbar | SectionFooter | SectionBlogCardList;

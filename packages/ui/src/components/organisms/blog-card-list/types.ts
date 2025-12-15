@@ -9,4 +9,5 @@ export type BlogCardListProps = BlogCardListVariantsProps & {
     sectionHeading?: SectionHeadingProps;
     items: BlogCardListItem[];
     class?: string;
+    onNavigate?: (href: string, e: MouseEvent) => void;
 };
