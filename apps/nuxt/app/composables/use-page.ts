@@ -11,16 +11,23 @@ export const usePage = (
     });
     const key = `page:${slug}`;
 
-    const handlers: Array<(() => Promise<FunnelPage | null>) | undefined> = [
-        undefined,
+    // const handlers: Array<(() => Promise<FunnelPage | null>) | undefined> = [
+    //     undefined,
+    //     () => getPageBySlug(slug.value),
+    //     async () => null,
+    // ];
+
+    // const fetcher = handlers[toValue(segments).length] ?? handlers[1]!;
+
+    // return useAsyncData<FunnelPage | null, Error>(key, fetcher, {
+    //     server,
+    // });
+
+    return useAsyncData<FunnelPage | null, Error>(
+        key,
         () => getPageBySlug(slug.value),
-        async () => null,
-    ];
-
-    const fetcher = handlers[toValue(segments).length] ?? handlers[1]!;
-
-    return useAsyncData<FunnelPage | null, Error>(key, fetcher, {
-        server,
-        watch: [slug],
-    });
+        {
+            server,
+        }
+    );
 };

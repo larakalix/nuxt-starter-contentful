@@ -16,9 +16,4 @@ export default defineNuxtPlugin(() => {
     };
 
     setupContentful(cfg);
-
-    console.log("[NUXT_PLUGIN]", {
-        cfg: getContentfulConfig(),
-        client: getContentfulClient(),
-    });
 });

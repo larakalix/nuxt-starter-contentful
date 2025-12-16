@@ -1,8 +1,15 @@
 import { gql } from "@apollo/client";
 
+// query FunnelPageBySlug($slug: String!, $limit: Int, $locale: String) {
+//         funnelPageCollection(
+//             where: { slug: $slug }
+//             limit: $limit
+//             locale: $locale
+//         ) {
+
 export const FUNNEL_PAGE_BY_SLUG = gql`
-    query FunnelPageBySlug($slug: String!) {
-        funnelPageCollection(where: { slug: $slug }, limit: 1) {
+    query FunnelPageBySlug($where: FunnelPageFilter, $limit: Int) {
+        funnelPageCollection(where: $where, limit: $limit) {
             items {
                 __typename
                 sys {

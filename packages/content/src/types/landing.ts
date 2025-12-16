@@ -4,7 +4,7 @@ export type ContentfulEntry<T> = T & {
 };
 
 export type ContentfulCollectionResponse<K extends string, T> = {
-    [P in K]?: { items?: T[] };
+    [P in K]?: { items?: T[]; total?: number; limit?: number; skip?: number };
 };
 
 export const ContentfulType = {

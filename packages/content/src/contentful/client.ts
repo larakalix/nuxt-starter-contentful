@@ -12,44 +12,36 @@ import type { ContentfulConfig } from "./config/config";
 const CONTENTFUL_GRAPHQL_URL =
     "https://graphql.contentful.com/content/v1/spaces/";
 
-const _contentfulConfig: { config: ContentfulConfig | null } = { config: null };
-let _deliveryClient: ApolloClient | null = null;
-let _previewClient: ApolloClient | null = null;
+const _state: {
+    config: ContentfulConfig | null;
+    deliveryClient: ApolloClient | null;
+    previewClient: ApolloClient | null;
+} = {
+    config: null,
+    deliveryClient: null,
+    previewClient: null,
+};
 
 export function setupContentful(config: ContentfulConfig | null) {
-    if (!config || _contentfulConfig.config) return;
+    if (!config || _state.config) return;
 
-    _contentfulConfig.config = {
+    _state.config = {
         environmentId: "master",
-        preview: false,
         ...config,
     };
 }
 
-export function getContentfulConfig(): ContentfulConfig | null {
-    if (!_contentfulConfig.config) {
+export function getContentfulConfig(): ContentfulConfig {
+    if (!_state.config) {
         throw new Error(
-            "[contentful] Config not initialized. Please setup setupContentful first."
+            "[contentful] Config not initialized. Please call setupContentful first."
         );
     }
-
-    return _contentfulConfig.config as ContentfulConfig;
+    return _state.config;
 }
 
-// Helper function to get the appropriate client
-export function createContentfulClient(preview = false) {
+function buildApolloClient(preview: boolean) {
     const config = getContentfulConfig();
-
-    console.log("[CREATE_CLIENT_CONFIG] -> ", {
-        preview,
-        _deliveryClient,
-    });
-
-    if (!config) {
-        throw new Error(
-            "[contentful] Client not initialized. Please call setupContentful first."
-        );
-    }
 
     const {
         spaceId,
@@ -64,8 +56,17 @@ export function createContentfulClient(preview = false) {
         );
     }
 
+    const httpLink = new HttpLink({
+        uri: `${CONTENTFUL_GRAPHQL_URL}${spaceId}/environments/${environmentId}`,
+    });
+
+    const persistedQueriesLink = new PersistedQueryLink({
+        sha256: (query: string) => sha256(query),
+        useGETForHashedQueries: true,
+    });
+
     const authLink = new SetContextLink((previousContext) => {
-        const token = preview === true ? previewToken : cdaToken;
+        const token = preview ? previewToken : cdaToken;
 
         return {
             ...previousContext,
@@ -76,55 +77,25 @@ export function createContentfulClient(preview = false) {
         };
     });
 
-    const httpLink = new HttpLink({
-        uri: `${CONTENTFUL_GRAPHQL_URL}${spaceId}/environments/${environmentId}`,
-    });
-
-    const persistedQueriesLink = new PersistedQueryLink({
-        sha256: (query: string) => sha256(query),
-        useGETForHashedQueries: true,
-    });
-
-    const previewAuthLink = new SetContextLink((previousContext) => ({
-        headers: {
-            ...previousContext.headers,
-            authorization: `Bearer ${previewToken}`,
-        },
-    }));
-
-    const contentfulPreviewClient = new ApolloClient({
-        link: ApolloLink.from([
-            previewAuthLink,
-            persistedQueriesLink,
-            httpLink,
-        ]),
-        cache: new InMemoryCache(),
-        defaultOptions: {
-            query: {
-                fetchPolicy: "no-cache",
-            },
-        },
-    });
-
-    const contentfulClient = new ApolloClient({
+    return new ApolloClient({
         link: ApolloLink.from([authLink, persistedQueriesLink, httpLink]),
         cache: new InMemoryCache(),
         defaultOptions: {
             query: {
-                fetchPolicy: "cache-first",
+                fetchPolicy: preview ? "no-cache" : "cache-first",
             },
         },
     });
-
-    return preview ? contentfulPreviewClient : contentfulClient;
 }
 
 export function getContentfulClient(preview = false) {
     if (preview) {
-        if (!_previewClient) _previewClient = createContentfulClient(true);
-        return _previewClient;
+        if (!_state.previewClient)
+            _state.previewClient = buildApolloClient(true);
+        return _state.previewClient;
     }
 
-    if (!_deliveryClient) _deliveryClient = createContentfulClient(false);
-    return _deliveryClient;
+    if (!_state.deliveryClient)
+        _state.deliveryClient = buildApolloClient(false);
+    return _state.deliveryClient;
 }
