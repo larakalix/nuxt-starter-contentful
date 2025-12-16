@@ -10,8 +10,9 @@
         "postinstall": "nuxt prepare"
     },
     "dependencies": {
-        "@starter/ui": "workspace:*",
         "@starter/content": "workspace:*",
+        "@starter/ui": "workspace:*",
+        "contentful-module": "^0.1.14",
         "lucide-vue-next": "^0.539.0"
     },
     "devDependencies": {

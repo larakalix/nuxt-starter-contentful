@@ -1,5 +1,5 @@
-import type { DocumentNode } from "@apollo/client";
-import { getContentfulClient } from "./client";
+import type { DocumentNode } from "graphql";
+import { getContentfulClient } from "./runtime";
 
 export type ExecuteOptions = {
     preview?: boolean;
@@ -26,11 +26,7 @@ export async function executeQuery<TData>(
         console.error("[contentful.executeQuery]", err);
 
         const msg = opts.errorMessage ?? "Failed to fetch data from Contentful";
-
-        if (err instanceof Error) {
-            throw new Error(`${msg}: ${err.message}`);
-        }
-
+        if (err instanceof Error) throw new Error(`${msg}: ${err.message}`);
         throw new Error(`${msg}: ${String(err)}`);
     }
 }

@@ -68,7 +68,9 @@ const defaultProps = {
             authorAvatarSrc: "https://randomuser.me/api/portraits/women/44.jpg",
             dateLabel: "20 June 2024",
             readTimeLabel: "5 Min. To Read",
-            layout: "horizontal",
+            layout: "vertical",
+            excerpt:
+                "Exploring the latest advancements and future possibilities in artificial intelligence for 2024.",
         },
         {
             id: "blog-card-2",
@@ -86,7 +88,9 @@ const defaultProps = {
             authorAvatarSrc: "https://randomuser.me/api/portraits/men/46.jpg",
             dateLabel: "15 June 2024",
             readTimeLabel: "7 Min. To Read",
-            layout: "horizontal",
+            layout: "vertical",
+            excerpt:
+                "Discover effective strategies to maintain a healthy lifestyle in today's fast-paced world.",
         },
         {
             id: "blog-card-3",
@@ -104,7 +108,9 @@ const defaultProps = {
             authorAvatarSrc: "https://randomuser.me/api/portraits/women/65.jpg",
             dateLabel: "10 June 2024",
             readTimeLabel: "6 Min. To Read",
-            layout: "horizontal",
+            layout: "vertical",
+            excerpt:
+                "Discover the must-visit places around the world for your next adventure in 2024.",
         },
     ],
     layout: "grid",

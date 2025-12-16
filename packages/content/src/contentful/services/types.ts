@@ -4,13 +4,13 @@ export type GetEntriesInput = {
     limit?: number;
     skip?: number;
     order?: string | string[];
-    selection: string; // GraphQL selection set (fields)
+    selection: string;
 };
 
 export type GetBySlugInput = {
     contentType: string;
     slug: string;
-    slugField?: string; // default "slug"
+    slugField?: string;
     selection: string;
 };
 

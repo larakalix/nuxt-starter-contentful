@@ -1,5 +1,5 @@
 import type { DocumentNode } from "@apollo/client";
-import { executeQuery, type ExecuteOptions } from "./../execute";
+import { executeQuery, type ExecuteOptions } from "../config/execute";
 
 export type ContentfulCollection<TItem> = {
     items?: TItem[] | null;

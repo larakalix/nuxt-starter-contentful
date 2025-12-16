@@ -13,7 +13,7 @@ export default defineNuxtConfig({
     compatibilityDate: "2025-07-15",
     devtools: { enabled: true },
     build: {
-        transpile: ["@starter/ui", "@starter/content"],
+        transpile: ["contentful-module", "@starter/ui", "@starter/content"],
     },
     typescript: {
         tsConfig: {
@@ -30,11 +30,11 @@ export default defineNuxtConfig({
         },
         plugins: [tailwindcss() as PluginOption],
     },
-    plugins: ["./plugins/contentful.server.ts"],
     runtimeConfig: {
         contentfulSpaceId: CONTENTFUL_SPACE_ID,
         contentfulEnvironmentId: CONTENTFUL_ENVIRONMENT_ID ?? "master",
         contentfulCdaToken: CONTENTFUL_CDA_TOKEN,
         contentfulPreviewToken: CONTENTFUL_PREVIEW_ACCESS_TOKEN,
     },
+    plugins: ["./plugins/contentful.ts"],
 });

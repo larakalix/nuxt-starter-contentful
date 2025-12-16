@@ -25,6 +25,14 @@
         "./client": {
             "import": "./src/contentful/client.ts",
             "types": "./src/contentful/client.ts"
+        },
+        "./contentful/astro": {
+            "import": "./src/contentful/config/contentful.astro.ts",
+            "types": "./src/contentful/config/contentful.astro.ts"
+        },
+        "./contentful/nuxt": {
+            "import": "./src/contentful/config/contentful.nuxt.ts",
+            "types": "./src/contentful/config/contentful.nuxt.ts"
         }
     },
     "devDependencies": {

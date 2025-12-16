@@ -1,1 +1,1 @@
-export { getPageBySlug } from "./get-funnel-by-slug";
+export { getPageBySlug } from "./nuxt/get-funnel-by-slug.nuxt";
