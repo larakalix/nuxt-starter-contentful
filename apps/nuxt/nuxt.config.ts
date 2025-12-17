@@ -13,6 +13,10 @@ const {
 export default defineNuxtConfig({
     app: {
         viewTransition: true,
+        pageTransition: { name: "page", mode: "in-out", appear: true },
+        rootAttrs: {
+            class: "flex flex-col min-h-screen",
+        },
     },
     compatibilityDate: "2025-07-15",
     devtools: { enabled: true },

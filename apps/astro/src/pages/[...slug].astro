@@ -1,8 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { FunnelPageSections } from "@starter/ui/pages";
-import { getPageBySlug } from "@starter/content";
 import { Error as ErrorComponent } from "@starter/ui/organisms";
+import { parseSlugParam, loadFunnelPage } from "../server/funnel-page";
 import type { OnNavigate } from "@starter/ui/atoms";
 
 export async function getStaticPaths() {
@@ -10,24 +10,12 @@ export async function getStaticPaths() {
         { params: { slug: "" } },
         { params: { slug: "home" } },
         { params: { slug: "about" } },
-        { params: { slug: "blog" } },
     ];
 }
 
 const { slug } = Astro.params;
-const [path, id] = !slug ? ["home", ""] : slug.split("/");
-
-const { funnelPage, error } = await (async () => {
-    try {
-        const funnelPage = await getPageBySlug(path);
-        if (!funnelPage)
-            throw new Error(`Failed to load funnel page with slug: ${path}`);
-
-        return { funnelPage, error: null };
-    } catch (err) {
-        return { funnelPage: null, error: err as Error };
-    }
-})();
+const { path, id } = parseSlugParam(slug);
+const { funnelPage, error } = await loadFunnelPage(path);
 
 const onNavigate: OnNavigate = (href, event) => {
     event?.preventDefault();
@@ -36,11 +24,16 @@ const onNavigate: OnNavigate = (href, event) => {
 ---
 
 <Layout>
+    <!-- Error state -->
     {error && <ErrorComponent message={error?.message} />}
 
+    <!-- Success state -->
     <FunnelPageSections
         client:visible
-        funnelPage={funnelPage}
+        funnelPage={{
+            ...funnelPage,
+            skipWrapper: false,
+        }}
         onNavigate={onNavigate}
     />
 </Layout>

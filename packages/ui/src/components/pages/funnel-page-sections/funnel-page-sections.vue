@@ -3,11 +3,12 @@ import type { FunnelPageSectionProps } from "./types";
 import { computed } from "vue";
 import { Error } from "@starter/ui/organisms";
 import { buildRenderItems } from "./helpers/section-renderer";
+import { injectTheme } from "./helpers/inject-theme";
 
 const props = defineProps<FunnelPageSectionProps>();
 const grouped = computed(() => buildRenderItems(props.funnelPage, Error, props.onNavigate));
 
-// injectTheme(props.funnelPage.theme);
+injectTheme(props.funnelPage?.theme ?? 'default');
 </script>
 
 <template>

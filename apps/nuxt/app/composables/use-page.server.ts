@@ -11,19 +11,12 @@ export const usePageStatic = () => {
 
     const key = computed(() => `page:${slug.value}`);
 
-    const asyncData = useAsyncData(
-        key, // ✅ computed key (not a function)
-        () => getPageBySlug(slug.value),
-        {
-            // ✅ let Nuxt do SSR on first load, and CSR on navigation
-            server: true,
-            lazy: false,
-            immediate: true,
-
-            // ✅ still refetch when slug changes
-            watch: [slug],
-        }
-    );
+    const asyncData = useAsyncData(key, () => getPageBySlug(slug.value), {
+        server: true,
+        lazy: false,
+        immediate: true,
+        watch: [slug],
+    });
 
     return {
         slug,
