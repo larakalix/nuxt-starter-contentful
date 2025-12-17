@@ -7,9 +7,13 @@ const {
     CONTENTFUL_ENVIRONMENT_ID,
     CONTENTFUL_CDA_TOKEN,
     CONTENTFUL_PREVIEW_ACCESS_TOKEN,
+    CONTENTFUL_PREVIEW_MODE,
 } = process.env;
 
 export default defineNuxtConfig({
+    app: {
+        viewTransition: true,
+    },
     compatibilityDate: "2025-07-15",
     devtools: { enabled: true },
     build: {
@@ -35,6 +39,10 @@ export default defineNuxtConfig({
         contentfulEnvironmentId: CONTENTFUL_ENVIRONMENT_ID ?? "master",
         contentfulCdaToken: CONTENTFUL_CDA_TOKEN,
         contentfulPreviewToken: CONTENTFUL_PREVIEW_ACCESS_TOKEN,
+        preview: CONTENTFUL_PREVIEW_MODE === "true",
     },
-    plugins: ["./plugins/contentful.ts"],
+    plugins: [
+        "./plugins/contentful.server.ts",
+        "./plugins/contentful.client.ts",
+    ],
 });

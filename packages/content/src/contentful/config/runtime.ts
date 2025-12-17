@@ -5,7 +5,6 @@ type Resolver = (preview: boolean) => ApolloClient;
 let _resolver: Resolver | null = null;
 
 export function setContentfulClientResolver(resolver: Resolver) {
-    if (_resolver) return;
     _resolver = resolver;
 }
 

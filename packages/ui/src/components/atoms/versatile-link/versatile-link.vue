@@ -20,7 +20,6 @@ const rawHref = computed(() => {
   return "";
 });
 
-// ✅ REAL detection (works in Nuxt, false in Astro/Storybook)
 const NuxtLink = computed(() => {
   const inst = getCurrentInstance();
   return (inst?.appContext.components as any)?.NuxtLink ?? null;

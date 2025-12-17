@@ -26,6 +26,10 @@
             "import": "./src/contentful/client.ts",
             "types": "./src/contentful/client.ts"
         },
+        "./config": {
+            "import": "./src/contentful/config/index.ts",
+            "types": "./src/contentful/config/index.ts"
+        },
         "./contentful/astro": {
             "import": "./src/contentful/config/contentful.astro.ts",
             "types": "./src/contentful/config/contentful.astro.ts"

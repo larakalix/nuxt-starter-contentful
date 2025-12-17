@@ -2,7 +2,7 @@
 import { FunnelPageSections } from "@starter/ui/pages";
 import { usePageStatic } from '~/composables/use-page.server'
 import { Error } from "@starter/ui/organisms";
-import { Button, VersatileLink, type OnNavigate } from "@starter/ui/atoms";
+import { VersatileLink, type OnNavigate } from "@starter/ui/atoms";
 
 const router = useRouter();
 
@@ -33,12 +33,24 @@ const onNavigate: OnNavigate = async (href, event) => {
       {{ JSON.stringify({ slug }, null, 2) }}
     </pre>
 
-    <ul class="flex gap-x-2 px-2">
+    <ul class="flex gap-x-2 px-2 my-2">
       <li>
-        <Button variant="primary" :onClick="() => onNavigate('/')">Home</Button>
+        <!-- <button class="bg-blue-400 p-2 rounded cursor-pointer" @click="() => onNavigate('/')">Home</button> -->
+        <NuxtLink class="bg-blue-400 p-2 rounded cursor-pointer" to="/">Home</NuxtLink>
       </li>
       <li>
-        <Button variant="primary" :onClick="() => onNavigate('/about')">About</Button>
+        <!-- <button class="bg-blue-400 p-2 rounded cursor-pointer" @click="() => onNavigate('/about')">About</button> -->
+        <NuxtLink class="bg-blue-400 p-2 rounded cursor-pointer" to="/about">About</NuxtLink>
+      </li>
+      <li>
+        <VersatileLink class="bg-blue-400 p-2 rounded cursor-pointer text-white" :to="`/`" @navigate="onNavigate">Funnel
+          Home
+        </VersatileLink>
+      </li>
+      <li>
+        <VersatileLink class="bg-blue-400 p-2 rounded cursor-pointer text-white" :to="`/about`" @navigate="onNavigate">
+          About
+        </VersatileLink>
       </li>
     </ul>
 
