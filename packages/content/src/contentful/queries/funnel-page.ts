@@ -1,4 +1,9 @@
 import { gql } from "@apollo/client";
+import { SYS_FIELDS } from "./fragments/sys";
+import { TAG_FIELDS } from "./fragments/tag";
+import { IMAGE_FIELDS } from "./fragments/image";
+import { BLOG_CARD_LIST_SECTION } from "./fragments/blog-card-list";
+import { SECTION_GRID_SECTION } from "./fragments/section-grid";
 
 // query FunnelPageBySlug($slug: String!, $limit: Int, $locale: String) {
 //         funnelPageCollection(
@@ -13,14 +18,14 @@ export const FUNNEL_PAGE_BY_SLUG = gql`
             items {
                 __typename
                 sys {
-                    id
+                    ...SysFields
                 }
                 slug
                 theme
                 skipWrapper
                 navBar {
                     sys {
-                        id
+                        ...SysFields
                     }
                     __typename
                     name
@@ -29,7 +34,7 @@ export const FUNNEL_PAGE_BY_SLUG = gql`
                 }
                 footer {
                     sys {
-                        id
+                        ...SysFields
                     }
                     __typename
                     name
@@ -37,65 +42,17 @@ export const FUNNEL_PAGE_BY_SLUG = gql`
                 template {
                     __typename
                     sys {
-                        id
+                        ...SysFields
                     }
                     name
-                    sectionsCollection(limit: 20) {
+                    sectionsCollection(limit: 10) {
                         items {
                             __typename
                             ... on BlogCardList {
-                                sys {
-                                    id
-                                }
-                                name
-                                description
-                                layout
-                                columns
-                                sectionHeading {
-                                    __typename
-                                    sys {
-                                        id
-                                    }
-                                    name
-                                    title
-                                    label
-                                    align
-                                    size
-                                }
-                                itemsCollection(limit: 50) {
-                                    items {
-                                        __typename
-                                        sys {
-                                            id
-                                        }
-                                        name
-                                        title
-                                        excerpt
-                                        href
-                                        dateLabel
-                                        readTimeLabel
-                                        layout
-                                        tag {
-                                            __typename
-                                            sys {
-                                                id
-                                            }
-                                            label
-                                            variant
-                                            color
-                                            rounded
-                                        }
-                                        image {
-                                            __typename
-                                            sys {
-                                                id
-                                            }
-                                            url
-                                            title
-                                            description
-                                        }
-                                    }
-                                }
+                                ...BlogCardListSection
+                            }
+                            ... on GridSection {
+                                ...SectionGridSection
                             }
                         }
                     }
@@ -103,4 +60,10 @@ export const FUNNEL_PAGE_BY_SLUG = gql`
             }
         }
     }
+
+    ${SYS_FIELDS}
+    ${TAG_FIELDS}
+    ${IMAGE_FIELDS}
+    ${BLOG_CARD_LIST_SECTION}
+    ${SECTION_GRID_SECTION}
 `;

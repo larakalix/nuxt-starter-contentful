@@ -153,3 +153,7 @@
 
     --bg-navbar: var(--bg-navbar);
 }
+
+.root-app {
+    @apply flex flex-col min-h-screen;
+}

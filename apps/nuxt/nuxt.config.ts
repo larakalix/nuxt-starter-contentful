@@ -15,7 +15,7 @@ export default defineNuxtConfig({
         viewTransition: true,
         pageTransition: { name: "page", mode: "in-out", appear: true },
         rootAttrs: {
-            class: "flex flex-col min-h-screen",
+            class: "root-app",
         },
     },
     compatibilityDate: "2025-07-15",

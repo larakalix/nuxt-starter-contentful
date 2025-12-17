@@ -21,7 +21,7 @@ const classes = computed(() =>
 
 <template>
     <component :id="props.id" :is="asTag" :href="href" :class="['flex h-full flex-col gap-y-4', classes]">
-        <header class="flex flex-col gap-y-2 flex-1">
+        <header class="flex flex-col gap-y-2 min-h-15">
             <Badge v-if="tag" v-bind="tag" class="text-xs px-3 py-1" />
 
             <h3 class="text-lg md:text-2xl text-foreground font-semibold leading-tight tracking-tight">
@@ -35,7 +35,7 @@ const classes = computed(() =>
         </div>
 
         <!-- Footer pushed to bottom -->
-        <div class="mt-auto flex flex-col gap-4">
+        <div class="flex flex-col gap-4">
             <!-- Meta row -->
             <div class="flex flex-wrap items-center gap-1 text-xs text-muted-foreground">
                 <div class="flex items-center gap-2">
@@ -60,7 +60,7 @@ const classes = computed(() =>
                     <div class="flex items-center gap-1.5">
                         <!-- clock icon... -->
                         <span class="text-xs md:text-sm font-normal text-foreground-muted-subtitle">{{ readTimeLabel
-                            }}</span>
+                        }}</span>
                     </div>
                 </template>
             </div>

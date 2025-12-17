@@ -16,6 +16,7 @@ const classes = computed(() =>
         sectionHeadingVariants({
             align: props.align,
             size: props.size,
+            colSpan: props.colSpan,
         }),
         props.class,
     ),
@@ -26,6 +27,7 @@ const classes = computed(() =>
     <div :class="classes">
         <!-- Left label (pills) -->
         <Badge v-bind="props.tag" :label="props.label" />
+        <span>{{ props.colSpan }}</span>
 
         <!-- Title text -->
         <component :is="props.as" class="font-semibold text-foreground">

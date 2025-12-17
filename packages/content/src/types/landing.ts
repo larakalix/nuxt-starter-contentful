@@ -17,6 +17,7 @@ export const ContentfulType = {
     FOOTER: "Footer",
     TAG: "Tag",
     IMAGE_ASSET: "Asset",
+    GRID_SECTION: "GridSection",
 } as const;
 
 export type ContentfulType =
@@ -59,6 +60,7 @@ export type SectionHeading = {
     tag?: SectionTag;
     align?: string;
     size?: string;
+    colSpan?: number;
 };
 
 export type SectionNavbar = {
@@ -109,6 +111,7 @@ export type SectionBlogCardListItemsCollection = {
 export type SectionBlogCardList = {
     __typename: typeof ContentfulType.BLOG_CARD_LIST;
     sys: Sys;
+    colSpan?: number;
     sectionHeading?: SectionHeading;
     description?: string;
     itemsCollection: SectionBlogCardListItemsCollection;
@@ -117,7 +120,23 @@ export type SectionBlogCardList = {
     onNavigate?: (href: string, event?: MouseEvent) => void | Promise<void>;
 };
 
-export type SectionType = SectionNavbar | SectionFooter | SectionBlogCardList;
+export type SectionGridSectionsCollection = {
+    items: SectionType[];
+};
+
+export type SectionGrid = {
+    __typename: typeof ContentfulType.GRID_SECTION;
+    sys: Sys;
+    class?: string;
+    columns?: number;
+    sectionsCollection: SectionGridSectionsCollection;
+};
+
+export type SectionType =
+    | SectionNavbar
+    | SectionFooter
+    | SectionBlogCardList
+    | SectionGrid;
 
 export type StructureTemplateSectionsCollection = {
     items: SectionType[];

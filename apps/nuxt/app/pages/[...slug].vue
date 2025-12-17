@@ -20,12 +20,6 @@ watchEffect(() => {
   }
 });
 
-// onBeforeUnmount(() => {
-//   shell.value.enabled = true;
-//   shell.value.navBar = undefined;
-//   shell.value.footer = undefined;
-// });
-
 const onNavigate: OnNavigate = async (href, event) => {
   if (/^[a-z][a-z0-9+.-]*:|^\/\//i.test(href)) return;
 

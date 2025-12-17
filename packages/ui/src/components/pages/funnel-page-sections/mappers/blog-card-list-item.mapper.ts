@@ -18,6 +18,7 @@ export const mapBlogCardListItemProps = (
         dateLabel: item.dateLabel ? dayjs(item.dateLabel).format("LL") : "",
         readTimeLabel: item.readTimeLabel ?? "",
         layout: sectionLayout === "stacked" ? "horizontal" : "vertical",
+        //layout: item.layout as BlogCardListItem["layout"],
         excerpt: item.excerpt ?? "",
         imageSrc: item.image?.url ?? "",
         href: item.href ?? "",

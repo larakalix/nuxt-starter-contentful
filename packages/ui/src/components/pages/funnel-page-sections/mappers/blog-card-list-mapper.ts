@@ -23,10 +23,15 @@ export const mapBlogCardListProps = (
                     ?.weight as BadgeProps["weight"],
             },
         },
+        colSpan: section.colSpan as BlogCardListProps["colSpan"],
         layout: section.layout as BlogCardListProps["layout"],
         columns: section.columns as BlogCardListProps["columns"],
         items: section.itemsCollection.items.map(
-            (item) => mapBlogCardListItemProps(item, section.layout) as BlogCardListItem
+            (item) =>
+                mapBlogCardListItemProps(
+                    item,
+                    section.layout
+                ) as BlogCardListItem
         ),
     };
 };
