@@ -34,6 +34,5 @@ const headingColSpan = computed(() => props.colSpan ? clsx("flex", sectionHeadin
         <SectionHeading v-if="props.sectionHeading" v-bind="props.sectionHeading" :class="headingColSpan" />
 
         <BlogCard v-for="item in items" :key="item.id ?? item.href ?? item.title" v-bind="item" />
-
     </div>
 </template>
