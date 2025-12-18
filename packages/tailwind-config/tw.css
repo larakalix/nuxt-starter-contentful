@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @source "../../packages/ui/src/**/*.{vue,ts}";
-@source "./**/*.{vue,ts}";
+@source "../**/*.{astro,vue,ts}";
 
 @custom-variant dark (&:is(.dark *));
 

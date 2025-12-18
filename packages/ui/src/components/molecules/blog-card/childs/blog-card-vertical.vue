@@ -48,9 +48,9 @@ const classes = computed(() =>
                     </span>
                 </div>
 
-                <span class="h-1 w-1 rounded-full bg-secondary" />
 
                 <div v-if="dateLabel" class="flex items-center gap-1.5">
+                    <span class="h-1 w-1 rounded-full bg-secondary" />
                     <!-- calendar icon... -->
                     <span class="text-xs md:text-sm font-normal text-foreground-muted-subtitle">{{ dateLabel }}</span>
                 </div>
@@ -60,7 +60,7 @@ const classes = computed(() =>
                     <div class="flex items-center gap-1.5">
                         <!-- clock icon... -->
                         <span class="text-xs md:text-sm font-normal text-foreground-muted-subtitle">{{ readTimeLabel
-                        }}</span>
+                            }}</span>
                     </div>
                 </template>
             </div>

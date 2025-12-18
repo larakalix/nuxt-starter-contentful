@@ -15,7 +15,7 @@ export const blogCardVariants = tv({
         layout: {
             vertical: "flex flex-col gap-4",
             horizontal:
-                "flex flex-col xl:flex-row gap-4 sm:gap-6 items-stretch relative",
+                "flex flex-col lg:flex-row gap-4 sm:gap-6 items-stretch relative",
         },
         clickable: {
             true: "cursor-pointer hover:border-primary/60",

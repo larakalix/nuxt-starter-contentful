@@ -53,10 +53,10 @@ const classes = computed(() =>
                     </span>
                 </div>
 
-                <span class="h-1 w-1 rounded-full bg-secondary" />
 
                 <!-- Date -->
-                <div v-if="dateLabel" class="flex items-center gap-1.5">
+                <div v-if="dateLabel" class="hidden @[350px]:flex items-center gap-1.5">
+                    <span class="h-1 w-1 rounded-full bg-secondary" />
                     <svg class="h-3.5 w-3.5 text-muted-foreground" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                         <rect x="3" y="4" width="14" height="13" rx="2" stroke="currentColor" stroke-width="1.5" />
                         <path d="M7 3v3M13 3v3M4 8.5h12" stroke="currentColor" stroke-width="1.5"
@@ -68,7 +68,7 @@ const classes = computed(() =>
                 </div>
 
                 <!-- Read time -->
-                <template v-if="readTimeLabel">
+                <template v-if="readTimeLabel" class="hidden @[350px]:block">
                     <span class="h-1 w-1 rounded-full bg-secondary" />
                     <div class="flex items-center gap-1.5">
                         <svg class="h-3.5 w-3.5 text-muted-foreground" viewBox="0 0 20 20" fill="none"

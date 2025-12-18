@@ -1,7 +1,6 @@
 ---
 import "./../styles/global.css";
 import "@starter/content/contentful/astro";
-import "@starter/tailwind-config/tailwindcss";
 import { ClientRouter } from "astro:transitions";
 ---
 
@@ -15,23 +14,8 @@ import { ClientRouter } from "astro:transitions";
         <title>Astro Basics</title>
 
         <ClientRouter />
-
-        <style>
-            @import "@starter/tailwind-config/tailwindcss";
-        </style>
     </head>
     <body>
         <slot />
     </body>
 </html>
-
-<style>
-    html,
-    body {
-        margin: 0;
-        width: 100%;
-        height: 100%;
-
-        @apply bg-[var(--color-background)] text-[var(--color-foreground)] flex flex-col min-h-screen;
-    }
-</style>
