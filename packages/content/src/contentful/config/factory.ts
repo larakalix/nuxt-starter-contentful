@@ -1,3 +1,4 @@
+import type { FetchPolicy } from "@apollo/client";
 import {
     ApolloClient,
     InMemoryCache,
@@ -8,7 +9,8 @@ import { SetContextLink } from "@apollo/client/link/context";
 import { PersistedQueryLink } from "@apollo/client/link/persisted-queries";
 import { sha256 } from "js-sha256";
 
-export const CONTENTFUL_GRAPHQL_URL = "https://graphql.contentful.com/content/v1/spaces/";
+export const CONTENTFUL_GRAPHQL_URL =
+    "https://graphql.contentful.com/content/v1/spaces/";
 
 export type BuiltClients = {
     delivery: ApolloClient;
@@ -19,6 +21,7 @@ export function buildContentfulClients(opts: {
     graphqlUrl: string;
     deliveryToken?: string;
     previewToken?: string;
+    fetchPolicy?: FetchPolicy;
 }): BuiltClients {
     const httpLink = new HttpLink({ uri: opts.graphqlUrl });
     const persistedQueriesLink = new PersistedQueryLink({
@@ -53,7 +56,9 @@ export function buildContentfulClients(opts: {
             httpLink,
         ]),
         cache: new InMemoryCache(),
-        defaultOptions: { query: { fetchPolicy: "cache-first" } },
+        defaultOptions: {
+            query: { fetchPolicy: opts.fetchPolicy ?? "cache-first" },
+        },
     });
 
     const preview = new ApolloClient({

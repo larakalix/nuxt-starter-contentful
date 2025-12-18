@@ -4,7 +4,7 @@ export const blogCardListVariants = tv({
     base: "w-full h-fit",
     variants: {
         layout: {
-            grid: "grid items-stretch auto-rows-fr",
+            grid: "grid items-stretch auto-rows-auto",
             stacked: "flex flex-col",
         },
         columns: {

@@ -12,7 +12,7 @@ const props = withDefaults(defineProps<SectionHeadingProps>(), {
 });
 
 const classes = computed(() =>
-    clsx(
+    clsx("section-heading",
         sectionHeadingVariants({
             align: props.align,
             size: props.size,
@@ -27,7 +27,6 @@ const classes = computed(() =>
     <div :class="classes">
         <!-- Left label (pills) -->
         <Badge v-bind="props.tag" :label="props.label" />
-        <span>{{ props.colSpan }}</span>
 
         <!-- Title text -->
         <component :is="props.as" class="font-semibold text-foreground">

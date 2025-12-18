@@ -3,8 +3,8 @@ import { computed } from "vue";
 import clsx from "clsx";
 import { blogCardListVariants } from "./variants";
 import BlogCard from "../../molecules/blog-card/blog-card.vue";
+import { SectionHeading } from "../../molecules";
 import type { BlogCardListProps } from "./types";
-import { SectionHeading, sectionHeadingVariants } from "../../molecules";
 
 const props = withDefaults(defineProps<BlogCardListProps>(), {
     layout: "grid",
@@ -22,16 +22,12 @@ const classes = computed(() =>
     ),
 );
 
-const headingColSpan = computed(() => props.colSpan ? clsx("flex", sectionHeadingVariants({
-    colSpan: props.colSpan,
-})) : '');
-
-
 </script>
 
 <template>
     <div :class="classes">
-        <SectionHeading v-if="props.sectionHeading" v-bind="props.sectionHeading" :class="headingColSpan" />
+        <SectionHeading v-if="props.sectionHeading" v-bind="props.sectionHeading" :col-span="props.sectionHeading.colSpan ?? props.columns
+            " />
 
         <BlogCard v-for="item in items" :key="item.id ?? item.href ?? item.title" v-bind="item" />
     </div>

@@ -12,7 +12,7 @@ const props = withDefaults(defineProps<BlogCardProps>(), {
 const asTag = computed(() => (props.href ? "a" : "article"));
 
 const classes = computed(() =>
-    clsx("flex flex-col gap-y-4 md:gap-y-6",
+    clsx("blog-card-vertical",
         blogCardVariants({ layout: props.layout, clickable: props.clickable }),
         props.class,
     ),

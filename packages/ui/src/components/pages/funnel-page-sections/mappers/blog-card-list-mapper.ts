@@ -5,6 +5,7 @@ import type {
 } from "./../../..//organisms";
 import type { SectionBlogCardList } from "@starter/content";
 import { mapBlogCardListItemProps } from "./blog-card-list-item.mapper";
+import type { SectionHeadingProps } from "@/src/components/molecules";
 
 export const mapBlogCardListProps = (
     section: SectionBlogCardList
@@ -13,6 +14,7 @@ export const mapBlogCardListProps = (
         sectionHeading: {
             title: section.sectionHeading?.title ?? "",
             label: section.sectionHeading?.label ?? "",
+            colSpan: section.sectionHeading?.colSpan as SectionHeadingProps["colSpan"],
             tag: {
                 id: section.sectionHeading?.tag?.sys.id ?? "",
                 variant: section.sectionHeading?.tag
