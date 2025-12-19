@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { FunnelPageSections, mapFooterProps, mapNavbarProps } from "@starter/ui/pages";
 import { usePageStatic } from '~/composables/use-page.server'
+import { useSyncSlugPage } from '~/composables/use-sync-slug-page.client'
 import { Error } from "@starter/ui/organisms";
 import type { OnNavigate } from "@starter/ui/atoms";
 import type { FunnelPage } from "@starter/content";
@@ -14,9 +15,12 @@ watchEffect(() => {
   if (!page) return;
 
   if (page.skipWrapper) {
-    shell.value.enabled = true;
-    shell.value.navBar = page.navBar && mapNavbarProps(page.navBar);
-    shell.value.footer = page.footer && mapFooterProps(page.footer);
+    shell.value = {
+      ...shell.value,
+      enabled: true,
+      navBar: page.navBar ? mapNavbarProps(page.navBar) : undefined,
+      footer: page.footer ? mapFooterProps(page.footer) : undefined,
+    };
   }
 });
 

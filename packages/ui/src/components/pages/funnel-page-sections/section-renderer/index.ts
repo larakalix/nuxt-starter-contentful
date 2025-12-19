@@ -9,7 +9,6 @@ import type { OnNavigate } from "@/src/components/atoms";
 import type { BaseSection, RenderItem } from "./types";
 
 export function sectionKey(section: BaseSection, index: number): string {
-    console.log("[SECTION_KEY] -> ", { section });
     return (
         section.id ??
         section.sys?.id ??
@@ -22,7 +21,6 @@ export function buildRenderSections(
     unknown: Component,
     onNavigate?: OnNavigate
 ): RenderItem[] {
-    console.log("[");
     return sections.map((section, index) => {
         const key = sectionKey(section, index);
         const typename = section.__typename as ContentfulType | undefined;

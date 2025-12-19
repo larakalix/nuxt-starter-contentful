@@ -10,7 +10,20 @@ export const CTA_BANNER_SECTION = gql`
         subtitle
         label
         paragraphs
+        tone
         class
+        sectionHeading {
+            __typename
+            sys {
+                id
+            }
+            name
+            title
+            label
+            align
+            size
+            colSpan
+        }
     }
 
     ${SYS_FIELDS}
