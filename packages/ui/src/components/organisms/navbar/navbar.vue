@@ -115,11 +115,11 @@ const classes = computed(() =>
         <!-- MOBILE MENU -->
         <div v-if="isOpen" class="border-t border-border bg-background md:hidden">
             <div class="space-y-1 px-4 py-3">
-                <a v-for="item in items" :key="item.href" :href="item.href"
+                <VersatileLink v-for="item in items" :key="item.href" :href="item.href"
                     class="block rounded-md px-3 py-2 text-sm font-medium text-foreground/80 hover:bg-muted hover:text-foreground"
-                    @click="isOpen = false">
+                    :onNavigate="props.onNavigate" @click="isOpen = false">
                     {{ item.label }}
-                </a>
+                </VersatileLink>
 
                 <!-- Mobile auth block -->
                 <div class="mt-3 space-y-2">

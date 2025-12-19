@@ -24,6 +24,7 @@ export const FUNNEL_PAGE_BY_SLUG = gql`
                 }
                 slug
                 theme
+                showBackButton
                 skipWrapper
                 navBar {
                     ...NavbarFields

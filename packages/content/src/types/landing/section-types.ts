@@ -133,6 +133,7 @@ export type FunnelPage = {
     sys: Sys;
     slug: string;
     theme: string;
+    showBackButton?: boolean;
     navBar?: SectionNavbar;
     footer?: SectionFooter;
     template: StructureTemplate;
