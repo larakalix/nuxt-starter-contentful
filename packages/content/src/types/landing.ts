@@ -18,6 +18,7 @@ export const ContentfulType = {
     TAG: "Tag",
     IMAGE_ASSET: "Asset",
     GRID_SECTION: "GridSection",
+    CTA_BANNER: "CtaBanner",
 } as const;
 
 export type ContentfulType =
@@ -132,11 +133,23 @@ export type SectionGrid = {
     sectionsCollection: SectionGridSectionsCollection;
 };
 
+export type SectionCtaBanner = {
+    __typename: typeof ContentfulType.CTA_BANNER;
+    sys: Sys;
+    title?: string;
+    subtitle?: string;
+    label?: string;
+    paragraphs?: string;
+    class?: string;
+    sectionHeading?: SectionHeading;
+};
+
 export type SectionType =
     | SectionNavbar
     | SectionFooter
     | SectionBlogCardList
-    | SectionGrid;
+    | SectionGrid
+    | SectionCtaBanner;
 
 export type StructureTemplateSectionsCollection = {
     items: SectionType[];

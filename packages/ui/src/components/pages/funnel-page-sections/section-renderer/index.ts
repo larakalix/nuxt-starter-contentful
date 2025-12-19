@@ -2,72 +2,14 @@ import type { Component } from "vue";
 import {
     ContentfulType,
     type FunnelPage,
-    type SectionBlogCardList,
-    type SectionFooter,
-    type SectionGrid as TSectionGrid,
-    type SectionNavbar,
     type SectionType,
 } from "@starter/content";
-import {
-    Navbar,
-    Footer,
-    BlogCardList,
-    SectionGrid,
-} from "@starter/ui/organisms";
-import {
-    mapBlogCardListProps,
-    mapNavbarProps,
-    mapFooterProps,
-    mapSectionGridProps,
-} from "../mappers";
+import { registry } from "./registry";
 import type { OnNavigate } from "@/src/components/atoms";
-
-export type SectionArea = "header" | "main" | "footer";
-
-export type BaseSection = {
-    __typename?: string;
-    id?: string | null;
-    sys?: { id?: string | null } | null;
-};
-
-export type RenderItem = {
-    key: string;
-    component: Component;
-    props: Record<string, unknown>;
-    typename?: string;
-    area: SectionArea;
-};
-
-type RegistryItem = {
-    getComponent: () => Component;
-    mapProps: (section: BaseSection) => Record<string, unknown>;
-    area: SectionArea;
-};
-
-const registry: Partial<Record<ContentfulType, RegistryItem>> = {
-    [ContentfulType.NAVBAR]: {
-        getComponent: () => Navbar,
-        mapProps: (s) => mapNavbarProps(s as SectionNavbar),
-        area: "header",
-    },
-    [ContentfulType.FOOTER]: {
-        getComponent: () => Footer,
-        mapProps: (s) => mapFooterProps(s as SectionFooter),
-        area: "footer",
-    },
-    [ContentfulType.BLOG_CARD_LIST]: {
-        getComponent: () => BlogCardList,
-        mapProps: (s) => mapBlogCardListProps(s as SectionBlogCardList),
-        area: "main",
-    },
-    [ContentfulType.GRID_SECTION]: {
-        getComponent: () => SectionGrid,
-        mapProps: (s) => mapSectionGridProps(s as TSectionGrid),
-        area: "main",
-    },
-};
+import type { BaseSection, RenderItem } from "./types";
 
 export function sectionKey(section: BaseSection, index: number): string {
+    console.log("[SECTION_KEY] -> ", { section });
     return (
         section.id ??
         section.sys?.id ??
@@ -80,6 +22,7 @@ export function buildRenderSections(
     unknown: Component,
     onNavigate?: OnNavigate
 ): RenderItem[] {
+    console.log("[");
     return sections.map((section, index) => {
         const key = sectionKey(section, index);
         const typename = section.__typename as ContentfulType | undefined;
@@ -125,7 +68,6 @@ export function buildRenderItems(
     // Always render navbar and footer even if not defined in sections
     if (!skipWrapper) {
         if (funnelPage.navBar) {
-            const key = sectionKey(funnelPage.navBar, -1);
             const entry = registry[ContentfulType.NAVBAR];
 
             if (entry)
@@ -142,7 +84,6 @@ export function buildRenderItems(
         }
 
         if (funnelPage.footer) {
-            const key = sectionKey(funnelPage.footer, -1);
             const entry = registry[ContentfulType.FOOTER];
 
             if (entry)

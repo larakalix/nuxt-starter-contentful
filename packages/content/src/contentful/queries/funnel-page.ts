@@ -4,6 +4,7 @@ import { TAG_FIELDS } from "./fragments/tag";
 import { IMAGE_FIELDS } from "./fragments/image";
 import { BLOG_CARD_LIST_SECTION } from "./fragments/blog-card-list";
 import { SECTION_GRID_SECTION } from "./fragments/section-grid";
+import { CTA_BANNER_SECTION } from "./fragments/cta-banner";
 
 // query FunnelPageBySlug($slug: String!, $limit: Int, $locale: String) {
 //         funnelPageCollection(
@@ -54,6 +55,9 @@ export const FUNNEL_PAGE_BY_SLUG = gql`
                             ... on GridSection {
                                 ...SectionGridSection
                             }
+                            ... on CtaBanner {
+                                ...CtaBannerSection
+                            }
                         }
                     }
                 }
@@ -66,4 +70,5 @@ export const FUNNEL_PAGE_BY_SLUG = gql`
     ${IMAGE_FIELDS}
     ${BLOG_CARD_LIST_SECTION}
     ${SECTION_GRID_SECTION}
+    ${CTA_BANNER_SECTION}
 `;

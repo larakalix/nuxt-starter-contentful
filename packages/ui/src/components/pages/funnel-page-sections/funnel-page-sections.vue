@@ -2,7 +2,7 @@
 import type { FunnelPageSectionProps } from "./types";
 import { computed } from "vue";
 import { Error } from "@starter/ui/organisms";
-import { buildRenderItems } from "./helpers/section-renderer";
+import { buildRenderItems } from "./section-renderer";
 import { injectTheme } from "./helpers/inject-theme";
 
 const props = defineProps<FunnelPageSectionProps>();

@@ -3,7 +3,7 @@ import { computed } from "vue";
 import clsx from "clsx";
 import { Error } from "@starter/ui/organisms";
 import { sectionGridVariants } from "./variants";
-import { buildRenderSections } from "../../pages/funnel-page-sections/helpers/section-renderer";
+import { buildRenderSections } from "../../pages/funnel-page-sections/section-renderer";
 import type { SectionGridProps } from "./types";
 
 const props = withDefaults(defineProps<SectionGridProps>(), {
