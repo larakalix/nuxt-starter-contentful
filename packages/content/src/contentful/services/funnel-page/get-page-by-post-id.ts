@@ -1,9 +1,9 @@
-import type { FunnelPage } from "../../../types/landing";
+import type { FunnelPage } from "../../../types";
 import { FUNNEL_PAGE_BY_SLUG } from "../../queries/funnel-page";
-import { getBySlug } from "../entries";
+import { getBySlug } from "./../entries";
 
-export async function getPageBySlug(
-    slug: string,
+export async function getPageByPostId(
+    postId: string,
     preview = false,
     locale: string = "en-US"
 ): Promise<FunnelPage | null> {
@@ -11,14 +11,14 @@ export async function getPageBySlug(
         FUNNEL_PAGE_BY_SLUG,
         {
             collectionKey: "funnelPageCollection",
-            slug,
+            slug: postId,
             locale,
-            // slugField: "slug", // optional
+            slugField: "postId", // specify postId field
             // limit: 1, // default is 1
         },
         {
             preview,
-            errorMessage: `Failed to fetch page with slug: ${slug}`,
+            errorMessage: `Failed to fetch page with postId: ${postId}`,
             fetchPolicy: "no-cache",
             // fetchPolicy: preview ? "no-cache" : undefined, // optional override
         }

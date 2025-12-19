@@ -1,10 +1,12 @@
 <script setup lang="ts">
+const LAYOUT = "default";
 </script>
 
 <template>
-  <NuxtLoadingIndicator />
+  <NuxtLoadingIndicator color="red" />
+
   <NuxtRouteAnnouncer />
-  <NuxtLayout name="default">
+  <NuxtLayout :name="LAYOUT">
     <NuxtPage />
   </NuxtLayout>
 </template>

@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { FunnelPageSections, mapFooterProps, mapNavbarProps } from "@starter/ui/pages";
 import { usePageStatic } from '~/composables/use-page.server'
-import { useSyncSlugPage } from '~/composables/use-sync-slug-page.client'
 import { Error } from "@starter/ui/organisms";
 import type { OnNavigate } from "@starter/ui/atoms";
 import type { FunnelPage } from "@starter/content";
