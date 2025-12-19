@@ -26,7 +26,7 @@ const classes = computed(() =>
 <template>
     <div :class="classes">
         <!-- Left label (pills) -->
-        <Badge v-bind="props.tag" :label="props.label" />
+        <Badge v-if="props.tag" v-bind="props.tag" :label="props.label" />
 
         <!-- Title text -->
         <component :is="props.as" class="font-semibold text-foreground">

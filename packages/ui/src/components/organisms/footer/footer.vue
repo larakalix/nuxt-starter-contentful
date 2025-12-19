@@ -60,7 +60,7 @@ const onSubmit = () => {
 
 <template>
     <footer :class="classes" aria-label="Footer">
-        <div class="mx-auto flex max-w-6xl flex-col gap-10 px-6 py-10 md:px-8 md:py-14">
+        <div class="flex max-w-page flex-col gap-10 px-6 py-10 md:px-8 md:py-14">
             <!-- Top grid -->
             <div class="grid gap-10 md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)_minmax(0,1fr)_minmax(0,2fr)]">
                 <!-- Brand / description -->

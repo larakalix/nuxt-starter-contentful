@@ -124,6 +124,11 @@
     --bg-navbar: oklch(0.97 0.02 300);
 }
 
+.theme-light {
+    --color-text: oklch(1 0 0);
+    --color-muted-subtitle-text: oklch(0.9 0 0);
+}
+
 /* Tailwind tokens */
 @theme inline {
     --color-background: var(--color-bg);
@@ -153,8 +158,15 @@
     --radius-full: var(--radius-full);
 
     --bg-navbar: var(--bg-navbar);
+
+    --max-width-8xl: 90rem;
+    --max-width-9xl: 100rem;
 }
 
 .root-app {
     @apply flex flex-col min-h-screen;
+}
+
+.max-w-page {
+    @apply mx-auto w-full max-w-9xl;
 }

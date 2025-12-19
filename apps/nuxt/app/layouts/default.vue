@@ -20,7 +20,7 @@ const onNavigate: OnNavigate = async (href, event) => {
 <template>
     <Navbar v-if="shell.navBar" v-bind="shell.navBar" :onNavigate="onNavigate" />
 
-    <main v-if="!shell.enabled" class="mx-auto max-w-6xl flex flex-col flex-1 gap-4 px-4 py-10 sm:px-6 lg:px-8 w-full">
+    <main v-if="!shell.enabled" class="max-w-page flex flex-col flex-1 gap-4 px-4 py-10 sm:px-6 lg:px-8">
         <slot />
     </main>
     <slot v-else />

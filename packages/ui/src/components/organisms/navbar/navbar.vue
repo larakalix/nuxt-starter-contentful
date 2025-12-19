@@ -35,7 +35,7 @@ const classes = computed(() =>
 
 <template>
     <header :class="classes" aria-label="Main navigation">
-        <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
+        <div class="flex max-w-page items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
             <!-- LEFT: Logo -->
             <div class="flex items-center gap-3 px-2 md:px-6">
                 <VersatileLink href="/" :onNavigate="props.onNavigate">

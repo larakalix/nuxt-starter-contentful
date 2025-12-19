@@ -8,8 +8,10 @@ dayjs.extend(localizedFormat);
 
 export const mapBlogCardListItemProps = (
     section: BlogCardListItem,
-    sectionLayout: string = "stacked"
+    sectionLayout: string = "stacked",
+    isPost: boolean = false
 ): BlogCardProps => {
+    const layout = sectionLayout === "stacked" ? "horizontal" : "vertical";
     return {
         id: section.sys.id,
         title: section.title ?? "",
@@ -19,7 +21,7 @@ export const mapBlogCardListItemProps = (
             ? dayjs(section.dateLabel).format("LL")
             : "",
         readTimeLabel: section.readTimeLabel ?? "",
-        layout: sectionLayout === "stacked" ? "horizontal" : "vertical",
+        layout: isPost ? "post" : layout,
         excerpt: section.excerpt ?? "",
         imageSrc: section.image?.url ?? "",
         href: section.href ?? "",

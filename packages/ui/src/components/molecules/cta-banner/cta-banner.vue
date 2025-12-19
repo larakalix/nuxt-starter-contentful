@@ -10,6 +10,9 @@ import type { CtaBannerProps } from "./types";
 const props = withDefaults(defineProps<CtaBannerProps>(), {
     tone: "soft",
     size: "md",
+    align: "center",
+    paragraphAlign: "center",
+    rounded: "sm",
     paragraphs: () => [],
 });
 
@@ -18,10 +21,19 @@ const classes = computed(() =>
         ctaBannerVariants({
             tone: props.tone,
             size: props.size,
+            align: props.align,
+            paragraphAlign: props.paragraphAlign,
+            rounded: props.rounded,
         }),
         props.class,
     ),
 );
+
+const paragraphAlignClass = computed(() => clsx({
+    "text-left": props.paragraphAlign === "left",
+    "text-center": props.paragraphAlign === "center",
+    "text-right": props.paragraphAlign === "right",
+}));
 </script>
 
 <template>
@@ -36,7 +48,8 @@ const classes = computed(() =>
             </h3>
 
             <!-- Subtitle / description -->
-            <div class="space-y-2 text-xs md:text-sm leading-relaxed text-foreground-muted-subtitle">
+            <div
+                :class="['space-y-2 text-xs md:text-sm leading-relaxed text-foreground-muted-subtitle', paragraphAlignClass]">
                 <p v-if="subtitle">
                     {{ subtitle }}
                 </p>
