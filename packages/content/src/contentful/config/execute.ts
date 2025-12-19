@@ -23,10 +23,17 @@ export async function executeQuery<TData>(
 
         return res.data;
     } catch (err) {
-        console.error("[contentful.executeQuery]", err);
+        console.error("[contentful.executeQuery]", {
+            err,
+            query,
+            variables,
+        });
 
         const msg = opts.errorMessage ?? "Failed to fetch data from Contentful";
-        if (err instanceof Error) throw new Error(`${msg}: ${err.message}`);
+        if (err instanceof Error) {
+            console.error(`[${msg}]`, err?.message);
+            throw new Error(`${msg}: ${err.message}`);
+        }
         throw new Error(`${msg}: ${String(err)}`);
     }
 }

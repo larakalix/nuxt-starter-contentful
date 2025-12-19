@@ -3,22 +3,21 @@ import { FunnelPageSections, mapFooterProps, mapNavbarProps } from "@starter/ui/
 import { usePageStatic } from '~/composables/use-page.server'
 import { Error } from "@starter/ui/organisms";
 import type { OnNavigate } from "@starter/ui/atoms";
-import type { FunnelPage } from "@starter/content";
 
 const router = useRouter();
 const shell = useShellState();
 const { funnelPage, pending, error, refresh, } = usePageStatic();
 
 watchEffect(() => {
-  const page = funnelPage.value as FunnelPage | null;
-  if (!page) return;
+  const _funnelPage = funnelPage.value;
+  if (!_funnelPage?.page) return;
 
-  if (page.skipWrapper) {
+  if (_funnelPage.page.skipWrapper) {
     shell.value = {
       ...shell.value,
       enabled: true,
-      navBar: page.navBar ? mapNavbarProps(page.navBar) : undefined,
-      footer: page.footer ? mapFooterProps(page.footer) : undefined,
+      navBar: _funnelPage.page.navBar ? mapNavbarProps(_funnelPage.page.navBar) : undefined,
+      footer: _funnelPage.page.footer ? mapFooterProps(_funnelPage.page.footer) : undefined,
     };
   }
 });
@@ -40,7 +39,8 @@ const onNavigate: OnNavigate = async (href, event) => {
   <Error v-if="error" :message="error?.message" :refresh="refresh" />
 
   <!-- Success state -->
-  <FunnelPageSections v-else :funnel-page="funnelPage" :pending="pending" :error="error" :on-navigate="onNavigate" />
+  <FunnelPageSections v-else :funnel-page="funnelPage?.page" :pending="pending" :error="error"
+    :on-navigate="onNavigate" />
 
   <!-- Pending state -->
   <div v-if="pending" class="flex items-center justify-center space-x-1 py-6">

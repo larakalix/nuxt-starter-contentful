@@ -77,13 +77,7 @@ export const SECTION_GRID_SECTION = gql`
                                     rounded
                                 }
                                 image {
-                                    __typename
-                                    sys {
-                                        id
-                                    }
-                                    url
-                                    title
-                                    description
+                                    ...ImageFields
                                 }
                             }
                         }

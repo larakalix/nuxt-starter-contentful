@@ -1,34 +1,35 @@
 import type { BadgeProps } from "@/src/components/atoms";
-import type { BlogCardListItem } from "@/src/components/organisms";
-import type { BlogCardListItem as SectionBlogCardListItem } from "@starter/content";
+import type { BlogCardProps } from "@/src/components/molecules";
+import type { BlogCardListItem } from "@starter/content";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
 
 dayjs.extend(localizedFormat);
 
 export const mapBlogCardListItemProps = (
-    item: SectionBlogCardListItem,
-    sectionLayout: string | undefined
-): BlogCardListItem => {
+    section: BlogCardListItem,
+    sectionLayout: string = "stacked"
+): BlogCardProps => {
     return {
-        id: item.sys.id,
-        title: item.title ?? "",
-        authorAvatarSrc: item.author?.url ?? "",
-        authorName: item.author?.title ?? "",
-        dateLabel: item.dateLabel ? dayjs(item.dateLabel).format("LL") : "",
-        readTimeLabel: item.readTimeLabel ?? "",
+        id: section.sys.id,
+        title: section.title ?? "",
+        authorAvatarSrc: section.author?.url ?? "",
+        authorName: section.author?.title ?? "",
+        dateLabel: section.dateLabel
+            ? dayjs(section.dateLabel).format("LL")
+            : "",
+        readTimeLabel: section.readTimeLabel ?? "",
         layout: sectionLayout === "stacked" ? "horizontal" : "vertical",
-        //layout: item.layout as BlogCardListItem["layout"],
-        excerpt: item.excerpt ?? "",
-        imageSrc: item.image?.url ?? "",
-        href: item.href ?? "",
-        tag: item.tag
+        excerpt: section.excerpt ?? "",
+        imageSrc: section.image?.url ?? "",
+        href: section.href ?? "",
+        tag: section.tag
             ? {
-                  id: item.tag.sys.id,
-                  label: item.tag.label ?? "",
-                  variant: item.tag.variant as BadgeProps["variant"],
-                  rounded: item.tag.rounded as BadgeProps["rounded"],
-                  weight: item.tag.weight as BadgeProps["weight"],
+                  id: section.tag.sys.id,
+                  label: section.tag.label ?? "",
+                  variant: section.tag.variant as BadgeProps["variant"],
+                  rounded: section.tag.rounded as BadgeProps["rounded"],
+                  weight: section.tag.weight as BadgeProps["weight"],
               }
             : undefined,
     };

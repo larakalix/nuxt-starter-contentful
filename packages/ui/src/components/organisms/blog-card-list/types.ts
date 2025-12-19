@@ -1,3 +1,4 @@
+import type { OnNavigate } from "../../atoms";
 import type { BlogCardProps, SectionHeadingProps } from "../../molecules";
 import type { BlogCardListVariantsProps } from "./variants";
 
@@ -9,5 +10,5 @@ export type BlogCardListProps = BlogCardListVariantsProps & {
     sectionHeading?: SectionHeadingProps;
     items: BlogCardListItem[];
     class?: string;
-    onNavigate?: (href: string, e: MouseEvent) => void;
+    onNavigate?: OnNavigate;
 };

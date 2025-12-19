@@ -99,7 +99,7 @@ const handleClick = async (event: MouseEvent) => {
 </script>
 
 <template>
-  <component :is="tag" v-bind="mergedProps" @click="handleClick">
+  <component :is="tag" v-bind="mergedProps" class="versatile-link" @click="handleClick">
     <slot />
   </component>
 </template>

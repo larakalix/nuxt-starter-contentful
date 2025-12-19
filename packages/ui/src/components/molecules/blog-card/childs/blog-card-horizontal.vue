@@ -2,8 +2,8 @@
 import { computed } from "vue";
 import clsx from "clsx";
 import { blogCardVariants } from "../variants";
+import { Badge, VersatileLink } from "../../../atoms";
 import type { BlogCardProps } from "../types";
-import Badge from "../../../atoms/badge/badge.vue";
 
 const props = withDefaults(defineProps<BlogCardProps>(), {
     clickable: true,
@@ -20,7 +20,8 @@ const classes = computed(() =>
 </script>
 
 <template>
-    <component :id="props.id" :is="asTag" :href="href" :class="classes">
+    <VersatileLink :id="props.id" :href="props.href" :class="['flex h-full flex-col gap-y-4', classes]"
+        :onNavigate="props.onNavigate">
         <!-- <div class="flex w-full gap-4 md:gap-6 items-stretch"> -->
         <!-- Image column -->
         <div v-if="imageSrc" class="max-w-full md:max-w-1/3 flex-shrink-0 overflow-hidden rounded-xl bg-muted">
@@ -84,11 +85,11 @@ const classes = computed(() =>
                 </template>
 
                 <!-- Excerpt -->
-                <p class="text-sm leading-relaxed text-muted-foreground line-clamp-2 min-h-[2.75rem]"
+                <p class="hidden @[350px]:block text-sm leading-relaxed text-muted-foreground line-clamp-4 min-h-[2.75rem]"
                     :class="{ invisible: !excerpt }">
                     {{ excerpt }}
                 </p>
             </div>
         </div>
-    </component>
+    </VersatileLink>
 </template>

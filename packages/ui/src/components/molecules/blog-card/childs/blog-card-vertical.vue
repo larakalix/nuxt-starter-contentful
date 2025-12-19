@@ -2,14 +2,13 @@
 import { computed } from "vue";
 import clsx from "clsx";
 import { blogCardVariants } from "../variants";
+import { Badge, VersatileLink } from "../../../atoms";
 import type { BlogCardProps } from "../types";
-import Badge from "../../../atoms/badge/badge.vue";
 
 const props = withDefaults(defineProps<BlogCardProps>(), {
     clickable: true,
+    href: undefined,
 });
-
-const asTag = computed(() => (props.href ? "a" : "article"));
 
 const classes = computed(() =>
     clsx("blog-card-vertical",
@@ -20,7 +19,8 @@ const classes = computed(() =>
 </script>
 
 <template>
-    <component :id="props.id" :is="asTag" :href="href" :class="['flex h-full flex-col gap-y-4', classes]">
+    <VersatileLink :id="props.id" :href="href" :class="['flex h-full flex-col gap-y-4', classes]"
+        :onNavigate="props.onNavigate">
         <header class="flex flex-col gap-y-2 min-h-15">
             <Badge v-if="tag" v-bind="tag" class="text-xs px-3 py-1" />
 
@@ -60,7 +60,7 @@ const classes = computed(() =>
                     <div class="flex items-center gap-1.5">
                         <!-- clock icon... -->
                         <span class="text-xs md:text-sm font-normal text-foreground-muted-subtitle">{{ readTimeLabel
-                            }}</span>
+                        }}</span>
                     </div>
                 </template>
             </div>
@@ -71,5 +71,5 @@ const classes = computed(() =>
                 {{ excerpt }}
             </p>
         </div>
-    </component>
+    </VersatileLink>
 </template>

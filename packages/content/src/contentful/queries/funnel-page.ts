@@ -5,6 +5,7 @@ import { IMAGE_FIELDS } from "./fragments/image";
 import { BLOG_CARD_LIST_SECTION } from "./fragments/blog-card-list";
 import { SECTION_GRID_SECTION } from "./fragments/section-grid";
 import { CTA_BANNER_SECTION } from "./fragments/cta-banner";
+import { NAVBAR_FIELDS } from "./fragments/navbar";
 
 // query FunnelPageBySlug($slug: String!, $limit: Int, $locale: String) {
 //         funnelPageCollection(
@@ -25,13 +26,7 @@ export const FUNNEL_PAGE_BY_SLUG = gql`
                 theme
                 skipWrapper
                 navBar {
-                    sys {
-                        ...SysFields
-                    }
-                    __typename
-                    name
-                    sticky
-                    showBorder
+                    ...NavbarFields
                 }
                 footer {
                     sys {
@@ -71,4 +66,5 @@ export const FUNNEL_PAGE_BY_SLUG = gql`
     ${BLOG_CARD_LIST_SECTION}
     ${SECTION_GRID_SECTION}
     ${CTA_BANNER_SECTION}
+    ${NAVBAR_FIELDS}
 `;

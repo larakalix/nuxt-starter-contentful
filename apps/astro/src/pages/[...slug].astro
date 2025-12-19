@@ -1,21 +1,26 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { FunnelPageSections } from "@starter/ui/pages";
 import { Error as ErrorComponent } from "@starter/ui/organisms";
-import { parseSlugParam, loadFunnelPage } from "../server/funnel-page";
+import { FunnelPageSections } from "@starter/ui/pages";
+import { loadFunnelPage } from "../server/funnel-page";
+import { getPostsLinks } from "@starter/content";
 import type { OnNavigate } from "@starter/ui/atoms";
 
 export async function getStaticPaths() {
+    const paths = await getPostsLinks();
+
     return [
         { params: { slug: "" } },
         { params: { slug: "home" } },
         { params: { slug: "about" } },
+        ...paths.map((path) => ({
+            params: { slug: path.href },
+        })),
     ];
 }
 
 const { slug } = Astro.params;
-const { path, id } = parseSlugParam(slug);
-const { funnelPage, error } = await loadFunnelPage(path);
+const { funnelPage, error } = await loadFunnelPage(slug);
 
 const onNavigate: OnNavigate = (href, event) => {
     event?.preventDefault();
@@ -31,7 +36,7 @@ const onNavigate: OnNavigate = (href, event) => {
     <FunnelPageSections
         client:visible
         funnelPage={{
-            ...funnelPage,
+            ...funnelPage?.page,
             skipWrapper: false,
         }}
         onNavigate={onNavigate}

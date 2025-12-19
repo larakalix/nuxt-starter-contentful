@@ -22,6 +22,10 @@
             "import": "./src/contentful/services/index.ts",
             "types": "./src/contentful/services/index.ts"
         },
+        "./utils": {
+            "import": "./src/utils/index.ts",
+            "types": "./src/utils/index.ts"
+        },
         "./client": {
             "import": "./src/contentful/client.ts",
             "types": "./src/contentful/client.ts"

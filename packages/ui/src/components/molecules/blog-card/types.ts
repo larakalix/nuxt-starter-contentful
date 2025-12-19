@@ -1,4 +1,4 @@
-import type { BadgeProps } from "../../atoms";
+import type { BadgeProps, OnNavigate } from "../../atoms";
 import type { BlogCardVariantsProps } from "./variants";
 
 export type BlogCardProps = BlogCardVariantsProps & {
@@ -14,4 +14,5 @@ export type BlogCardProps = BlogCardVariantsProps & {
     excerpt?: string;
     href?: string;
     class?: string;
+    onNavigate?: OnNavigate;
 };

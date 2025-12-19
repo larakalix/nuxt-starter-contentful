@@ -26,9 +26,10 @@ const classes = computed(() =>
 
 <template>
     <div :class="classes">
-        <SectionHeading v-if="props.sectionHeading" v-bind="props.sectionHeading" :col-span="props.sectionHeading.colSpan ?? props.columns
-            " />
+        <SectionHeading v-if="props.sectionHeading" v-bind="props.sectionHeading"
+            :col-span="props.sectionHeading.colSpan ?? props.columns" />
 
-        <BlogCard v-for="item in items" :key="item.id ?? item.href ?? item.title" v-bind="item" />
+        <BlogCard v-for="item in items" :key="item.id ?? item.href ?? item.title" v-bind="item"
+            :onNavigate="props.onNavigate" />
     </div>
 </template>

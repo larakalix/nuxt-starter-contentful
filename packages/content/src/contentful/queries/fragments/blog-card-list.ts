@@ -1,7 +1,6 @@
 import { gql } from "@apollo/client";
 import { SYS_FIELDS } from "./sys";
-import { TAG_FIELDS } from "./tag";
-import { IMAGE_FIELDS } from "./image";
+import { BLOG_CARD_LIST_ITEM_SECTION } from "./blog-card-list-item";
 
 export const BLOG_CARD_LIST_SECTION = gql`
     fragment BlogCardListSection on BlogCardList {
@@ -30,28 +29,11 @@ export const BLOG_CARD_LIST_SECTION = gql`
         }
         itemsCollection(limit: 10) {
             items {
-                __typename
-                sys {
-                    ...SysFields
-                }
-                name
-                title
-                excerpt
-                href
-                dateLabel
-                readTimeLabel
-                layout
-                tag {
-                    ...TagFields
-                }
-                image {
-                    ...ImageFields
-                }
+                ...BlogCardListItemSection
             }
         }
     }
 
     ${SYS_FIELDS}
-    ${TAG_FIELDS}
-    ${IMAGE_FIELDS}
+    ${BLOG_CARD_LIST_ITEM_SECTION}
 `;
