@@ -84,6 +84,9 @@ export type BlogCardListItem = {
     href?: string;
     tag?: SectionTag;
     layout?: string;
+    bodyContent: {
+        json: any;
+    }
 };
 
 export type SectionGridSectionsCollection = {

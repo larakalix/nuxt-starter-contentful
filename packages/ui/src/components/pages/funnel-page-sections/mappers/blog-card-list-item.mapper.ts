@@ -34,5 +34,9 @@ export const mapBlogCardListItemProps = (
                   weight: section.tag.weight as BadgeProps["weight"],
               }
             : undefined,
+        bodyContent:
+            isPost && section.bodyContent?.json
+                ? JSON.stringify(section.bodyContent.json)
+                : undefined,
     };
 };

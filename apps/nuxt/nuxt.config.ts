@@ -1,6 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import type { PluginOption } from "vite";
 import tailwindcss from "@tailwindcss/vite";
+import { getPostsLinks } from "@starter/content";
 
 const {
     CONTENTFUL_SPACE_ID,
@@ -49,4 +50,11 @@ export default defineNuxtConfig({
         "./plugins/contentful.server.ts",
         "./plugins/contentful.client.ts",
     ],
+    routeRules: {
+        "/": { prerender: true },
+        "/home": { prerender: true },
+        "/about": { prerender: true },
+        "/blog/**": { ssr: false },
+        "/blog/:slug": { prerender: true },
+    },
 });

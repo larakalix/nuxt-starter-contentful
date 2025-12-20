@@ -2,7 +2,7 @@
 import { computed } from 'vue';
 import clsx from 'clsx';
 import { Badge } from "../../../atoms";
-import { CtaBanner, type CtaBannerProps } from "../../../molecules";
+import { CtaBanner, RichTextRenderer, type CtaBannerProps } from "../../../molecules";
 import BlogCardMeta from './blog-card-meta.vue';
 import { AuthorList, type AuthorListProps } from './../../..//organisms';
 import type { BlogCardProps } from '../types';
@@ -102,14 +102,11 @@ const ctaBannerProps = {
                 <img :src="imageSrc" :alt="imageAlt || title" class="w-full aspect-video object-cover" loading="lazy" />
             </div>
 
-            <!-- Excerpt -->
-            <p class="text-sm md:text-lg leading-relaxed text-muted-foreground" :class="{ invisible: !excerpt }">
-                {{ excerpt }}
-            </p>
-
-            <hr class="my-2 md:my-4 border-primary/30 md:border-primary/40" />
+            <div v-if="props.bodyContent" class="prose prose-sm md:prose-lg max-w-none prose-foreground">
+                <RichTextRenderer :body-content="props.bodyContent" />
+            </div>
         </div>
-        <div class="col-span-1 md:col-span-2 lg:col-span-2 flex flex-col gap-y-4">
+        <div class="col-span-1 md:col-span-2 lg:col-span-2 flex flex-col gap-y-4 sticky top-20 self-start">
             <AuthorList v-bind="authorListProps" />
 
             <CtaBanner v-bind="ctaBannerProps" />

@@ -14,5 +14,6 @@ export type BlogCardProps = BlogCardVariantsProps & {
     excerpt?: string;
     href?: string;
     class?: string;
+    bodyContent?: string;
     onNavigate?: OnNavigate;
 };
