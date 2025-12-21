@@ -1,6 +1,7 @@
 import { gql } from "@apollo/client";
 import { SYS_FIELDS } from "./sys";
 import { BLOG_CARD_LIST_ITEM_SECTION } from "./blog-card-list-item";
+import { TAG_FIELDS } from "./tag";
 
 export const BLOG_CARD_LIST_SECTION = gql`
     fragment BlogCardListSection on BlogCardList {
@@ -36,4 +37,5 @@ export const BLOG_CARD_LIST_SECTION = gql`
 
     ${SYS_FIELDS}
     ${BLOG_CARD_LIST_ITEM_SECTION}
+    ${TAG_FIELDS}
 `;

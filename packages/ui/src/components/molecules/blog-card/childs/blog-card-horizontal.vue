@@ -19,9 +19,7 @@ const classes = computed(() =>
 </script>
 
 <template>
-    <VersatileLink :id="props.id" :href="props.href" :class="['flex h-full flex-col gap-y-4', classes]"
-        :onNavigate="props.onNavigate">
-        <!-- <div class="flex w-full gap-4 md:gap-6 items-stretch"> -->
+    <VersatileLink :id="props.id" :href="props.href" :class="classes" :onNavigate="props.onNavigate">
         <!-- Image column -->
         <div v-if="imageSrc" class="max-w-full md:max-w-1/3 flex-shrink-0 overflow-hidden rounded-xl bg-muted">
             <img :src="imageSrc" :alt="imageAlt || title" class="h-full w-full aspect-3/1 object-cover"
@@ -46,7 +44,7 @@ const classes = computed(() =>
                     :read-time-label="readTimeLabel" :clickable="clickable" />
 
                 <!-- Excerpt -->
-                <p class="hidden @[350px]:block text-sm leading-relaxed text-muted-foreground line-clamp-4 min-h-[2.75rem]"
+                <p class="hidden @[500px]:block text-sm leading-relaxed text-muted-foreground line-clamp-3 min-h-[2.75rem]"
                     :class="{ invisible: !excerpt }">
                     {{ excerpt }}
                 </p>

@@ -4,7 +4,7 @@ import {
     type FunnelPage,
     type SectionType,
 } from "@starter/content";
-import { registry } from "./registry";
+import { getRegistryItem } from "./registry";
 import type { OnNavigate } from "@/src/components/atoms";
 import type { BaseSection, RenderItem } from "./types";
 
@@ -19,12 +19,13 @@ export function sectionKey(section: BaseSection, index: number): string {
 export function buildRenderSections(
     sections: SectionType[],
     unknown: Component,
+    level: number = 0,
     onNavigate?: OnNavigate
 ): RenderItem[] {
     return sections.map((section, index) => {
         const key = sectionKey(section, index);
         const typename = section.__typename as ContentfulType | undefined;
-        const entry = typename ? registry[typename] : undefined;
+        const entry = getRegistryItem(typename!, level);
 
         if (entry) {
             return {
@@ -49,6 +50,7 @@ export function buildRenderSections(
 export function buildRenderItems(
     funnelPage: FunnelPage | null | undefined,
     unknown: Component,
+    level: number = 0,
     onNavigate?: OnNavigate
 ): {
     header: RenderItem[];
@@ -66,7 +68,7 @@ export function buildRenderItems(
     // Always render navbar and footer even if not defined in sections
     if (!skipWrapper) {
         if (funnelPage.navBar) {
-            const entry = registry[ContentfulType.NAVBAR];
+            const entry = getRegistryItem(ContentfulType.NAVBAR, level);
 
             if (entry)
                 header.push({
@@ -82,7 +84,7 @@ export function buildRenderItems(
         }
 
         if (funnelPage.footer) {
-            const entry = registry[ContentfulType.FOOTER];
+            const entry = getRegistryItem(ContentfulType.FOOTER, level);
 
             if (entry)
                 footer.push({
@@ -99,7 +101,7 @@ export function buildRenderItems(
     }
 
     const sections = funnelPage?.template.sectionsCollection.items;
-    const items = buildRenderSections(sections, unknown, onNavigate);
+    const items = buildRenderSections(sections, unknown, level, onNavigate);
 
     for (const item of items) {
         if (item.area === "header") header.push(item);

@@ -1,7 +1,7 @@
 import { tv } from "tailwind-variants";
 
 export const blogCardVariants = tv({
-    base: "group p-2 md:p-6 h-full",
+    base: "group flex flex-col gap-y-4 p-2 md:p-6 h-full @container",
     variants: {
         variant: {
             default: "",

@@ -20,7 +20,7 @@ const classes = computed(() =>
   ),
 );
 
-const group = computed(() => buildRenderSections(props.items, Error, props.onNavigate));
+const group = computed(() => buildRenderSections(props.items, Error, 1, props.onNavigate));
 </script>
 
 <template>

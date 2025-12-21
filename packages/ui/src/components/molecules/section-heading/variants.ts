@@ -1,7 +1,7 @@
 import { tv } from "tailwind-variants";
 
 export const sectionHeadingVariants = tv({
-    base: "flex items-start justify-start gap-2 px-2 md:px-6",
+    base: "flex items-center justify-start gap-2 px-2 md:px-6",
     variants: {
         align: {
             left: "justify-start text-left",

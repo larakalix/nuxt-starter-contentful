@@ -1,17 +1,14 @@
-import type { BadgeProps } from "@/src/components/atoms";
 import type { SectionHeadingProps } from "@/src/components/molecules";
 import type { SectionHeading } from "@starter/content";
+import { mapTag } from "./tag.mapper";
 
-export const mapSectionHeading = (section: SectionHeading) => {
+export const mapSectionHeading = (
+    section: SectionHeading
+): SectionHeadingProps => {
     return {
         title: section?.title ?? "",
         label: section?.label ?? "",
         colSpan: section?.colSpan as SectionHeadingProps["colSpan"],
-        tag: {
-            id: section?.tag?.sys.id ?? "",
-            variant: section?.tag?.variant as BadgeProps["variant"],
-            rounded: section?.tag?.rounded as BadgeProps["rounded"],
-            weight: section?.tag?.weight as BadgeProps["weight"],
-        },
+        tag: mapTag(section?.tag),
     };
 };

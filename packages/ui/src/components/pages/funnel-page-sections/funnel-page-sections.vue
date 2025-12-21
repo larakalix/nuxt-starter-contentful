@@ -6,7 +6,7 @@ import { buildRenderItems } from "./section-renderer";
 import { injectTheme } from "./helpers/inject-theme";
 
 const props = defineProps<FunnelPageSectionProps>();
-const grouped = computed(() => buildRenderItems(props.funnelPage, Error, props.onNavigate));
+const grouped = computed(() => buildRenderItems(props.funnelPage, Error, 0, props.onNavigate));
 
 injectTheme(props.funnelPage?.theme ?? 'default');
 </script>

@@ -161,6 +161,8 @@
 
     --max-width-8xl: 90rem;
     --max-width-9xl: 100rem;
+    --max-width-10xl: 114rem;
+    --max-width-11xl: 120rem;
 }
 
 .root-app {
@@ -168,5 +170,9 @@
 }
 
 .max-w-page {
-    @apply mx-auto w-full max-w-9xl;
+    @apply mx-auto w-full max-w-11xl;
+}
+
+.global-content-padding {
+    @apply px-4 py-10 sm:px-6 lg:px-8;
 }

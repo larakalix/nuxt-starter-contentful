@@ -5,7 +5,6 @@ import { Badge } from "../../../atoms";
 import { CtaBanner, RichTextRenderer, TocMenu, type CtaBannerProps } from "../../../molecules";
 import BlogCardMeta from './blog-card-meta.vue';
 import { AuthorList, type AuthorListProps } from './../../..//organisms';
-import { globalStyles } from './../../../../utils/styles.utils';
 import type { BlogCardProps } from '../types';
 
 const props = withDefaults(defineProps<BlogCardProps>(), {
@@ -14,7 +13,7 @@ const props = withDefaults(defineProps<BlogCardProps>(), {
 });
 
 const classes = computed(() =>
-    clsx(`blog-post grid gap-2 md:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-8 ${globalStyles.contentPadding}`,
+    clsx("blog-post grid gap-2 md:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-8 global-content-padding",
         props.class,
     ),
 );

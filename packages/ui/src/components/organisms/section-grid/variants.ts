@@ -1,8 +1,7 @@
 import { tv } from "tailwind-variants";
-import { globalStyles } from "./../../../utils/styles.utils";
 
 export const sectionGridVariants = tv({
-    base: `grid gap-2 md:gap-4 w-full ${globalStyles.contentPadding}`,
+    base: "grid gap-2 md:gap-4 w-full global-content-padding",
     variants: {
         columns: {
             1: "grid-cols-1",

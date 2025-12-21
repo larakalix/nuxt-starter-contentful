@@ -20,6 +20,9 @@ export const SECTION_GRID_SECTION = gql`
             align
             size
             colSpan
+            tag {
+                ...TagFields
+            }
             sys {
                 ...SysFields
             }
@@ -53,6 +56,9 @@ export const SECTION_GRID_SECTION = gql`
                             align
                             size
                             colSpan
+                            tag {
+                                ...TagFields
+                            }
                         }
                         itemsCollection(limit: 10) {
                             items {
