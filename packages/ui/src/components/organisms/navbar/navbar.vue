@@ -24,7 +24,7 @@ const emit = defineEmits<{
 const isOpen = ref(false);
 
 const classes = computed(() =>
-    clsx("bg-navbar w-full z-50",
+    clsx("bg-navbar",
         navbarVariants({
             variant: props.variant,
             sticky: props.sticky,

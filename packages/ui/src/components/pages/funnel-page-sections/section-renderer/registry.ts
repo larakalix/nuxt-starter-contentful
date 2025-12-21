@@ -38,7 +38,7 @@ export const registry: Partial<Record<ContentfulType, RegistryItem>> = {
     },
     [ContentfulType.BLOG_CARD_LIST]: {
         getComponent: () => BlogCardList,
-        mapProps: (s) => mapBlogCardListProps(s as SectionBlogCardList),
+        mapProps: (s) => mapBlogCardListProps(s as SectionBlogCardList, true),
         area: "main",
     },
     [ContentfulType.BLOG_CARD_LIST_ITEM]: {

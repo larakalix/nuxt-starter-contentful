@@ -17,7 +17,7 @@ const props = withDefaults(defineProps<CtaBannerProps>(), {
 });
 
 const classes = computed(() =>
-    clsx(
+    clsx("cta-banner",
         ctaBannerVariants({
             tone: props.tone,
             size: props.size,

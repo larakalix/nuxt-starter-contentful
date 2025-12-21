@@ -11,6 +11,7 @@ export const SECTION_GRID_SECTION = gql`
         }
         name
         columns
+        tone
         sectionHeading {
             __typename
             name

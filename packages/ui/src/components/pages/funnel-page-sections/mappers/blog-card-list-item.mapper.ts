@@ -12,9 +12,7 @@ export const mapBlogCardListItemProps = (
     isPost: boolean = false
 ): BlogCardProps => {
     const layout = sectionLayout === "stacked" ? "horizontal" : "vertical";
-    console.log("[MAP_BLOG_CARD_LIST_ITEM] --> ", {
-        section,
-    });
+
     return {
         id: section.sys.id,
         title: section.title ?? "",

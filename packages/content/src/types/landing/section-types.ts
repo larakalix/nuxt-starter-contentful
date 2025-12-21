@@ -99,6 +99,7 @@ export type SectionGrid = {
     sys: Sys;
     class?: string;
     columns?: number;
+    tone?: string;
     sectionsCollection: SectionGridSectionsCollection;
 };
 

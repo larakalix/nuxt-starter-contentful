@@ -1,4 +1,5 @@
 import { tv } from "tailwind-variants";
+import { globalStyles } from "./../../../utils/styles.utils";
 
 export const blogCardListVariants = tv({
     base: "w-full h-fit",

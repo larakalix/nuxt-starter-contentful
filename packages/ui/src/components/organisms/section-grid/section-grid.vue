@@ -14,6 +14,7 @@ const classes = computed(() =>
   clsx("section-grid",
     sectionGridVariants({
       columns: props.columns,
+      tone: props.tone,
     }),
     props.class,
   ),
