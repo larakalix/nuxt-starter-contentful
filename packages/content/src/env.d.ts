@@ -10,4 +10,5 @@ interface ImportMetaEnv {
 
 interface ImportMeta {
     readonly env: ImportMetaEnv;
+    readonly client: boolean;
 }

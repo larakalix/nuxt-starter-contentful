@@ -24,6 +24,7 @@ export const FUNNEL_PAGE_BY_POST_ID = gql`
                     dateLabel
                     readTimeLabel
                     layout
+                    showTocMenu
                     bodyContent {
                         json
                     }

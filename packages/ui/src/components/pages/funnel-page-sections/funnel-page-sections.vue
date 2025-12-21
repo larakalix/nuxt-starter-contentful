@@ -14,7 +14,7 @@ injectTheme(props.funnelPage?.theme ?? 'default');
 <template>
     <component v-for="item in grouped.header" :key="item.key" :is="item.component" v-bind="item.props" />
 
-    <main class="mx-auto max-w-page flex flex-col flex-1 gap-4 px-4 py-10 sm:px-6 lg:px-8">
+    <main id="root-content" class="mx-auto max-w-page flex flex-col flex-1 gap-4 px-4 py-10 sm:px-6 lg:px-8">
         <component v-for="item in grouped.main" :key="item.key" :is="item.component" v-bind="item.props" />
     </main>
 

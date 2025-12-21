@@ -12,6 +12,9 @@ export const mapBlogCardListItemProps = (
     isPost: boolean = false
 ): BlogCardProps => {
     const layout = sectionLayout === "stacked" ? "horizontal" : "vertical";
+    console.log("[MAP_BLOG_CARD_LIST_ITEM] --> ", {
+        section,
+    });
     return {
         id: section.sys.id,
         title: section.title ?? "",
@@ -34,6 +37,7 @@ export const mapBlogCardListItemProps = (
                   weight: section.tag.weight as BadgeProps["weight"],
               }
             : undefined,
+        showTocMenu: isPost ? section?.showTocMenu : false,
         bodyContent:
             isPost && section.bodyContent?.json
                 ? JSON.stringify(section.bodyContent.json)

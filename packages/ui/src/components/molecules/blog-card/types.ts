@@ -15,5 +15,6 @@ export type BlogCardProps = BlogCardVariantsProps & {
     href?: string;
     class?: string;
     bodyContent?: string;
+    showTocMenu?: boolean;
     onNavigate?: OnNavigate;
 };

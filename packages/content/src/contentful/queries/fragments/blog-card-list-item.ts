@@ -16,6 +16,7 @@ export const BLOG_CARD_LIST_ITEM_SECTION = gql`
         dateLabel
         readTimeLabel
         layout
+        showTocMenu
         tag {
             ...TagFields
         }

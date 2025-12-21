@@ -1,3 +1,4 @@
+import type { OnNavigate } from "../../atoms";
 import type { FooterVariantsProps } from "./variants";
 
 type FooterLink = { label: string; href: string };
@@ -19,4 +20,5 @@ export type FooterProps = FooterVariantsProps & {
     newsletterPlaceholder?: string;
     newsletterButtonLabel?: string;
     copyright?: string;
+    onNavigate?: OnNavigate;
 };

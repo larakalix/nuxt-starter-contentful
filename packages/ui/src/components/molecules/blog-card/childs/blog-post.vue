@@ -2,13 +2,14 @@
 import { computed } from 'vue';
 import clsx from 'clsx';
 import { Badge } from "../../../atoms";
-import { CtaBanner, RichTextRenderer, type CtaBannerProps } from "../../../molecules";
+import { CtaBanner, RichTextRenderer, TocMenu, type CtaBannerProps } from "../../../molecules";
 import BlogCardMeta from './blog-card-meta.vue';
 import { AuthorList, type AuthorListProps } from './../../..//organisms';
 import type { BlogCardProps } from '../types';
 
 const props = withDefaults(defineProps<BlogCardProps>(), {
     clickable: false,
+    showTocMenu: true,
 });
 
 const classes = computed(() =>
@@ -80,7 +81,7 @@ const ctaBannerProps = {
 </script>
 
 <template>
-    <article :id="props.id" :class="classes">
+    <article :key="props.id" id="blog-article" :class="classes">
         <div class="col-span-1 md:col-span-2 lg:col-span-6 flex flex-col gap-y-4">
             <header class="flex flex-col gap-y-2">
                 <!-- Tag pill -->
@@ -107,6 +108,9 @@ const ctaBannerProps = {
             </div>
         </div>
         <div class="col-span-1 md:col-span-2 lg:col-span-2 flex flex-col gap-y-4 sticky top-20 self-start">
+            <TocMenu v-if="props.showTocMenu && props.bodyContent" :bodyContent="props.bodyContent"
+                container-selector="#blog-article" />
+
             <AuthorList v-bind="authorListProps" />
 
             <CtaBanner v-bind="ctaBannerProps" />

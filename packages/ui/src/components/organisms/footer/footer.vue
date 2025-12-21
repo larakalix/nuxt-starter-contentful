@@ -1,17 +1,16 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
-import { Button } from "../../atoms";
-import type { FooterProps } from "./types";
-import { footerVariants } from "./variants";
 import clsx from "clsx";
+import { Button, VersatileLink } from "../../atoms";
+import { footerVariants } from "./variants";
+import type { FooterProps } from "./types";
 
 const props = withDefaults(
     defineProps<FooterProps>(),
     {
-        brandPrimary: "Note",
-        brandSecondary: "Book.",
-        description:
-            "Did you come here for something in particular or just general Riker bashing?",
+        brandPrimary: "Nuxt",
+        brandSecondary: "Blog.",
+        description: "Nuxt Blog is a modern blog template built with Nuxt.js and Tailwind CSS. It offers a clean and responsive design for sharing your thoughts and ideas.",
         blogLinks: () => [
             { label: "Travel", href: "#" },
             { label: "Technology", href: "#" },
@@ -64,21 +63,23 @@ const onSubmit = () => {
             <!-- Top grid -->
             <div class="grid gap-10 md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)_minmax(0,1fr)_minmax(0,2fr)]">
                 <!-- Brand / description -->
-                <div class="space-y-4">
-                    <div class="inline-flex items-baseline gap-1">
-                        <span
-                            class="inline-flex rounded-sm bg-primary px-2 py-1 text-sm font-semibold text-primary-foreground">
-                            {{ brandPrimary }}
-                        </span>
-                        <span class="text-lg font-semibold tracking-tight text-foreground">
-                            {{ brandSecondary }}
-                        </span>
-                    </div>
+                <VersatileLink href="/" :onNavigate="props.onNavigate">
+                    <div class="space-y-4">
+                        <div class="inline-flex items-baseline gap-1">
+                            <span
+                                class="inline-flex rounded-sm bg-primary px-2 py-1 text-sm font-semibold text-primary-foreground">
+                                {{ props.brandPrimary }}
+                            </span>
+                            <span class="text-lg font-semibold tracking-tight text-foreground">
+                                {{ props.brandSecondary }}
+                            </span>
+                        </div>
 
-                    <p class="max-w-xs text-sm leading-relaxed text-muted-foreground">
-                        {{ description }}
-                    </p>
-                </div>
+                        <p class="max-w-xs text-sm leading-relaxed text-muted-foreground">
+                            {{ props.description }}
+                        </p>
+                    </div>
+                </VersatileLink>
 
                 <!-- Blogs -->
                 <div class="space-y-3">

@@ -84,6 +84,7 @@ export type BlogCardListItem = {
     href?: string;
     tag?: SectionTag;
     layout?: string;
+    showTocMenu?: boolean;
     bodyContent: {
         json: any;
     }
