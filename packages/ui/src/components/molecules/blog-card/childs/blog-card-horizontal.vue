@@ -21,8 +21,9 @@ const classes = computed(() =>
 <template>
     <VersatileLink :id="props.id" :href="props.href" :class="classes" :onNavigate="props.onNavigate">
         <!-- Image column -->
-        <div v-if="imageSrc" class="max-w-full md:max-w-1/3 flex-shrink-0 overflow-hidden rounded-xl bg-muted">
-            <img :src="imageSrc" :alt="imageAlt || title" class="h-full w-full aspect-3/1 object-cover"
+        <div v-if="imageSrc"
+            class="hidden @[500px]:block max-w-full md:max-w-1/3 flex-shrink-0 overflow-hidden rounded-xl bg-muted">
+            <img :src="imageSrc" :alt="imageAlt || title" class="h-full w-full aspect-3/2 object-cover"
                 loading="lazy" />
         </div>
 
@@ -33,18 +34,18 @@ const classes = computed(() =>
                 <Badge v-if="tag" v-bind="tag" class="text-xs px-3 py-1" />
 
                 <!-- Title -->
-                <h3 class="text-lg md:text-2xl text-foreground font-semibold leading-tight tracking-tight">
+                <h3 class="text-base @[550px]:text-2xl text-foreground font-semibold leading-tight tracking-tight">
                     {{ title }}
                 </h3>
             </header>
 
             <!-- Meta row: author, date, read time -->
             <div class="flex flex-wrap items-center gap-1 text-xs text-muted-foreground">
-                <BlogCardMeta :author-name="authorName" :author-avatar-src="authorAvatarSrc" :date-label="dateLabel"
-                    :read-time-label="readTimeLabel" :clickable="clickable" />
+                <BlogCardMeta :authors="props.authors" :date-label="dateLabel" :read-time-label="readTimeLabel"
+                    :clickable="clickable" />
 
                 <!-- Excerpt -->
-                <p class="hidden @[500px]:block text-sm leading-relaxed text-muted-foreground line-clamp-3 min-h-[2.75rem]"
+                <p class="text-sm leading-relaxed text-muted-foreground line-clamp-3 min-h-[2.75rem]"
                     :class="{ invisible: !excerpt }">
                     {{ excerpt }}
                 </p>

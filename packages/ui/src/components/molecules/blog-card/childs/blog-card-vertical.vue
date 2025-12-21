@@ -38,8 +38,8 @@ const classes = computed(() =>
         <!-- Footer pushed to bottom -->
         <div class="flex flex-wrap items-center gap-1 text-xs text-muted-foreground">
             <!-- Meta row -->
-            <BlogCardMeta :author-name="authorName" :author-avatar-src="authorAvatarSrc" :date-label="dateLabel"
-                :read-time-label="readTimeLabel" :clickable="clickable" />
+            <BlogCardMeta :authors="props.authors" :date-label="dateLabel" :read-time-label="readTimeLabel"
+                :clickable="clickable" />
 
             <!-- Excerpt: reserve space even if missing -->
             <p class="text-sm leading-relaxed text-muted-foreground line-clamp-2 min-h-[2.75rem]"

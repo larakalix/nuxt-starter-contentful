@@ -26,7 +26,7 @@ const hasSocials = computed(() => props.socials && props.socials.length > 0);
 <template>
     <section :class="classes">
         <!-- Avatar -->
-        <div class="h-14 w-14 md:h-16 md:w-16 overflow-hidden rounded-full bg-muted flex-shrink-0">
+        <div class="size-14 md:size-16 overflow-hidden rounded-full bg-muted flex-shrink-0">
             <img v-if="avatarSrc" :src="avatarSrc" :alt="avatarAlt || name" class="h-full w-full object-cover"
                 loading="lazy" />
             <!-- if no avatarSrc, keep the grey circle from Figma via bg-muted -->

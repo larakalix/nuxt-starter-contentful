@@ -16,8 +16,15 @@ export const mapBlogCardListItemProps = (
     return {
         id: section.sys.id,
         title: section.title ?? "",
-        authorAvatarSrc: section.author?.url ?? "",
-        authorName: section.author?.title ?? "",
+        authors:
+            section.authorsCollection?.items.map((author) => ({
+                id: author.sys.id,
+                name: author.name,
+                avatarSrc: author.avatar?.url ?? "",
+                avatarAlt: author.avatar?.description ?? "",
+                bio: author.bio ?? "",
+                socials: [],
+            })) ?? [],
         dateLabel: section.dateLabel
             ? dayjs(section.dateLabel).format("LL")
             : "",

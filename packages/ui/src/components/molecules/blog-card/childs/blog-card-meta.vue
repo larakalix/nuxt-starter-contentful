@@ -1,22 +1,21 @@
 <script setup lang="ts">
+import { computed, ref } from "vue";
 import type { BlogCardProps } from "../types";
+import { AuthorBadge } from "../../author-badge";
 
-const props = withDefaults(defineProps<Pick<BlogCardProps, "authorName" | "authorAvatarSrc" | "dateLabel" | "readTimeLabel" | "clickable">>(), {
+const props = withDefaults(defineProps<Pick<BlogCardProps, "authors" | "dateLabel" | "readTimeLabel" | "clickable">>(), {
     clickable: true,
 });
+
+const hasOne = computed(() => props.authors?.length === 1);
 </script>
 
 <template>
     <!-- <div class="flex flex-wrap items-center gap-1 text-xs text-muted-foreground"> -->
-    <!-- Author -->
-    <div class="flex items-center gap-2">
-        <div class="h-8 w-8 overflow-hidden rounded-full bg-muted">
-            <img v-if="authorAvatarSrc" :src="authorAvatarSrc" :alt="authorName"
-                class="h-full w-full object-cover aspect-square" loading="lazy" />
-        </div>
-        <span class="text-xs md:text-sm font-normal text-foreground-muted-subtitle">
-            {{ authorName }}
-        </span>
+    <!-- Authors -->
+    <div class="flex items-center">
+        <AuthorBadge v-for="(a, i) in props.authors" :key="a.id" :author="a" :variant="hasOne ? 'single' : 'multiple'"
+            :isFirst="i === 0" />
     </div>
 
     <!-- Date -->

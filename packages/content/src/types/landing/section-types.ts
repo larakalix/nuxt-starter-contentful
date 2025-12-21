@@ -72,6 +72,18 @@ export type SectionHeading = {
     colSpan?: number;
 };
 
+export type Author = {
+    __typename: typeof ContentfulType.AUTHOR;
+    sys: Sys;
+    name: string;
+    bio?: string;
+    avatar?: SectionImageAsset;
+};
+
+export type AuthorCollection = {
+    items: Author[];
+};
+
 export type BlogCardListItem = {
     __typename: typeof ContentfulType.BLOG_CARD_LIST_ITEM;
     sys: Sys;
@@ -85,6 +97,7 @@ export type BlogCardListItem = {
     tag?: SectionTag;
     layout?: string;
     showTocMenu?: boolean;
+    authorsCollection?: AuthorCollection;
     bodyContent: {
         json: any;
     }

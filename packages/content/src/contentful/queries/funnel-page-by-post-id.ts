@@ -1,6 +1,7 @@
 import { gql } from "@apollo/client";
 import { SYS_FIELDS } from "./fragments/sys";
 import { IMAGE_FIELDS } from "./fragments/image";
+import { BLOG_CARD_LIST_ITEM_SECTION } from "./fragments/blog-card-list-item";
 
 export const FUNNEL_PAGE_BY_POST_ID = gql`
     query BlogCardByHref($where: BlogCardListItemFilter, $limit: Int = 1) {
@@ -14,23 +15,7 @@ export const FUNNEL_PAGE_BY_POST_ID = gql`
                 }
                 __typename
                 ... on BlogCardListItem {
-                    sys {
-                        ...SysFields
-                    }
-                    name
-                    title
-                    excerpt
-                    href
-                    dateLabel
-                    readTimeLabel
-                    layout
-                    showTocMenu
-                    bodyContent {
-                        json
-                    }
-                    image {
-                        ...ImageFields
-                    }
+                    ...BlogCardListItemSection
                 }
             }
         }
@@ -38,4 +23,5 @@ export const FUNNEL_PAGE_BY_POST_ID = gql`
 
     ${SYS_FIELDS}
     ${IMAGE_FIELDS}
+    ${BLOG_CARD_LIST_ITEM_SECTION}
 `;

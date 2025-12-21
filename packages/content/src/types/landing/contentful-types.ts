@@ -20,6 +20,7 @@ export const ContentfulType = {
     IMAGE_ASSET: "Asset",
     GRID_SECTION: "GridSection",
     CTA_BANNER: "CtaBanner",
+    AUTHOR: "Author",
 } as const;
 
 export type ContentfulType =

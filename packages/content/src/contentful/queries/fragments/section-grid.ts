@@ -86,6 +86,11 @@ export const SECTION_GRID_SECTION = gql`
                                 image {
                                     ...ImageFields
                                 }
+                                authorsCollection(limit: 3) {
+                                    items {
+                                        ...AuthorFields
+                                    }
+                                }
                             }
                         }
                     }

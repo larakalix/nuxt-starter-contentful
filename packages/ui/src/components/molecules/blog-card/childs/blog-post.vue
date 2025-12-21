@@ -95,8 +95,8 @@ const ctaBannerProps = {
 
             <div class="flex flex-wrap items-center gap-1 text-xs text-muted-foreground">
                 <!-- Author -->
-                <BlogCardMeta :author-name="authorName" :author-avatar-src="authorAvatarSrc" :date-label="dateLabel"
-                    :read-time-label="readTimeLabel" :clickable="clickable" />
+                <BlogCardMeta :authors="props.authors" :date-label="dateLabel" :read-time-label="readTimeLabel"
+                    :clickable="clickable" />
             </div>
 
             <div v-if="imageSrc" class="overflow-hidden rounded-xl bg-muted">

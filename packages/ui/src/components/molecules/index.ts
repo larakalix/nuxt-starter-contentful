@@ -1,4 +1,5 @@
 export * from "./blog-card";
+export * from "./author-badge";
 export * from "./author-card";
 export * from "./section-heading";
 export * from "./cta-banner";
