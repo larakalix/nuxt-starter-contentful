@@ -38,7 +38,7 @@ const hasSocials = computed(() => props.socials && props.socials.length > 0);
                 <h3 class="text-sm md:text-base font-semibold text-foreground">
                     {{ name }}
                 </h3>
-                <p v-if="bio" class="text-xs md:text-sm text-foreground-muted-subtitle/70 font-normal">
+                <p v-if="bio" class="text-xs md:text-sm text-foreground-muted-subtitle/70 font-normal line-clamp-2 xl:line-clamp-4">
                     {{ bio }}
                 </p>
                 <p v-if="role" class="text-xs md:text-sm text-foreground-muted-subtitle/70 font-normal">

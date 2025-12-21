@@ -18,6 +18,9 @@ export const BLOG_CARD_LIST_ITEM_SECTION = gql`
         readTimeLabel
         layout
         showTocMenu
+        bodyContent {
+            json
+        }
         tag {
             ...TagFields
         }

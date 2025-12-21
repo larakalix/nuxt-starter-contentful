@@ -20,7 +20,7 @@ const classes = computed(() =>
 
 const authorListProps = {
     sectionHeading: {
-        label: "Top",
+        label: "The",
         title: "Authors",
         align: "left",
         size: "md",
@@ -32,33 +32,15 @@ const authorListProps = {
         },
         class: "px-0! md:px-0!"
     },
-    items: [
-        {
-            id: "author-1",
-            name: "Andress rasel",
-            avatarSrc: "https://randomuser.me/api/portraits/men/32.jpg",
-            avatarAlt: "Andress rasel Avatar",
-            role: "Senior Writer",
-            bio: "Blogger, activist, content creator, part time web developer.",
-            socials: [],
-        },
-        {
-            id: "author-2",
-            name: "Jane Doe",
-            avatarSrc: "https://randomuser.me/api/portraits/women/44.jpg",
-            avatarAlt: "Jane Doe Avatar",
-            role: "Editor",
-            bio: "Editor and content strategist with a passion for storytelling.",
-            socials: [],
-        },
-    ],
+    items: props.authors || [],
 } satisfies AuthorListProps;
 
 const ctaBannerProps = {
     sectionHeading: {
         label: "",
-        title: "Want to travel sikkim by car?",
-        class: "px-0! md:px-0!",
+        title: "Enjoyed the article?",
+        align: "left",
+        class: "px-0! md:px-0! w-full",
     },
     title: "",
     tone: "full",
@@ -66,13 +48,14 @@ const ctaBannerProps = {
     align: "start",
     paragraphAlign: "left",
     paragraphs: [
-        "Did you come here for something in particular or just general Riker-bashing? And blowing into",
+        "Subscribe to our newsletter to stay updated with the latest blog posts and exclusive content.",
+        "Don't miss out on new insights and stories from our expert authors.",
     ],
     class: "theme-light",
     buttonProps: {
         label: "Get Started",
         href: "#",
-        variant: "outline",
+        variant: "secondary",
         rounded: "md",
         size: "md",
     },
