@@ -2,16 +2,14 @@ import type { NavbarProps } from "./../../../organisms/navbar";
 import type { SectionNavbar } from "@starter/content";
 
 export const mapNavbarProps = (section: SectionNavbar): NavbarProps => {
+    console.log("Mapping Navbar Section:", section.linksCollection.items);
     return {
         showBorder: section.showBorder ?? false,
         sticky: section.sticky ?? false,
         variant: (section.variant as NavbarProps["variant"]) ?? "secondary",
-        items: section.items ?? [
-            { label: "Home", href: "/" },
-            { label: "About", href: "/about" },
-            { label: "Categories", href: "/categories" },
-            { label: "Authors", href: "/authors" },
-        ],
+        items: section.linksCollection.items
+            ? [{ label: "Home", href: "/" }, ...section.linksCollection.items]
+            : [],
         // user: {
         //     name: "Jurgen Klopp",
         // },

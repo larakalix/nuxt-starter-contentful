@@ -7,7 +7,9 @@ export type SectionNavbar = {
     sticky?: boolean;
     showBorder?: boolean;
     variant: string;
-    items: { label: string; href: string }[];
+    linksCollection: {
+        items: { label: string; href: string }[];
+    };
 };
 
 export type SectionFooter = {
@@ -100,7 +102,7 @@ export type BlogCardListItem = {
     authorsCollection?: AuthorCollection;
     bodyContent: {
         json: any;
-    }
+    };
 };
 
 export type SectionGridSectionsCollection = {

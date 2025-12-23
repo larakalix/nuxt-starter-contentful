@@ -10,6 +10,12 @@ export const NAVBAR_FIELDS = gql`
         name
         sticky
         showBorder
+        linksCollection(limit: 8) {
+            items {
+                label
+                href
+            }
+        }
     }
     ${SYS_FIELDS}
 `;
