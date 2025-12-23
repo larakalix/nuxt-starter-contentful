@@ -1,12 +1,16 @@
 import type { FunnelGenericPage, FunnelPage } from "../../../types";
+import { getMockedContentfulData } from "../../mock";
 import { FUNNEL_PAGE_BY_SLUG } from "../../queries/funnel-page";
 import { getBySlug } from "../entries";
 
 export async function getPageBySlug(
     slug: string,
     preview = false,
-    locale: string = "en-US"
+    locale: string = "en-US",
+    fetchMock: boolean = false
 ): Promise<FunnelGenericPage | null> {
+    if (fetchMock) return getMockedContentfulData(slug);
+
     const [page] = await Promise.all([
         getBySlug<FunnelPage, "funnelPageCollection">(
             FUNNEL_PAGE_BY_SLUG,

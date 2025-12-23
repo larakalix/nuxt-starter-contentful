@@ -35,6 +35,10 @@
     --color-danger-text: oklch(1 0 0);
 
     --bg-navbar: oklch(0.98 0.02 255);
+
+    --bg-table-header: oklch(0.9 0.03 255);
+    --bg-table-odd: oklch(0.97 0.006 260);
+    --bg-table-even: oklch(0.99 0 0);
 }
 
 /* Green – Nuxt-ish */
@@ -53,6 +57,10 @@
     --color-danger-text: oklch(1 0 0);
 
     --bg-navbar: oklch(0.97 0.02 160);
+
+    --bg-table-header: oklch(94.66% 0.02 189.21);
+    --bg-table-odd: oklch(97.43% 0.006 185.27);
+    --bg-table-even: oklch(99.4% 0 0);
 }
 
 /* Orange */
@@ -71,6 +79,10 @@
     --color-danger-text: oklch(1 0 0);
 
     --bg-navbar: oklch(0.98 0.02 60);
+
+    --bg-table-header: oklch(0.9 0.03 60);
+    --bg-table-odd: oklch(0.97 0.006 60);
+    --bg-table-even: oklch(0.99 0 0);
 }
 
 /* Mango */
@@ -88,6 +100,10 @@
     --color-danger-text: oklch(1 0 0);
 
     --bg-navbar: oklch(0.98 0.02 85);
+
+    --bg-table-header: oklch(0.9 0.03 85);
+    --bg-table-odd: oklch(0.97 0.006 85);
+    --bg-table-even: oklch(0.99 0 0);
 }
 
 /* Rose – Tinder-ish pink */
@@ -105,6 +121,10 @@
     --color-danger-text: oklch(1 0 0);
 
     --bg-navbar: oklch(0.98 0.02 20);
+
+    --bg-table-header: oklch(0.9 0.03 20);
+    --bg-table-odd: oklch(0.97 0.006 20);
+    --bg-table-even: oklch(0.99 0 0);
 }
 
 /* Violet */
@@ -122,6 +142,10 @@
     --color-danger-text: oklch(1 0 0);
 
     --bg-navbar: oklch(0.97 0.02 300);
+
+    --bg-table-header: oklch(0.9 0.03 300);
+    --bg-table-odd: oklch(0.97 0.006 300);
+    --bg-table-even: oklch(0.99 0 0);
 }
 
 .theme-light {
@@ -151,6 +175,10 @@
     --color-danger-foreground: var(--color-danger-text);
 
     --color-border: var(--color-border);
+
+    --color-table-header: var(--bg-table-header);
+    --color-table-odd: var(--bg-table-odd);
+    --color-table-even: var(--bg-table-even);
 
     --radius-sm: var(--radius-sm);
     --radius-md: var(--radius-md);

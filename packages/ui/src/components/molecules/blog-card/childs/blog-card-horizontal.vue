@@ -40,7 +40,7 @@ const classes = computed(() =>
             </header>
 
             <!-- Meta row: author, date, read time -->
-            <div class="flex flex-wrap items-center gap-1 text-xs text-muted-foreground">
+            <div class="flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground">
                 <BlogCardMeta :authors="props.authors" :date-label="dateLabel" :read-time-label="readTimeLabel"
                     :clickable="clickable" />
 

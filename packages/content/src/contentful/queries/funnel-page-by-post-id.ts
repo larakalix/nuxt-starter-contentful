@@ -10,13 +10,9 @@ export const FUNNEL_PAGE_BY_POST_ID = gql`
             total
             limit
             items {
-                sys {
-                    ...SysFields
-                }
+                sys {...SysFields }
                 __typename
-                ... on BlogCardListItem {
-                    ...BlogCardListItemSection
-                }
+                ... on BlogCardListItem { ...BlogCardListItemSection }
             }
         }
     }

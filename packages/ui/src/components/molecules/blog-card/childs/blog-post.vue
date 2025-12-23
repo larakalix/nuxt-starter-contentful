@@ -78,7 +78,7 @@ const ctaBannerProps = {
                 </h1>
             </header>
 
-            <div class="flex flex-wrap items-center gap-1 text-xs text-muted-foreground">
+            <div class="flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground">
                 <!-- Author -->
                 <BlogCardMeta :authors="props.authors" :date-label="dateLabel" :read-time-label="readTimeLabel"
                     :clickable="clickable" />

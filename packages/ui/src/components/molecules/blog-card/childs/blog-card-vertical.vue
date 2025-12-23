@@ -36,7 +36,7 @@ const classes = computed(() =>
         </div>
 
         <!-- Footer pushed to bottom -->
-        <div class="flex flex-wrap items-center gap-1 text-xs text-muted-foreground">
+        <div class="flex flex-wrap items-center gap-1.5 text-xs text-muted-foreground">
             <!-- Meta row -->
             <BlogCardMeta :authors="props.authors" :date-label="dateLabel" :read-time-label="readTimeLabel"
                 :clickable="clickable" />
