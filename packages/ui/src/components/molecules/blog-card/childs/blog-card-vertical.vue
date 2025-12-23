@@ -42,7 +42,7 @@ const classes = computed(() =>
                 :clickable="clickable" />
 
             <!-- Excerpt: reserve space even if missing -->
-            <p class="text-sm leading-relaxed text-muted-foreground line-clamp-2 min-h-[2.75rem]"
+            <p class="text-sm leading-relaxed text-muted-foreground line-clamp-2 min-h-[2.75rem] w-full"
                 :class="{ invisible: !props.excerpt }">
                 {{ props.excerpt }}
             </p>

@@ -67,7 +67,7 @@ const onSubmit = () => {
                     <div class="space-y-4">
                         <div class="inline-flex items-baseline gap-1">
                             <span
-                                class="inline-flex rounded-sm bg-primary px-2 py-1 text-sm font-semibold text-primary-foreground">
+                                class="inline-flex rounded-none bg-primary p-1 text-sm font-semibold text-primary-foreground">
                                 {{ props.brandPrimary }}
                             </span>
                             <span class="text-lg font-semibold tracking-tight text-foreground">

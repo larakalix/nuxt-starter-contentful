@@ -4,7 +4,7 @@ import type { SectionFooter } from "@starter/content";
 export const mapFooterProps = (section: SectionFooter): FooterProps => {
     return {
         brandPrimary: section.brandPrimary ?? "Note",
-        brandSecondary: section.brandSecondary ?? "Book.",
+        brandSecondary: section.brandSecondary ?? "Blog.",
         description:
             section.description ??
             "Did you come here for something in particular or just general Riker bashing?",

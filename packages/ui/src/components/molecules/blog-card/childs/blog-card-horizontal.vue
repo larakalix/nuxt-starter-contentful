@@ -45,7 +45,7 @@ const classes = computed(() =>
                     :clickable="clickable" />
 
                 <!-- Excerpt -->
-                <p class="text-sm leading-relaxed text-muted-foreground line-clamp-3 min-h-[2.75rem]"
+                <p class="text-sm leading-relaxed text-muted-foreground line-clamp-3 min-h-[2.75rem] w-full"
                     :class="{ invisible: !excerpt }">
                     {{ excerpt }}
                 </p>
