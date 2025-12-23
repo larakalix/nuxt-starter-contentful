@@ -14,6 +14,7 @@ export const NAVBAR_FIELDS = gql`
             items {
                 label
                 href
+                highlight
             }
         }
     }

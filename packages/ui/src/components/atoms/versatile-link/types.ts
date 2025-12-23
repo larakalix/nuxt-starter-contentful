@@ -1,4 +1,7 @@
-export type OnNavigate = (href: string, event?: MouseEvent) => void | Promise<void>;
+export type OnNavigate = (
+    href: string,
+    event?: MouseEvent
+) => void | Promise<void>;
 
 export type To = string | Record<string, any>;
 
@@ -12,5 +15,6 @@ export type VersatileLinkProps = {
     rel?: string;
     ariaLabel?: string;
     disabled?: boolean;
+    class?: string;
     onNavigate?: OnNavigate;
 };

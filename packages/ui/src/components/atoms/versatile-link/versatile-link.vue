@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import clsx from "clsx";
 import type { VersatileLinkProps } from "./types";
 import { computed, getCurrentInstance, useAttrs } from "vue";
 
@@ -73,6 +74,10 @@ const mergedProps = computed(() => ({
   tabindex: props.disabled ? -1 : attrs.tabindex,
 }));
 
+const classes = computed(() => clsx("versatile-link",
+  props.class
+));
+
 function shouldLetBrowserHandle(e: MouseEvent, href: string) {
   if (e.defaultPrevented) return true;
   if (e.button !== 0) return true;
@@ -99,7 +104,7 @@ const handleClick = async (event: MouseEvent) => {
 </script>
 
 <template>
-  <component :is="tag" v-bind="mergedProps" class="versatile-link" @click="handleClick">
+  <component :is="tag" v-bind="mergedProps" :class="classes" @click="handleClick">
     <slot />
   </component>
 </template>

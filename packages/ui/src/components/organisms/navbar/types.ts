@@ -4,6 +4,7 @@ import type { NavbarVariantsProps } from "./variant";
 export type NavItem = {
     label: string;
     href: string;
+    highlight?: boolean;
 };
 
 export type NavbarProps = NavbarVariantsProps & {

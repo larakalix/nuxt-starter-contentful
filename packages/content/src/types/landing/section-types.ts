@@ -8,7 +8,7 @@ export type SectionNavbar = {
     showBorder?: boolean;
     variant: string;
     linksCollection: {
-        items: { label: string; href: string }[];
+        items: { label: string; href: string; highlight?: boolean }[];
     };
 };
 
