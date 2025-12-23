@@ -20,10 +20,9 @@ const classes = computed(() =>
 </script>
 
 <template>
-    <VersatileLink :id="props.id" :href="href" :class="['flex h-full flex-col gap-y-4', classes]"
-        :onNavigate="props.onNavigate">
+    <VersatileLink :id="props.id" :href="href" :class="classes" :onNavigate="props.onNavigate">
         <header class="flex flex-col gap-y-2 min-h-15">
-            <Badge v-if="tag" v-bind="tag" class="text-xs px-3 py-1" />
+            <Badge v-if="props?.tag" v-bind="props.tag" class="text-xs px-3 py-1" />
 
             <h3 class="text-lg md:text-2xl text-foreground font-semibold leading-tight tracking-tight">
                 {{ title }}
@@ -31,8 +30,9 @@ const classes = computed(() =>
         </header>
 
         <!-- Image -->
-        <div v-if="imageSrc" class="overflow-hidden rounded-xl bg-muted">
-            <img :src="imageSrc" :alt="imageAlt || title" class="w-full aspect-3/2 object-cover" loading="lazy" />
+        <div v-if="imageSrc" class="overflow-hidden rounded-md bg-muted">
+            <img :src="props.imageSrc" :alt="props.imageAlt || title" class="w-full aspect-3/2 object-cover"
+                loading="lazy" />
         </div>
 
         <!-- Footer pushed to bottom -->
@@ -43,8 +43,8 @@ const classes = computed(() =>
 
             <!-- Excerpt: reserve space even if missing -->
             <p class="text-sm leading-relaxed text-muted-foreground line-clamp-2 min-h-[2.75rem]"
-                :class="{ invisible: !excerpt }">
-                {{ excerpt }}
+                :class="{ invisible: !props.excerpt }">
+                {{ props.excerpt }}
             </p>
         </div>
     </VersatileLink>
