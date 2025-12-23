@@ -6,6 +6,7 @@ import { BLOG_CARD_LIST_SECTION } from "./fragments/blog-card-list";
 import { SECTION_GRID_SECTION } from "./fragments/section-grid";
 import { CTA_BANNER_SECTION } from "./fragments/cta-banner";
 import { NAVBAR_FIELDS } from "./fragments/navbar";
+import { AUTHOR_FIELDS } from "./fragments/author";
 
 // query FunnelPageBySlug($slug: String!, $limit: Int, $locale: String) {
 //         funnelPageCollection(
@@ -54,6 +55,9 @@ export const FUNNEL_PAGE_BY_SLUG = gql`
                             ... on CtaBanner {
                                 ...CtaBannerSection
                             }
+                            ... on Author {
+                                ...AuthorFields
+                            }
                         }
                     }
                 }
@@ -68,4 +72,5 @@ export const FUNNEL_PAGE_BY_SLUG = gql`
     ${SECTION_GRID_SECTION}
     ${CTA_BANNER_SECTION}
     ${NAVBAR_FIELDS}
+    ${AUTHOR_FIELDS}
 `;

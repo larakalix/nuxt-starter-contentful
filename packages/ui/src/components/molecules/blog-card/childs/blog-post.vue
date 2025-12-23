@@ -54,11 +54,13 @@ const ctaBannerProps = {
     class: "theme-light",
     buttonProps: {
         label: "Get Started",
-        href: "#",
+        href: "/get-started",
         variant: "secondary",
         rounded: "md",
         size: "md",
+        class: "bg-white w-full",
     },
+    onNavigate: props.onNavigate,
 } satisfies CtaBannerProps;
 
 </script>

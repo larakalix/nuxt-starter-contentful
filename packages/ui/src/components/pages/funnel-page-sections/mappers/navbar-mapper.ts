@@ -5,14 +5,15 @@ export const mapNavbarProps = (section: SectionNavbar): NavbarProps => {
     return {
         showBorder: section.showBorder ?? false,
         sticky: section.sticky ?? false,
-        variant: section.variant as NavbarProps["variant"] ?? "secondary",
+        variant: (section.variant as NavbarProps["variant"]) ?? "secondary",
         items: section.items ?? [
             { label: "Home", href: "/" },
             { label: "About", href: "/about" },
+            { label: "Categories", href: "/categories" },
+            { label: "Authors", href: "/authors" },
         ],
         // user: {
         //     name: "Jurgen Klopp",
         // },
     } satisfies NavbarProps;
 };
-

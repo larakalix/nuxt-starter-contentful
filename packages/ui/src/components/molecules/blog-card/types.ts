@@ -7,9 +7,7 @@ export type BlogCardProps = BlogCardVariantsProps & {
     tag?: BadgeProps;
     title: string;
     imageSrc?: string;
-    imageAlt?: string;
-    // authorName: string;
-    // authorAvatarSrc?: string;
+    imageAlt?: string; 
     authors: AuthorCardProps[];
     dateLabel: string;
     readTimeLabel?: string;

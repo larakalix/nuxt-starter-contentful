@@ -65,8 +65,7 @@ const paragraphAlignClass = computed(() => clsx({
             </div>
 
             <!-- CTA Button -->
-            <Button v-if="buttonProps" v-bind="buttonProps" :as="'a'" variant="outline" rounded="md" size="md"
-                class="mt-2 inline-flex items-center gap-2 border-primary text-primary hover:bg-primary/10">
+            <Button v-if="buttonProps" v-bind="buttonProps" :as="'versatile-link'" :onNavigate="props.onNavigate">
                 {{ buttonProps?.label }}
             </Button>
         </div>

@@ -12,6 +12,7 @@ export const CTA_BANNER_SECTION = gql`
         paragraphs
         tone
         class
+        size
         sectionHeading {
             __typename
             sys {

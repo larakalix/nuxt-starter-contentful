@@ -3,8 +3,8 @@ import { computed, ref } from "vue";
 import clsx from "clsx";
 import Button from "../../atoms/button/button.vue";
 import { navbarVariants } from "./variant";
-import type { NavbarProps } from "./types";
 import { VersatileLink } from "../../atoms";
+import type { NavbarProps } from "./types";
 
 const props = withDefaults(defineProps<NavbarProps>(), {
     items: () => [],

@@ -6,11 +6,12 @@ export const mapCtaBannerProps = (
     section: SectionCtaBanner
 ): CtaBannerProps => {
     return {
-        ...section,
+        id: section.sys.id,
         title: section.title || "",
         subtitle: section.subtitle || "",
         label: section.label || "",
         tone: (section.tone as CtaBannerProps["tone"]) || "prominent",
+        size: (section.size as CtaBannerProps["size"]) || "md",
         sectionHeading:
             section.sectionHeading && mapSectionHeading(section.sectionHeading),
         paragraphs: section.paragraphs?.split("\n").map((p) => p.trim()) || [],

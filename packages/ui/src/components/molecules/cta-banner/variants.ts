@@ -38,7 +38,7 @@ export const ctaBannerVariants = tv({
     },
     defaultVariants: {
         tone: "soft",
-        size: "sm",
+        size: "md",
         rounded: "xl",
         align: "center",
         paragraphAlign: "center",

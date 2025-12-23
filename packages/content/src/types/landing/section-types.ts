@@ -124,6 +124,7 @@ export type SectionCtaBanner = {
     label?: string;
     paragraphs?: string;
     tone?: string;
+    size?: string;
     class?: string;
     sectionHeading?: SectionHeading;
 };

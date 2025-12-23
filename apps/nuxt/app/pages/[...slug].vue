@@ -34,7 +34,6 @@ const onNavigate: OnNavigate = async (href, event) => {
 </script>
 
 <template>
-
   <!-- Error state -->
   <Error v-if="error" :message="error?.message" :refresh="refresh" />
 

@@ -3,19 +3,19 @@ import Layout from "../layouts/Layout.astro";
 import { Error as ErrorComponent } from "@starter/ui/organisms";
 import { FunnelPageSections } from "@starter/ui/pages";
 import { loadFunnelPage } from "../server/funnel-page";
-import { getPostsLinks } from "@starter/content";
+import { getPostsLinks, getPagesSlugs } from "@starter/content";
 import type { OnNavigate } from "@starter/ui/atoms";
 
 export async function getStaticPaths() {
-    const paths = await getPostsLinks();
+    const [slugs, paths] = await Promise.all([
+        getPagesSlugs(),
+        getPostsLinks(),
+    ]);
 
     return [
         { params: { slug: "" } },
-        { params: { slug: "home" } },
-        { params: { slug: "about" } },
-        ...paths.map((path) => ({
-            params: { slug: path.href },
-        })),
+        ...slugs.map(({ slug }) => ({ params: { slug } })),
+        ...paths.map(({ href }) => ({ params: { slug: href } })),
     ];
 }
 

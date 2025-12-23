@@ -1,17 +1,17 @@
-import { BLOG_CARD_ITEM_IDS } from "../../queries/blog-card-item-ids";
+import { PAGE_SLUGS } from "../../queries/page-slugs";
 import { getEntries } from "../entries";
 
-export async function getPostsLinks(
+export async function getPagesSlugs(
     preview = false,
     locale: string = "en-US"
-): Promise<{ id: string; href: string }[]> {
+): Promise<{ id: string; slug: string }[]> {
     const { items } = await getEntries<
-        { sys: { id: string }; href: string },
-        "blogCardListItemCollection"
+        { sys: { id: string }; slug: string },
+        "funnelPageCollection"
     >(
-        BLOG_CARD_ITEM_IDS,
+        PAGE_SLUGS,
         {
-            collectionKey: "blogCardListItemCollection",
+            collectionKey: "funnelPageCollection",
             locale,
             limit: 30,
             skip: 0,
@@ -25,6 +25,6 @@ export async function getPostsLinks(
 
     return items.map((item) => ({
         id: item.sys.id,
-        href: item.href,
+        slug: item.slug,
     }));
 }
