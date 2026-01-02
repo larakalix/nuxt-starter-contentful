@@ -7,7 +7,7 @@ const meta = {
     component: BlogCard,
     tags: ["autodocs"],
     parameters: {
-        layout: "centered",
+        layout: "fullscreen",
         docs: {
             description: {
                 component:
@@ -47,11 +47,16 @@ const defaultProps = {
         rounded: "sm",
     } satisfies BadgeProps,
     title: "Exploring the Future of AI: Trends to Watch in 2024",
-    imageSrc:
-        "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
-    imageAlt: "Futuristic AI concept image",
-    authorName: "Jane Doe",
-    authorAvatarSrc: "https://randomuser.me/api/portraits/women/44.jpg",
+    authors: [
+        {
+            name: "Jane Doe",
+            avatarSrc: "https://randomuser.me/api/portraits/women/44.jpg",
+        },
+        {
+            name: "John Smith",
+            avatarSrc: "https://randomuser.me/api/portraits/men/46.jpg",
+        },
+    ],
     dateLabel: "20 June 2024",
     readTimeLabel: "5 Min. To Read",
 } satisfies Partial<typeof BlogCard.props>;
@@ -67,11 +72,7 @@ export const Default: Story = {
     render: (args) => ({
         components: { BlogCard },
         setup: () => ({ args }),
-        template: `
-            <div class="max-w-[400px]">
-                <BlogCard v-bind="args" />
-            </div>
-            `,
+        template: `<BlogCard v-bind="args" />`,
     }),
 };
 
@@ -141,4 +142,158 @@ export const Horizontal: Story = {
             </div>
             `,
     }),
+};
+
+export const Post: Story = {
+    args: {
+        ...defaultProps,
+        layout: "post",
+        imageSrc:
+            "https://images.unsplash.com/photo-1713345248737-2698000f143d?q=80&w=1629&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        href: "#",
+        variant: "default",
+        imageAlt: "Blog post main image",
+        bodyContent: JSON.stringify(
+            {
+                nodeType: "document",
+                content: [
+                    {
+                        nodeType: "heading-2",
+                        content: [
+                            {
+                                nodeType: "text",
+                                value: "The Future of AI in 2024",
+                                marks: [],
+                                data: {},
+                            },
+                        ],
+                        data: {},
+                    },
+                    {
+                        nodeType: "paragraph",
+                        content: [
+                            {
+                                nodeType: "text",
+                                value: "Artificial Intelligence (AI) has rapidly evolved over the past decade, transforming various industries and reshaping the way we live and work. As we look ahead to 2024, several key trends are emerging that will define the future of AI technology.",
+                                marks: [],
+                                data: {},
+                            },
+                        ],
+                        data: {},
+                    },
+                    {
+                        nodeType: "paragraph",
+                        content: [
+                            {
+                                nodeType: "text",
+                                value: "One of the most significant trends is the advancement of machine learning algorithms. These algorithms are becoming more sophisticated, allowing AI systems to learn from vast amounts of data and make more accurate predictions. This has led to breakthroughs in areas such as natural language processing, computer vision, and autonomous systems.",
+                                marks: [],
+                                data: {},
+                            },
+                        ],
+                        data: {},
+                    },
+                    {
+                        nodeType: "table",
+                        content: [
+                            {
+                                nodeType: "table-row",
+                                content: [
+                                    {
+                                        nodeType: "table-header-cell",
+                                        content: [
+                                            {
+                                                nodeType: "text",
+                                                value: "Year",
+                                                marks: [],
+                                                data: {},
+                                            },
+                                        ],
+                                        data: {},
+                                    },
+                                    {
+                                        nodeType: "table-header-cell",
+                                        content: [
+                                            {
+                                                nodeType: "text",
+                                                value: "AI Milestone",
+                                                marks: [],
+                                                data: {},
+                                            },
+                                        ],
+                                        data: {},
+                                    },
+                                ],
+                                data: {},
+                            },
+                            {
+                                nodeType: "table-row",
+                                content: [
+                                    {
+                                        nodeType: "table-cell",
+                                        content: [
+                                            {
+                                                nodeType: "text",
+                                                value: "2022",
+                                                marks: [],
+                                                data: {},
+                                            },
+                                        ],
+                                        data: {},
+                                    },
+                                    {
+                                        nodeType: "table-cell",
+                                        content: [
+                                            {
+                                                nodeType: "text",
+                                                value: "AI models achieve human-level performance in specific tasks",
+                                                marks: [],
+                                                data: {},
+                                            },
+                                        ],
+                                        data: {},
+                                    },
+                                ],
+                                data: {},
+                            },
+                            {
+                                nodeType: "table-row",
+                                content: [
+                                    {
+                                        nodeType: "table-cell",
+                                        content: [
+                                            {
+                                                nodeType: "text",
+                                                value: "2023",
+                                                marks: [],
+                                                data: {},
+                                            },
+                                        ],
+                                        data: {},
+                                    },
+                                    {
+                                        nodeType: "table-cell",
+                                        content: [
+                                            {
+                                                nodeType: "text",
+                                                value: "Widespread adoption of AI in healthcare and finance",
+                                                marks: [],
+                                                data: {},
+                                            },
+                                        ],
+                                        data: {},
+                                    },
+                                ],
+                                data: {},
+                            },
+                        ],
+                        data: {},
+                    },
+                ],
+                data: {},
+            },
+            null,
+            2
+        ),
+    },
 };

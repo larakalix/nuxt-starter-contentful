@@ -14,6 +14,7 @@ export const sectionHeadingVariants = tv({
             lg: "text-lg md:text-2xl",
         },
         colSpan: {
+            0: "",
             1: "col-span-1",
             2: "col-span-1 md:col-span-2",
             3: "col-span-1 md:col-span-3",
@@ -27,6 +28,7 @@ export const sectionHeadingVariants = tv({
     defaultVariants: {
         align: "left",
         size: "md",
+        colSpan: 0,
     },
 });
 

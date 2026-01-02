@@ -8,6 +8,7 @@ export const blogCardListVariants = tv({
             stacked: "flex flex-col",
         },
         columns: {
+            0: "",
             1: "grid-cols-1 gap-4",
             2: "grid-cols-1 md:grid-cols-2 gap-2 md:gap-4",
             3: "grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-2 md:gap-4",
@@ -16,6 +17,7 @@ export const blogCardListVariants = tv({
             6: "grid-cols-1 md:grid-cols-2 xl:grid-cols-6 gap-2 md:gap-4",
         },
         colSpan: {
+            0: "",
             1: "col-span-1",
             2: "col-span-1 md:col-span-2",
             3: "col-span-1 md:col-span-3",
@@ -29,6 +31,7 @@ export const blogCardListVariants = tv({
     defaultVariants: {
         layout: "grid",
         columns: 3,
+        colSpan: 0,
     },
 });
 
