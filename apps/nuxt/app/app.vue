@@ -3,7 +3,7 @@ const LAYOUT = "default";
 </script>
 
 <template>
-  <NuxtLoadingIndicator color="red" />
+  <NuxtLoadingIndicator />
 
   <NuxtRouteAnnouncer />
   <NuxtLayout :name="LAYOUT">
