@@ -15,7 +15,7 @@ export const TenantSchema = z
         logoUrl: z.url().optional(),
         currency: z.string().default("USD"),
         country: z.string().default("US"),
-        timeZone: z.string().default("UTC"),
+        timeZone: z.string().default("America/New_York"),
         status: z
             .enum(["active", "inactive", "suspended", "on_board", "on_trial"])
             .default("on_trial"),

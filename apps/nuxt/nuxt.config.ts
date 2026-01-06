@@ -1,7 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import type { PluginOption } from "vite";
 import tailwindcss from "@tailwindcss/vite";
-import { getPostsLinks } from "@starter/content";
 
 const {
     CONTENTFUL_SPACE_ID,
