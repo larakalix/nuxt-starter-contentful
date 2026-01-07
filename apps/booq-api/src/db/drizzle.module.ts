@@ -14,7 +14,6 @@ export const DRIZZLE = Symbol('drizzle-connection');
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => {
         const connectionString = configService.get<string>('DATABASE_URL');
-        const env = configService.get<string>('ENV') || 'development';
 
         if (!connectionString)
           throw new Error(
@@ -23,7 +22,10 @@ export const DRIZZLE = Symbol('drizzle-connection');
 
         const pool = new Pool({
           connectionString,
-          ssl: env === 'production',
+          ssl:
+            process.env.NODE_ENV === 'production'
+              ? { rejectUnauthorized: false }
+              : false,
         });
 
         return drizzle(pool, { schema }) as DrizzleDB;
