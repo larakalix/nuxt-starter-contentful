@@ -135,6 +135,7 @@ export const resources = pgTable('resources', {
   bookingMode: resourceBookingModeEnum().default('exclusive'),
   email: text('email'),
   phone: text('phone'),
+  imageUrl: text('imageUrl'),
   bufferBeforeMinutes: integer('bufferBeforeMinutes').default(0),
   bufferAfterMinutes: integer('bufferAfterMinutes').default(0),
   capacity: integer('capacity').default(1),

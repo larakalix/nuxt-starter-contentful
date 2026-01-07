@@ -8,6 +8,13 @@
       "when": 1767772396343,
       "tag": "0000_sloppy_young_avengers",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1767806434184,
+      "tag": "0001_hot_sue_storm",
+      "breakpoints": true
     }
   ]
 }
