@@ -13,7 +13,10 @@ const envSchema = z.object({
     .default('postgres://postgres:6372@localhost:5432/booq_dev'),
   JWT_SECRET: z.string().default('your_jwt_secret'),
   // JWT_EXPIRES_IN - 1 day default
-  JWT_EXPIRES_IN: z.number().default(86400),
+  JWT_EXPIRES_IN: z
+    .string()
+    .transform((val) => parseInt(val, 10))
+    .default(86400),
 });
 
 const env = envSchema.safeParse({
