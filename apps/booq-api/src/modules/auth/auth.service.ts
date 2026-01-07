@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { hash, compare } from 'bcryptjs';
-import { envConfig } from 'src/config/env.config';
+import { envConfig } from './../../config/env.config';
 import { RegisterDto, RegisterInTenantDto } from './dto/register.dto';
 import { DrizzleDB } from 'src/db/types/drizzle';
 import { DRIZZLE } from 'src/db/drizzle.module';
