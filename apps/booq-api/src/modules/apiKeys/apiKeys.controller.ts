@@ -22,7 +22,7 @@ import { User } from '../auth/utils/user.decorator';
 import { AuthUser } from '../auth/types/auth.types';
 import { ZodValidationPipe } from '@anatine/zod-nestjs';
 import { CreateApiKeyDto } from './types/apiKeys.dto';
-import { ApiKeyGuard } from 'src/guards/api-key.guard';
+import { ApiKeyGuard } from '../../guards/api-key.guard';
 
 @ApiTags('api-keys')
 @ApiBearerAuth()

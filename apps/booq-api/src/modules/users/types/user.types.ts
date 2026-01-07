@@ -1,3 +1,3 @@
-import * as schema from 'src/db/schema/schema';
+import * as schema from '../../../db/schema/schema';
 
 export type User = typeof schema.users.$inferSelect;

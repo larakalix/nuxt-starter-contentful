@@ -1,17 +1,18 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { Inject, Injectable } from '@nestjs/common';
 import { and, eq } from 'drizzle-orm';
 import { Cron } from '@nestjs/schedule';
-import { DRIZZLE } from 'src/db/drizzle.module';
-import { DrizzleDB } from 'src/db/types/drizzle';
+import { DRIZZLE } from '../../db/drizzle.module';
+import { DrizzleDB } from '../../db/types/drizzle';
 import { CreateBookingDto } from './types/bookings.dto';
-import { AuthUser } from 'src/modules/auth/types/auth.types';
+import { AuthUser } from '../../modules/auth/types/auth.types';
 import { PaginationParams } from '../generic/generic.types';
 import { IBookingService } from './types/bookings.contracts';
-import { SORT_PROPS } from 'src/constants/common.constants';
+import { SORT_PROPS } from '../../constants/common.constants';
 import { AvailabilityBlock } from './types/bookings.types';
 import { TenantsService } from '../tenants/tenants.service';
-import * as schema from 'src/db/schema/schema';
-import { applyBuffer } from 'src/utils/date.utils';
+import * as schema from '../../db/schema/schema';
+import { applyBuffer } from '../../utils/date.utils';
 import { ResourcesService } from '../resources/resources.service';
 
 @Injectable()

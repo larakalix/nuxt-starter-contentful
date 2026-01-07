@@ -1,5 +1,5 @@
 import { InferInsertModel } from 'drizzle-orm';
-import * as schema from 'src/db/schema/schema';
+import * as schema from '../../../db/schema/schema';
 
 export type Booking = typeof schema.bookings.$inferSelect;
 

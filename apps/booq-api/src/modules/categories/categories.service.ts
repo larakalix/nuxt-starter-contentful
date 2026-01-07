@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { and, eq } from 'drizzle-orm';
-import { DRIZZLE } from 'src/db/drizzle.module';
-import { DrizzleDB } from 'src/db/types/drizzle';
-import { GenericSoftDeleteService } from 'src/contracts/generic.services';
+import { DRIZZLE } from '../../db/drizzle.module';
+import { DrizzleDB } from '../../db/types/drizzle';
+import { GenericSoftDeleteService } from '../../contracts/generic.services';
 import { Category } from './types/categories.types';
 import { PaginationParams } from '../generic/generic.types';
-import * as schema from 'src/db/schema/schema';
-import { SORT_PROPS } from 'src/constants/common.constants';
+import * as schema from '../../db/schema/schema';
+import { SORT_PROPS } from '../../constants/common.constants';
 import { AuthUser } from '../auth/types/auth.types';
 import { CreateCategoryDto, UpdateCategoryDto } from './types/categories.dto';
 

@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { and, eq } from 'drizzle-orm';
-import { DRIZZLE } from 'src/db/drizzle.module';
-import { DrizzleDB } from 'src/db/types/drizzle';
+import { DRIZZLE } from '../../db/drizzle.module';
+import { DrizzleDB } from '../../db/types/drizzle';
 import { PaginationParams } from '../generic/generic.types';
 import { IParticipantService } from './types/participants.contracts';
 import { AuthUser } from '../auth/types/auth.types';
@@ -10,8 +10,8 @@ import {
   CreateParticipantDto,
   UpdateParticipantDto,
 } from './types/participants.dto';
-import * as schema from 'src/db/schema/schema';
-import { SORT_PROPS } from 'src/constants/common.constants';
+import * as schema from '../../db/schema/schema';
+import { SORT_PROPS } from '../../constants/common.constants';
 
 @Injectable()
 export class ParticipantsService implements IParticipantService {

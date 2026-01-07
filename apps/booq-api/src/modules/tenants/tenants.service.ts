@@ -1,14 +1,14 @@
 import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { eq } from 'drizzle-orm';
-import { DRIZZLE } from 'src/db/drizzle.module';
-import { DrizzleDB } from 'src/db/types/drizzle';
+import { DRIZZLE } from '../../db/drizzle.module';
+import { DrizzleDB } from '../../db/types/drizzle';
 import { CreateTenantDto, UpdateTenantDto } from './types/tenant.dto';
-import { generateSlug } from 'src/utils/string.utils';
-import { GenericReadOnlyService } from 'src/contracts/generic.services';
+import { generateSlug } from '../../utils/string.utils';
+import { GenericReadOnlyService } from '../../contracts/generic.services';
 import { Tenant } from './types/tenant.types';
-import * as schema from 'src/db/schema/schema';
+import * as schema from '../../db/schema/schema';
 import { PaginationParams } from '../generic/generic.types';
-import { TIME_ZONES } from 'src/constants/timeZones.constants';
+import { TIME_ZONES } from '../../constants/timeZones.constants';
 
 @Injectable()
 export class TenantsService implements GenericReadOnlyService<Tenant> {

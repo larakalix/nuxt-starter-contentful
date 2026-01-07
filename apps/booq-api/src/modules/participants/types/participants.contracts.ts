@@ -2,11 +2,11 @@ import {
   GenericReadOnlyService,
   GenericSoftDeleteService,
   GenericWriteService,
-} from 'src/contracts/generic.services';
+} from '../../../contracts/generic.services';
 import { Participant } from './participants.types';
-import { AuthUser } from 'src/modules/auth/types/auth.types';
+import { AuthUser } from '../../../modules/auth/types/auth.types';
 import { CreateParticipantDto } from './participants.dto';
-import { DrizzleDB } from 'src/db/types/drizzle';
+import { DrizzleDB } from '../../../db/types/drizzle';
 
 export interface IParticipantService
   extends
