@@ -5,7 +5,10 @@ import * as schema from './schema/schema';
 
 const pool = new Pool({
   connectionString: envConfig.databaseUrl,
-  ssl: process.env.NODE_ENV === 'production' ? true : false,
+  ssl:
+    process.env.NODE_ENV === 'production'
+      ? { rejectUnauthorized: false }
+      : false,
 });
 const db = drizzle(pool, { schema }) as NodePgDatabase<typeof schema>;
 
