@@ -15,11 +15,11 @@ import {
   ApiBearerAuth,
   ApiBody,
 } from '@nestjs/swagger';
-import { JwtAuthGuard } from 'src/guards/jwt.guard';
+import { JwtAuthGuard } from '../../guards/jwt.guard';
 import { BookingsService } from './bookings.service';
 import { CreateBookingDto } from './types/bookings.dto';
-import { User } from 'src/modules/auth/utils/user.decorator';
-import { AuthUser } from 'src/modules/auth/types/auth.types';
+import { User } from '../../modules/auth/utils/user.decorator';
+import { AuthUser } from '../../modules/auth/types/auth.types';
 
 @ApiTags('bookings')
 @ApiBearerAuth()

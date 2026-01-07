@@ -23,7 +23,7 @@ import { User } from '../auth/utils/user.decorator';
 import { AuthUser } from '../auth/types/auth.types';
 import { ZodValidationPipe } from '@anatine/zod-nestjs';
 import { CreateResourceDto, UpdateResourceDto } from './types/resources.dto';
-import { ApiKeyGuard } from 'src/guards/api-key.guard';
+import { ApiKeyGuard } from '../../guards/api-key.guard';
 
 @ApiTags('resources')
 @ApiBearerAuth()

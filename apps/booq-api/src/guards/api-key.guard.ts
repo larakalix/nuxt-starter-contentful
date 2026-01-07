@@ -7,10 +7,10 @@ import {
 } from '@nestjs/common';
 import { Request } from 'express';
 import { eq } from 'drizzle-orm';
-import { DrizzleDB } from 'src/db/types/drizzle';
-import { hashApiKey } from 'src/utils/guard.utils';
-import * as schema from 'src/db/schema/schema';
-import { DRIZZLE } from 'src/db/drizzle.module';
+import { DrizzleDB } from '../db/types/drizzle';
+import { hashApiKey } from '../utils/guard.utils';
+import * as schema from '../db/schema/schema';
+import { DRIZZLE } from '../db/drizzle.module';
 
 @Injectable()
 export class ApiKeyGuard implements CanActivate {

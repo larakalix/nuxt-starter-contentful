@@ -15,10 +15,10 @@ import {
   ApiBearerAuth,
   ApiBody,
 } from '@nestjs/swagger';
-import { JwtAuthGuard } from 'src/guards/jwt.guard';
+import { JwtAuthGuard } from '../../guards/jwt.guard';
 import { ParticipantsService } from './participants.service';
-import { User } from 'src/modules/auth/utils/user.decorator';
-import { AuthUser } from 'src/modules/auth/types/auth.types';
+import { User } from '../../modules/auth/utils/user.decorator';
+import { AuthUser } from '../../modules/auth/types/auth.types';
 import {
   CreateParticipantDto,
   UpdateParticipantDto,

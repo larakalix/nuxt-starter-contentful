@@ -1,13 +1,13 @@
 import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { hash, compare } from 'bcryptjs';
-import { envConfig } from './../../config/env.config';
+import { envConfig } from '../../config/env.config';
 import { RegisterDto, RegisterInTenantDto } from './dto/register.dto';
-import { DrizzleDB } from 'src/db/types/drizzle';
-import { DRIZZLE } from 'src/db/drizzle.module';
-import { users } from 'src/db/schema/schema';
-import { generateSlug } from 'src/utils/string.utils';
-import { TenantsService } from 'src/modules/tenants/tenants.service';
+import { DrizzleDB } from '../../db/types/drizzle';
+import { DRIZZLE } from '../../db/drizzle.module';
+import { users } from '../../db/schema/schema';
+import { generateSlug } from '../../utils/string.utils';
+import { TenantsService } from '../../modules/tenants/tenants.service';
 import { UsersService } from '../users/users.service';
 import { Role } from './types/auth.types';
 

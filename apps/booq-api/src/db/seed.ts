@@ -89,6 +89,7 @@ async function main() {
 
   await db.transaction(async (tx) => {
     await tx.insert(schema.languages).values(default_languages);
+
     const [tenant] = await tx
       .insert(schema.tenants)
       .values(default_tenant)

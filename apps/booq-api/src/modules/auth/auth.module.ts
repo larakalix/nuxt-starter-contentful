@@ -6,8 +6,8 @@ import { JwtAuthGuard } from '../../guards/jwt.guard';
 import { envConfig } from './../../config/env.config';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
-import { DrizzleModule } from 'src/db/drizzle.module';
-import { TenantsService } from 'src/modules/tenants/tenants.service';
+import { DrizzleModule } from '../../db/drizzle.module';
+import { TenantsService } from '../../modules/tenants/tenants.service';
 import { UsersService } from '../users/users.service';
 
 @Module({

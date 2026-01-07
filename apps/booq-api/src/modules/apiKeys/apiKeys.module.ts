@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { DrizzleModule } from 'src/db/drizzle.module';
+import { DrizzleModule } from '../../db/drizzle.module';
 import { ApiKeysService } from './apiKeys.service';
 import { ApiKeysController } from './apiKeys.controller';
 

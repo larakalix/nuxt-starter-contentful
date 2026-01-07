@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { Inject, Injectable } from '@nestjs/common';
 import { eq } from 'drizzle-orm';
-import { DRIZZLE } from 'src/db/drizzle.module';
-import { DrizzleDB } from 'src/db/types/drizzle';
-import { GenericReadOnlyService } from 'src/contracts/generic.services';
+import { DRIZZLE } from '../../db/drizzle.module';
+import { DrizzleDB } from '../../db/types/drizzle';
+import { GenericReadOnlyService } from '../../contracts/generic.services';
 import { User } from './types/user.types';
 import { PaginationParams } from '../generic/generic.types';
-import * as schema from 'src/db/schema/schema';
+import * as schema from '../../db/schema/schema';
 
 @Injectable()
 export class UsersService implements GenericReadOnlyService<User> {

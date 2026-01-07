@@ -11,7 +11,7 @@ import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { TenantsService } from './tenants.service';
 import { CreateTenantDto } from './types/tenant.dto';
 import { JwtAuthGuard } from '../../guards/jwt.guard';
-import { ApiKeyGuard } from 'src/guards/api-key.guard';
+import { ApiKeyGuard } from '../../guards/api-key.guard';
 
 @ApiTags('tenants')
 @ApiBearerAuth()

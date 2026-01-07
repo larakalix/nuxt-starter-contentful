@@ -1,6 +1,6 @@
-import { DrizzleDB } from 'src/db/types/drizzle';
-import { AuthUser } from 'src/modules/auth/types/auth.types';
-import { PaginationParams } from 'src/modules/generic/generic.types';
+import { DrizzleDB } from '../db/types/drizzle';
+import { AuthUser } from '../modules/auth/types/auth.types';
+import { PaginationParams } from '../modules/generic/generic.types';
 
 export interface GenericReadOnlyService<T> {
   findAll(tenantId: string): Promise<T[]>;
