@@ -5,7 +5,8 @@
   "author": "",
   "private": true,
   "scripts": {
-    "build": "npm run migrate && nest build",
+    "build": "nest build",
+    "deploy": "npm run migrate && npm db:seed && nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "dev": "nest start --watch",
