@@ -17,6 +17,12 @@
                 "ASTRO_*",
                 "PUBLIC_*",
                 "CONTENTFUL_*",
+                "DATABASE_URL",
+                "JWT_SECRET",
+                "JWT_EXPIRES_IN",
+                "PORT",
+                "VERSION",
+                "ENV",
                 "NODE_ENV"
             ]
         },

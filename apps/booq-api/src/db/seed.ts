@@ -82,8 +82,8 @@ async function main() {
   const default_api_keys: typeof schema.apiKeys.$inferInsert = {
     tenantId: '',
     name: 'Default API Key',
-    // hashed_api_key_value
-    keyHash: '$2y$10$ue3qiDzrPRpJ.R5c2PxO1eM75oajXDx6LHgIUU2JFGkU67irBqmQC',
+    // bq_public_ec40c28225e9545eca8c6290556869f866dd2de64993df0996256602a0513094
+    keyHash: '7665911338f50eb3456f9d9b2cf914592c8869f49faeb8825b797cc1187811bb',
     createdBy: '',
   };
 
