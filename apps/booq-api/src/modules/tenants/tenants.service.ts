@@ -46,6 +46,7 @@ export class TenantsService implements GenericReadOnlyService<Tenant> {
     transactionContext?: DrizzleDB,
   ) {
     const _db = transactionContext ?? this.db;
+
     return await _db.query.tenants.findMany({
       where: eq(schema.tenants.id, tenantId),
       limit: pageSize,
@@ -67,8 +68,10 @@ export class TenantsService implements GenericReadOnlyService<Tenant> {
    * @param {string} id - The ID of the tenant to retrieve.
    * @returns {Promise<Tenant | null>}
    */
-  async findById(id: string) {
-    const [data] = await this.db
+  async findById(id: string, transactionContext?: DrizzleDB) {
+    const _db = transactionContext ?? this.db;
+
+    const [data] = await _db
       .select()
       .from(schema.tenants)
       .where(eq(schema.tenants.id, id));

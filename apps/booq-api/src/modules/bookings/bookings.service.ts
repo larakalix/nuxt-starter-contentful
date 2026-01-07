@@ -1,18 +1,26 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { and, eq } from 'drizzle-orm';
+import { Cron } from '@nestjs/schedule';
 import { DRIZZLE } from 'src/db/drizzle.module';
 import { DrizzleDB } from 'src/db/types/drizzle';
 import { CreateBookingDto } from './types/bookings.dto';
 import { AuthUser } from 'src/modules/auth/types/auth.types';
 import { PaginationParams } from '../generic/generic.types';
 import { IBookingService } from './types/bookings.contracts';
-import * as schema from 'src/db/schema/schema';
 import { SORT_PROPS } from 'src/constants/common.constants';
 import { AvailabilityBlock } from './types/bookings.types';
+import { TenantsService } from '../tenants/tenants.service';
+import * as schema from 'src/db/schema/schema';
+import { applyBuffer } from 'src/utils/date.utils';
+import { ResourcesService } from '../resources/resources.service';
 
 @Injectable()
 export class BookingsService implements IBookingService {
-  constructor(@Inject(DRIZZLE) private db: DrizzleDB) {}
+  constructor(
+    @Inject(DRIZZLE) private db: DrizzleDB,
+    private readonly tenantService: TenantsService,
+    private readonly resourcesService: ResourcesService,
+  ) {}
 
   /**
    * @description This method retrieves all bookings for a given tenant.
@@ -86,11 +94,9 @@ export class BookingsService implements IBookingService {
    */
   async create({ tenantId, userId }: AuthUser, dto: CreateBookingDto) {
     return await this.db.transaction(async (tx) => {
-      const tenant = await tx.query.tenants.findFirst({
-        where: eq(schema.tenants.id, tenantId),
-      });
+      const tenant = await this.tenantService.findById(tenantId, tx);
 
-      // 1️⃣ Create booking
+      // Create booking
       const [booking] = await tx
         .insert(schema.bookings)
         .values({
@@ -98,46 +104,57 @@ export class BookingsService implements IBookingService {
           status: 'scheduled',
           startAt: new Date(dto.startAt),
           endAt: dto.endAt ? new Date(dto.endAt) : null,
+          type: tenant?.type || 'other',
           tenantId,
           createdBy: userId,
         })
         .returning();
 
-      // 2️⃣ Prepare availability blocks
-      const blocks: AvailabilityBlock[] = [];
+      // Load resources (to get buffers)
+      const resources = await this.resourcesService.loadResourceBuffers(
+        dto.resourceIds || [],
+        tx,
+      );
 
-      for (const resourceId of dto.resourceIds ?? []) {
+      // Build availability blocks (buffers applied)
+      const blocks: AvailabilityBlock[] = [];
+      resources.forEach((resource) => {
+        const { startAt, endAt } = applyBuffer(
+          booking.startAt,
+          booking.endAt,
+          resource.bufferBeforeMinutes ?? 0,
+          resource.bufferAfterMinutes ?? 0,
+        );
+
         blocks.push({
           tenantId,
           bookingId: booking.id,
-          kind: 'resource',
-          targetId: resourceId,
-          startAt: booking.startAt,
-          endAt: booking.endAt,
-          type: tenant?.type || 'other',
+          kind: 'resource' as const,
+          targetId: resource.id,
+          startAt,
+          endAt,
           status: 'active',
         });
-      }
+      });
 
-      for (const participantId of dto.participantIds ?? []) {
+      (dto.participantIds ?? []).forEach((blockId) => {
         blocks.push({
           tenantId,
           bookingId: booking.id,
           kind: 'participant',
-          targetId: participantId,
+          targetId: blockId,
           startAt: booking.startAt,
           endAt: booking.endAt,
-          type: tenant?.type || 'other',
           status: 'active',
         });
-      }
+      });
 
-      // 3️⃣ Insert availability blocks (THIS CAN FAIL) if there are conflicts with existing blocks
+      // Insert availability blocks (THIS CAN FAIL) if there are conflicts with existing blocks
       if (blocks.length > 0) {
         await tx.insert(schema.availabilityBlocks).values(blocks);
       }
 
-      // 4️⃣ Store relationships (non-blocking)
+      // Store relationships (non-blocking)
       if (dto.resourceIds?.length) {
         await tx.insert(schema.bookingResources).values(
           dto.resourceIds.map((id) => ({
@@ -185,5 +202,23 @@ export class BookingsService implements IBookingService {
     }
 
     return !!data;
+  }
+
+  // @Cron('*/5 * * * * *')
+  @Cron('0 0 * * *')
+  revalidateAvailabilityBlocks() {
+    const now = new Date();
+
+    console.log('Revalidating availability blocks...', now);
+
+    // await this.db
+    //   .update(schema.availabilityBlocks)
+    //   .set({ status: 'released' })
+    //   .where(
+    //     and(
+    //       eq(schema.availabilityBlocks.status, 'active'),
+    //       sql`${schema.availabilityBlocks.endAt} < ${now}`,
+    //     ),
+    //   );
   }
 }

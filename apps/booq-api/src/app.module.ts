@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { DevtoolsModule } from '@nestjs/devtools-integration';
 import { ThrottlerModule } from '@nestjs/throttler';
+import { ScheduleModule } from '@nestjs/schedule';
 import { LoggerModule } from 'nestjs-pino';
 import { envConfig } from './config/env.config';
 import { AppController } from './app.controller';
@@ -67,6 +68,7 @@ const FEATURE_MODULES = [
         limit: 100,
       },
     ]),
+    ScheduleModule.forRoot(),
     DrizzleModule,
     AuthModule,
     ConfigModule.forRoot({

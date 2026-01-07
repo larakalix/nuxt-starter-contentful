@@ -9,12 +9,21 @@ export interface GenericReadOnlyService<T> {
     pagination: PaginationParams,
     transactionContext?: DrizzleDB,
   ): Promise<T[]>;
-  findById(id: string): Promise<T | null>;
+  findById(id: string, transactionContext?: DrizzleDB): Promise<T | null>;
 }
 
 export interface GenericWriteService<T> extends GenericReadOnlyService<T> {
-  create(user: AuthUser, dto: Partial<T>): Promise<T>;
-  update(user: AuthUser, id: string, dto: Partial<T>): Promise<T | null>;
+  create(
+    user: AuthUser,
+    dto: Partial<T>,
+    transactionContext?: DrizzleDB,
+  ): Promise<T>;
+  update(
+    user: AuthUser,
+    id: string,
+    dto: Partial<T>,
+    transactionContext?: DrizzleDB,
+  ): Promise<T | null>;
 }
 
 export interface GenericHardDeleteService<T> extends GenericWriteService<T> {

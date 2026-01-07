@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { HttpException, HttpStatus, Inject, Injectable } from '@nestjs/common';
-import { and, eq } from 'drizzle-orm';
+import { and, eq, inArray } from 'drizzle-orm';
 import { DRIZZLE } from 'src/db/drizzle.module';
 import { DrizzleDB } from 'src/db/types/drizzle';
 import { GenericSoftDeleteService } from 'src/contracts/generic.services';
@@ -179,5 +179,25 @@ export class ResourcesService implements GenericSoftDeleteService<Resource> {
     }
 
     return true;
+  }
+
+  async loadResourceBuffers(
+    resourceIds: string[],
+    transactionContext?: DrizzleDB,
+  ) {
+    const db = transactionContext ?? this.db;
+
+    if (resourceIds.length === 0) {
+      return [];
+    }
+
+    return await db.query.resources.findMany({
+      columns: {
+        id: true,
+        bufferAfterMinutes: true,
+        bufferBeforeMinutes: true,
+      },
+      where: inArray(schema.resources.id, resourceIds),
+    });
   }
 }

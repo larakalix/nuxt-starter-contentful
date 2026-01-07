@@ -10,7 +10,7 @@ const envSchema = z.object({
   DATABASE_URL: z
     .string()
     .url()
-    .default('postgres://user:password@localhost:5432/mydb'),
+    .default('postgres://postgres:6372@localhost:5432/booq_dev'),
   JWT_SECRET: z.string().default('your_jwt_secret'),
   // JWT_EXPIRES_IN - 1 day default
   JWT_EXPIRES_IN: z.number().default(86400),

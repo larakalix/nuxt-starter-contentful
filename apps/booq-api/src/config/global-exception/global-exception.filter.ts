@@ -8,6 +8,7 @@ import {
   Logger,
 } from '@nestjs/common';
 import { Request, Response } from 'express';
+import { ERRORS } from './errors';
 
 interface PostgresErrorLike {
   code?: string;
@@ -39,6 +40,7 @@ export class GlobalExceptionFilter implements ExceptionFilter {
           method,
           path,
           message: res,
+          error: 'HTTP_EXCEPTION',
         });
       }
 
@@ -53,41 +55,46 @@ export class GlobalExceptionFilter implements ExceptionFilter {
     const pgError = this.extractPostgresError(exception);
 
     if (pgError) {
+      const pgCode = pgError.code as keyof typeof ERRORS.postgres;
+      const catalog = ERRORS.postgres[pgCode];
+
+      if (catalog) {
+        const rule =
+          (pgError.constraint &&
+            catalog[pgError.constraint as keyof typeof catalog]) ||
+          catalog.default;
+
+        this.logger.error({
+          event: rule.event,
+          code: pgError.code,
+          constraint: pgError.constraint,
+          table: pgError.table,
+          path,
+          method,
+        });
+
+        return response.status(rule.statusCode).json({
+          statusCode: rule.statusCode,
+          error: rule.error,
+          message: rule.message,
+          path,
+        });
+      }
+
       this.logger.error({
-        event: 'DB_UNIQUE_VIOLATION',
-        entity: pgError.table,
+        event: 'DB_ERROR_UNMAPPED',
+        code: pgError.code,
         constraint: pgError.constraint,
         table: pgError.table,
         path,
       });
 
-      // Unique violation
-      if (pgError.code === '23505') {
-        return response.status(HttpStatus.CONFLICT).json({
-          statusCode: HttpStatus.CONFLICT,
-          message: 'This resource already exists',
-          path: request.url,
-        });
-      }
-
-      // Foreign key violation
-      if (pgError.code === '23503') {
-        return response.status(HttpStatus.BAD_REQUEST).json({
-          statusCode: HttpStatus.BAD_REQUEST,
-          message: 'Invalid reference',
-          path: request.url,
-        });
-      }
-
-      // Other DB errors
       return response.status(HttpStatus.BAD_REQUEST).json({
         statusCode: HttpStatus.BAD_REQUEST,
         message: 'Database error',
-        path: request.url,
+        path,
       });
     }
-
-    console.error('💥 Unhandled exception:', exception);
 
     this.logger.error(
       {

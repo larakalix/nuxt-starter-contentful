@@ -5,7 +5,7 @@ import * as schema from './schema/schema';
 
 const pool = new Pool({
   connectionString: envConfig.databaseUrl,
-  ssl: true,
+  ssl: process.env.NODE_ENV === 'production' ? true : false,
 });
 const db = drizzle(pool, { schema }) as NodePgDatabase<typeof schema>;
 
@@ -20,7 +20,7 @@ async function main() {
     currency: 'USD',
     country: 'US',
     timeZone: 'UTC',
-    status: 'on_trial',
+    status: 'active',
     email: 'ukikalix@gmail.com',
     slug: 'default-tenant',
   };
@@ -29,8 +29,62 @@ async function main() {
     tenantId: '',
     email: 'ukikalix@gmail.com',
     name: 'Ivan Lara',
-    passwordHash: 'hashed_password',
+    passwordHash:
+      '$2y$10$5xF0nSCg9OKm.2xlIR3Feu89sc6v1AB1bfCemk5Njhbkfo6lDu.n.',
     role: 'admin',
+  };
+
+  const default_resources: (typeof schema.resources.$inferInsert)[] = [
+    {
+      tenantId: '',
+      name: 'BMW 3 Series',
+      description: 'A comfortable and stylish sedan perfect for city driving.',
+      type: 'service',
+      bookingMode: 'exclusive',
+      status: 'available',
+      price: 10000,
+      createdBy: '',
+    },
+    {
+      tenantId: '',
+      name: 'Audi A4',
+      description: 'A luxury sedan with advanced features and a smooth ride.',
+      type: 'service',
+      bookingMode: 'exclusive',
+      status: 'available',
+      price: 12000,
+      createdBy: '',
+    },
+    {
+      tenantId: '',
+      name: 'Mercedes-Benz C-Class',
+      description:
+        'A premium sedan offering a blend of performance and elegance.',
+      type: 'service',
+      bookingMode: 'exclusive',
+      status: 'available',
+      price: 15000,
+      createdBy: '',
+    },
+    {
+      tenantId: '',
+      name: 'Tesla Model 3',
+      description:
+        'An electric sedan with cutting-edge technology and impressive range.',
+      type: 'service',
+      bookingMode: 'exclusive',
+      status: 'available',
+      price: 20000,
+      createdBy: '',
+    },
+  ];
+
+  const default_api_keys: typeof schema.apiKeys.$inferInsert = {
+    tenantId: '',
+    name: 'Default API Key',
+    // hashed_api_key_value
+    keyHash: '$2y$10$ue3qiDzrPRpJ.R5c2PxO1eM75oajXDx6LHgIUU2JFGkU67irBqmQC',
+    createdBy: '',
   };
 
   await db.transaction(async (tx) => {
@@ -44,9 +98,26 @@ async function main() {
       throw new Error('Tenant creation failed');
     }
 
-    await tx.insert(schema.users).values({
-      ...default_user,
+    const [user] = await tx
+      .insert(schema.users)
+      .values({
+        ...default_user,
+        tenantId: tenant.id,
+      })
+      .returning();
+
+    await tx.insert(schema.resources).values(
+      default_resources.map((resource) => ({
+        ...resource,
+        tenantId: tenant.id,
+        createdBy: user.id,
+      })),
+    );
+
+    await tx.insert(schema.apiKeys).values({
+      ...default_api_keys,
       tenantId: tenant.id,
+      createdBy: user.id,
     });
   });
 }

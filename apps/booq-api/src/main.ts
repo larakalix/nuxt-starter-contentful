@@ -3,7 +3,7 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { patchNestjsSwagger } from '@anatine/zod-nestjs';
 import { Logger } from 'nestjs-pino';
-import { GlobalExceptionFilter } from './config/global-exception.filter';
+import { GlobalExceptionFilter } from './config/global-exception/global-exception.filter';
 
 const meta = {
   title: 'ConvoFlow API',

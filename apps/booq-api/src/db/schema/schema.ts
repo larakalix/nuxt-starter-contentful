@@ -1,4 +1,5 @@
 import { sql } from 'drizzle-orm';
+import { uniqueIndex } from 'drizzle-orm/pg-core';
 import {
   pgTable,
   uuid,
@@ -111,6 +112,12 @@ export const resourceStatusEnum = pgEnum('resource_status', [
   'maintenance',
 ]);
 
+export const resourceBookingModeEnum = pgEnum('resource_booking_mode', [
+  'exclusive',
+  'capacity',
+  'online',
+]);
+
 export const resources = pgTable('resources', {
   ...keys,
   name: text('name').notNull(),
@@ -125,8 +132,12 @@ export const resources = pgTable('resources', {
     }[]
   >(),
   status: resourceStatusEnum().default('available'),
+  bookingMode: resourceBookingModeEnum().default('exclusive'),
   email: text('email'),
   phone: text('phone'),
+  bufferBeforeMinutes: integer('bufferBeforeMinutes').default(0),
+  bufferAfterMinutes: integer('bufferAfterMinutes').default(0),
+  capacity: integer('capacity').default(1),
   ...timestamps,
   ...auditFields,
 });
@@ -197,11 +208,22 @@ export const appointmentStatusEnum = pgEnum('appointment_status', [
   'awaiting_payment',
 ]);
 
+export const bookingModeEnum = pgEnum('booking_mode', [
+  'single',
+  'recurring',
+  'crowd',
+  'on_demand',
+  'subscription',
+]);
+
 export const bookings = pgTable('bookings', {
   ...keys,
   startAt: timestamp('startAt', { withTimezone: true }).notNull(),
   endAt: timestamp('endAt', { withTimezone: true }),
   note: text('note'),
+  quantity: integer('quantity').default(1),
+  type: tenantTypeEnum().default('other'),
+  bookingMode: bookingModeEnum().default('single'),
   status: appointmentStatusEnum().default('scheduled'),
   ...timestamps,
   ...auditFields,
@@ -244,21 +266,30 @@ export const availabilityStatusEnum = pgEnum('availability_status', [
   'canceled',
 ]);
 
-export const availabilityBlocks = pgTable('availability_blocks', {
-  ...keys,
-  bookingId: uuid('bookingId')
-    .notNull()
-    .references(() => bookings.id, { onDelete: 'cascade' }),
-
-  kind: availabilityKindEnum().notNull(),
-  // resourceId OR participantId
-  targetId: uuid('targetId').notNull(),
-  startAt: timestamp('startAt', { withTimezone: true }).notNull(),
-  endAt: timestamp('endAt', { withTimezone: true }),
-  status: availabilityStatusEnum().default('active'),
-  type: tenantTypeEnum().default('other'),
-  ...timestamps,
-});
+export const availabilityBlocks = pgTable(
+  'availability_blocks',
+  {
+    ...keys,
+    bookingId: uuid('bookingId')
+      .notNull()
+      .references(() => bookings.id, { onDelete: 'cascade' }),
+    kind: availabilityKindEnum().notNull(),
+    // resourceId OR participantId
+    targetId: uuid('targetId').notNull(),
+    type: resourceBookingModeEnum().default('exclusive'),
+    startAt: timestamp('startAt', { withTimezone: true }).notNull(),
+    endAt: timestamp('endAt', { withTimezone: true }),
+    status: availabilityStatusEnum().default('active'),
+    ...timestamps,
+  },
+  (t) => [
+    uniqueIndex('availability_blocks_booking_kind_target_uniq').on(
+      t.bookingId,
+      t.kind,
+      t.targetId,
+    ),
+  ],
+);
 
 export const workingHours = pgTable('working_hours', {
   ...keys,
