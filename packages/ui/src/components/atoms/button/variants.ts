@@ -17,6 +17,8 @@ export const buttonVariants = tv({
             success:
                 "bg-success text-success-foreground hover:bg-success/90 border border-transparent",
             danger: "bg-danger text-danger-foreground hover:bg-danger/90 border border-transparent",
+            black: "bg-black text-white hover:bg-black/90 border border-transparent",
+            white: "bg-white text-black hover:bg-white/90 border border-transparent",
         },
         size: {
             xs: "text-xs px-2 py-2 size-8",
