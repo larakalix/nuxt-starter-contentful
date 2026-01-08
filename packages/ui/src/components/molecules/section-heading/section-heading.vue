@@ -17,6 +17,7 @@ const classes = computed(() =>
             align: props.align,
             size: props.size,
             colSpan: props.colSpan,
+            density: props.density,
         }),
         props.class,
     ),
@@ -26,10 +27,10 @@ const classes = computed(() =>
 <template>
     <div :class="classes">
         <!-- Left label (pills) -->
-        <Badge v-if="props.tag" v-bind="props.tag" :label="props.label" />
+        <Badge v-if="props.tag && props.label" v-bind="props.tag" :label="props.label" />
 
         <!-- Title text -->
-        <component :is="props.as" class="font-semibold text-foreground">
+        <component :is="props.as" class="font-semibold text-primary-text">
             {{ props.title }}
         </component>
     </div>
