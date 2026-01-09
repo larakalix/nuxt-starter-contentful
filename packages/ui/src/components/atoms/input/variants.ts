@@ -1,6 +1,6 @@
 import { tv } from "tailwind-variants";
 
-export const FormVariants = tv({
+export const InputVariants = tv({
   base: "",
   variants: {},
   defaultVariants: {},

@@ -51,6 +51,7 @@
         "vue": "^3.5.18"
     },
     "dependencies": {
+        "@standard-schema/spec": "^1.1.0",
         "@contentful/rich-text-html-renderer": "^17.1.6",
         "@contentful/rich-text-types": "^17.2.5",
         "@starter/content": "workspace:*",
@@ -62,11 +63,13 @@
         "reka-ui": "^2.4.1",
         "tailwind-variants": "^3.2.2",
         "tw-animate-css": "^1.3.7",
-        "vaul-vue": "^0.4.1"
+        "vaul-vue": "^0.4.1",
+        "zod": "^4.3.5"
     },
     "devDependencies": {
         "@starter/tailwind-config": "workspace:*",
         "eslint-config": "workspace:*",
+        "superstruct": "^2.0.0",
         "tsconfig": "workspace:*",
         "vue": "^3.5.18"
     }
