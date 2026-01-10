@@ -2,19 +2,18 @@ import { tv } from "tailwind-variants";
 
 export const switchStyles = tv({
     slots: {
-        root: `
-      relative inline-flex shrink-0 cursor-pointer items-center
-      rounded-full border transition-colors
-      focus:outline-none focus:ring-2 focus:ring-primary/40
-      disabled:cursor-not-allowed disabled:opacity-50
-    `,
-        thumb: `
-      inline-block rounded-full bg-white shadow
-      transition-transform
-    `,
-        label: `
-      text-sm font-medium
-    `,
+        root: [
+            "relative inline-flex shrink-0 cursor-pointer items-center",
+            "relative inline-flex shrink-0 cursor-pointer items-center",
+            "rounded-full border transition-colors",
+            "focus:outline-none focus:ring-2 focus:ring-primary/40",
+            "disabled:cursor-not-allowed disabled:opacity-50",
+        ],
+        thumb: [
+            "inline-block rounded-full bg-white shadow",
+            "transition-transform",
+        ],
+        label: ["text-sm font-medium"],
     },
     variants: {
         size: {

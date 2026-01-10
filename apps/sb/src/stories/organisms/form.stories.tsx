@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite";
 import { z } from "zod";
 import { defineComponent, onMounted, reactive, ref } from "vue";
-import { Button, Checkbox, Input, Textarea } from "@starter/ui/atoms";
+import { Button, Checkbox, Input, Switch, Textarea } from "@starter/ui/atoms";
 import { Form, FormField, useFieldArray } from "@starter/ui/organisms";
 
 const meta = {
@@ -183,10 +183,11 @@ export const WithInitialValues: Story = {
 
 export const WithNestedFields: Story = {
     render: (args) => ({
-        components: { Form, FormField, Input, Button },
+        components: { Form, FormField, Switch, Input, Button },
         setup() {
             const schema = z.object({
                 company: z.string().min(2, "Must be at least 2 characters"),
+                subscribe: z.boolean().optional(),
                 user: z.object({
                     name: z.string().min(3, "Must be at least 3 characters"),
                     email: z.email("Invalid email address"),
@@ -197,6 +198,7 @@ export const WithNestedFields: Story = {
 
             const state = reactive<UserFormSchema>({
                 company: "",
+                subscribe: false,
                 user: {
                     name: "",
                     email: "",
@@ -236,6 +238,10 @@ export const WithNestedFields: Story = {
                 <Input type="email" v-bind="field" :invalid="invalid" />
               </FormField>
 
+              <FormField name="subscribe" v-slot="{ field }">
+                <Switch label="Subscribe to newsletter" v-bind="field" />
+              </FormField>
+
               <Button type="submit">Submit</Button>
             </Form>
 
@@ -245,6 +251,7 @@ export const WithNestedFields: Story = {
                 <li><strong>Company:</strong> {{ submittedData.company }}</li>
                 <li><strong>Name:</strong> {{ submittedData.user.name }}</li>
                 <li><strong>Email:</strong> {{ submittedData.user.email }}</li>
+                <li><strong>Subscribe:</strong> {{ submittedData.subscribe ? "Yes" : "No" }}</li>
               </ul>
             </div>
           </div>
