@@ -27,11 +27,11 @@ export const selectVariants = tv({
         variant: {
             default: {
                 trigger: "border-border bg-white focus:ring-primary/40",
-                option: "hover:bg-gray-100",
+                option: "hover:bg-secondary/20",
             },
             ghost: {
                 trigger: "border-transparent bg-gray-50 focus:ring-primary/30",
-                option: "hover:bg-gray-50",
+                option: "hover:bg-muted",
             },
         },
         selected: {

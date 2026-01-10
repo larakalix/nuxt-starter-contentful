@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, onUnmounted } from "vue";
+import { LucideChevronDown } from "lucide-vue-next";
 import { selectVariants } from "./variants";
 import { useVirtualList } from "./composables/use-virtual-list";
 import type { SelectOption, SelectProps } from "./types";
@@ -97,10 +98,10 @@ onUnmounted(() => {
   <div ref="root" :class="styles.root()">
     <!-- Trigger -->
     <button type="button" :class="styles.trigger()" @click="open = !open" :disabled="disabled">
-      <span :class="selected ? 'text-gray-900' : 'text-gray-400'">
+      <span :class="selected ? 'text-primary-text' : 'text-input-placeholder/70'">
         {{ selected?.label ?? placeholder ?? "Select…" }}
       </span>
-      <span class="text-gray-400">▾</span>
+      <LucideChevronDown class="ml-2 size-4 transition-transform" :class="open ? 'rotate-180' : ''" />
     </button>
 
     <!-- Dropdown -->
@@ -109,7 +110,7 @@ onUnmounted(() => {
         <input v-model="query" :class="styles.search()" placeholder="Search…" />
       </div>
 
-      <div class="max-h-60 overflow-auto relative" @scroll="onScroll">
+      <div class="max-h-60 lg:max-h-96 overflow-auto relative" @scroll="onScroll">
         <div :style="{ height: totalHeight + 'px' }" />
 
         <ul class="absolute top-0 left-0 right-0" :style="{ transform: `translateY(${offsetTop}px)` }">
