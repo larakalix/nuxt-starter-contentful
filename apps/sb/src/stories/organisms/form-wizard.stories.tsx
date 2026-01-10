@@ -1,6 +1,6 @@
-import type { Meta, StoryFn } from "@storybook/vue3-vite";
+import type { Meta, StoryObj } from "@storybook/vue3-vite";
 import { z } from "zod";
-import { computed, reactive } from "vue";
+import { reactive, ref } from "vue";
 import { Form, FormWizard } from "@starter/ui/organisms";
 import {
     FormField,
@@ -12,7 +12,7 @@ import { Input } from "@starter/ui/atoms";
 
 const meta = {
     title: "Organisms/Form Wizard",
-    component: FormWizard,
+    component: FormWizard as any,
     tags: ["autodocs"],
     parameters: {
         layout: "fullscreen",
@@ -35,64 +35,92 @@ const meta = {
 } satisfies Meta<typeof FormWizard>;
 
 export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const BasicWizard: StoryFn = () => ({
-    components: {
-        FormWizard,
-        FormStep,
-        FormWizardProgress,
-        FormWizardControls,
-        Form,
-        FormField,
-        Input,
-    },
-    setup() {
-        const schema = z.object({
-            email: z.email(),
-            name: z.string().min(2),
-        });
+export const Default: Story = {
+    render: (args) => ({
+        components: {
+            FormWizard,
+            FormStep,
+            FormWizardProgress,
+            FormWizardControls,
+            Form,
+            FormField,
+            Input,
+        },
+        setup() {
+            const schema = z.object({
+                email: z.email("Invalid email address"),
+                name: z.string().min(2, "Must be at least 2 characters"),
+                company: z.string().min(2, "Must be at least 2 characters"),
+            });
 
-        const state = reactive({
-            email: "",
-            name: "",
-        });
+            type LoginSchemaType = z.infer<typeof schema>;
 
-        const step1Valid = computed(() => !!state.email);
-        const step2Valid = computed(() => !!state.name);
+            const state = reactive<LoginSchemaType>({
+                email: "",
+                name: "",
+                company: "",
+            });
 
-        const steps = [
-            { name: "account", label: "Account" },
-            { name: "profile", label: "Profile" },
-            { name: "confirm", label: "Confirm" },
-        ];
+            const steps = [
+                { name: "account", label: "Account" },
+                { name: "profile", label: "Profile" },
+                { name: "confirm", label: "Confirm" },
+            ];
 
-        return { steps, schema, state, step1Valid, step2Valid };
-    },
-    template: `
-    <FormWizard :steps="steps" class="space-y-4 p-4">
-      <FormWizardProgress />
+            const submittedData = ref<LoginSchemaType | null>(null);
 
-      <FormStep name="account" :valid="step1Valid">
-        <Form :schema="schema" :state="state">
-          <FormField name="email" label="Email" v-slot="{ model, meta, error, onBlur, onInput }">
-            <Input type="text" v-model="model.value" @input="onInput" @blur="onBlur" />
-          </FormField>
-        </Form>
-      </FormStep>
+            function onSubmit(data: LoginSchemaType) {
+                console.log("Form submitted!", data);
+                submittedData.value = data;
+                alert(`Login successful for ${data.email}`);
+            }
 
-      <FormStep name="profile" :valid="step2Valid">
-        <Form :schema="schema" :state="state">
-          <FormField label="Name" name="name" v-slot="{ model, meta, error, onBlur, onInput }">
-            <Input type="text" v-model="model.value" @input="onInput" @blur="onBlur" />
-          </FormField>
-        </Form>
-      </FormStep>
+            return { schema, state, steps, onSubmit, submittedData, args };
+        },
+        template: `
+          <FormWizard
+              :steps="steps"
+              class="space-y-4 p-4">
+            <FormWizardProgress />
 
-      <FormStep name="confirm">
-        <pre>{{ state }}</pre>
-      </FormStep>
+            <FormStep name="account" :valid="step1Valid">
+              <Form
+                :schema="schema"
+                :state="state"
+                :validateOnChange="true"
+                @submit="onSubmit"
+              >
+                <FormField name="email" label="Email" v-slot="{ field, invalid }">
+                  <Input type="email" v-bind="field" :invalid="invalid" />
+                </FormField>
+              </Form>
+            </FormStep>
 
-      <FormWizardControls />
-    </FormWizard>
-  `,
-});
+            <FormStep name="profile" :valid="step2Valid">
+              <Form
+                :schema="schema"
+                :state="state"
+                :validateOnChange="true"
+                @submit="onSubmit"
+              >
+                <FormField label="Name" name="name" v-slot="{ field, invalid }">
+                  <Input type="text" v-bind="field" :invalid="invalid" />
+                </FormField>
+
+                <FormField name="company" label="Company" v-slot="{ field, invalid }">
+                  <Input type="text" v-bind="field" :invalid="invalid" />
+                </FormField>
+              </Form>
+            </FormStep>
+
+            <FormStep name="confirm">
+              <pre>{{ state }}</pre>
+            </FormStep>
+
+            <FormWizardControls />
+          </FormWizard>
+    `,
+    }),
+};

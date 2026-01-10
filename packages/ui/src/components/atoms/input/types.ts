@@ -1,11 +1,11 @@
 import type { InputVariantProps } from "./variants";
 
 export type InputProps = InputVariantProps & {
-    defaultValue?: string | number;
     modelValue?: string | number;
-    class?: string;
-    invalid?: boolean;
-    disabled?: boolean;
+    name?: string;
+    type?: string;
     placeholder?: string;
-    type?: HTMLInputElement["type"];
+    disabled?: boolean;
+    invalid?: boolean;
+    class?: string;
 };

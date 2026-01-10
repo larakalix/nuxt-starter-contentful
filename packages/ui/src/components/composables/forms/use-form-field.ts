@@ -1,63 +1,66 @@
-import { inject, computed, onMounted, onUnmounted } from "vue";
-import { FORM_CONTEXT } from "../../organisms/form";
-import type { FieldValidator } from "../../molecules/form-field";
+import { computed, inject } from "vue";
+import { FORM_CONTEXT_KEY, type FormContext } from "../../organisms";
+import { normalizePath } from "./../../../utils/path.utils";
 
-export function useFormField<T = any>(name: string, validate?: FieldValidator) {
-    const form = inject(FORM_CONTEXT);
-    if (!form) throw new Error("useFormField must be used inside <Form>");
+export type FieldBinding = {
+    name: string;
+    modelValue: any;
+    "onUpdate:modelValue": (v: any) => void;
+    onBlur: () => void;
+};
 
-    onMounted(() => form.register(name));
-    onUnmounted(() => form.unregister(name));
+export function useForm<T extends Record<string, any>>() {
+    const ctx = inject<FormContext<T>>(FORM_CONTEXT_KEY);
+    if (!ctx) {
+        throw new Error("useForm() must be used inside <Form>.");
+    }
 
-    const model = computed<T>({
-        get: () => form.state.value[name] as T,
-        set: (v) => {
-            form.state.value[name] = v;
-            form.touched.add(name);
-        },
+    return ctx;
+}
+
+export function useFormField<T extends Record<string, any>, V = any>(
+    name: string
+) {
+    const form = useForm<T>();
+    const fieldName = normalizePath(name);
+
+    const value = computed<V>({
+        get: () => form.getValue(fieldName) as V,
+        set: (v) => form.setValue(fieldName, v),
     });
 
-    const error = computed(() => form.errors.value[name]);
-    const invalid = computed(() => Boolean(error.value));
-
-    const meta = {
-        touched: computed(() => form.touched.has(name)),
-        blurred: computed(() => form.blurred.has(name)),
-        dirty: computed(() => form.dirty.has(name)),
-    };
-
-    async function validateField() {
-        if (!form || !validate) return;
-        const message = await validate(model.value);
-        if (message) form.errors.value[name] = message;
-        else delete form.errors.value[name];
-    }
+    const touched = computed(() => form.isTouched(fieldName));
+    const error = computed(() => form.getError(fieldName));
+    const invalid = computed(() => touched.value && Boolean(error.value));
 
     async function onBlur() {
-        if (!form) return;
-        form.setBlurred(name);
-        form.markTouched?.(name);
-        await validateField();
+        form.setTouched(fieldName, true);
+        await form.validateField(fieldName);
     }
 
-    async function onInput() {
-        if (!form) return;
-        form.setTouched(name);
-        form.markTouched?.(name);
-        await validateField();
+    async function onChange(v: any) {
+        value.value = v;
+        // validate on change only after touched + form-level flag
+        if (form.validateOnChange.value && form.isTouched(fieldName)) {
+            await form.validateField(fieldName);
+        }
     }
+
+    const field = computed<FieldBinding>(() => ({
+        name: fieldName,
+        modelValue: value.value,
+        "onUpdate:modelValue": onChange,
+        onBlur,
+    }));
 
     return {
-        model,
-        "onUpdate:modelValue": (v: T) => {
-            model.value = v;
-        },
-        "aria-invalid": !!error.value,
-        meta,
-        name,
+        name: fieldName,
+        value,
+        touched,
         error,
-        id: `field-${name}`,
-        onBlur,
-        onInput,
+        invalid,
+        field,
+        validate: () => form.validateField(fieldName),
+        setTouched: (v = true) => form.setTouched(fieldName, v),
     };
 }

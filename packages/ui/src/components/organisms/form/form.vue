@@ -1,107 +1,165 @@
-<script setup lang="ts">
-import { provide, ref, reactive, toRef } from "vue"
-import { FORM_CONTEXT, type FormSchema, type FormSubmitEvent, type InferInput, type InferOutput } from "./types";
-;
+<script setup lang="ts" generic="T extends Record<string, any>">
+import { ref, computed, provide, toRef, type PropType } from 'vue';
+import { z } from 'zod';
+import { getByPath, setByPath, normalizePath } from './../../../utils/path.utils';
+import { mapToObject, zodErrorsToMap } from './../../../utils/form.utils';
+import { FORM_CONTEXT_KEY, type ErrorMap, type FormContext, type FormProps, type SubmitInvalidPayload, type TouchedMap } from "./types";
 
-interface FormProps<S extends FormSchema> {
-  schema?: S
-  state: Partial<InferInput<S>>
-}
+const props = defineProps<FormProps<T>>();
 
-const props = defineProps<FormProps<any>>()
 const emit = defineEmits<{
-  submit: [FormSubmitEvent<any>]
-  error: [unknown]
-}>()
+  (e: "submit", data: T): void;
+  (e: "submit-invalid", payload: SubmitInvalidPayload): void;
+}>();
 
-const state = toRef(props, "state");
-const errors = ref<Record<string, string>>({})
+const schema = props.schema as z.ZodType<T>;
+const state = props.state;
 
-const touched = reactive(new Set<string>())
-const blurred = reactive(new Set<string>())
-const registered = reactive(new Set<string>())
-const dirty = reactive(new Set<string>())
+const validateOnChange = ref(Boolean(props.validateOnChange));
 
-function register(name: string) {
-  registered.add(name)
+const errors = ref<ErrorMap>(new Map());
+const touched = ref<TouchedMap>(new Map());
+const errorsObject = computed(() => mapToObject(errors.value));
+const touchedObject = computed(() => mapToObject(touched.value));
+const isValid = computed(() => errors.value.size === 0);
+
+function getValue(path: string) {
+  return getByPath(state, normalizePath(path));
+}
+function setValue(path: string, value: any) {
+  setByPath(state, normalizePath(path), value);
 }
 
-function unregister(name: string) {
-  registered.delete(name)
-  delete errors.value[name]
-  touched.delete(name)
-  blurred.delete(name)
+function setTouched(name: string, value = true) {
+  const key = normalizePath(name);
+  touched.value.set(key, value);
+}
+function isTouched(name: string) {
+  const key = normalizePath(name);
+  return touched.value.get(key) === true;
 }
 
-function markBlurred(name: string) {
-  blurred.add(name)
+function getError(name: string) {
+  const key = normalizePath(name);
+  return errors.value.get(key);
 }
 
-function markTouched(name: string) {
-  touched.add(name)
+function hasError(name: string) {
+  const key = normalizePath(name);
+  return errors.value.has(key);
 }
 
-function setTouched(name: string) {
-  touched.add(name)
+function setError(name: string, message: string) {
+  const key = normalizePath(name);
+  errors.value.set(key, message);
 }
 
-function setBlurred(name: string) {
-  blurred.add(name)
+function clearError(name: string) {
+  const key = normalizePath(name);
+  errors.value.delete(key);
 }
 
-async function validate() {
-  errors.value = {}
+function clearAllErrors() {
+  errors.value.clear();
+}
 
-  if (!props.schema) return true
+function markErrorsAsTouched() {
+  for (const key of errors.value.keys()) {
+    if (key === "_form") continue;
+    touched.value.set(key, true);
+  }
+}
 
-  const result = await props.schema.safeParseAsync(state.value)
+async function validateForm(): Promise<boolean> {
+  const result = schema.safeParse(state);
+  const map = zodErrorsToMap(result);
+  
+  errors.value = map;
 
-  if (!result.success) {
-    for (const issue of result.error.issues) {
-      const name = issue.path[0] as string
-      if (registered.has(name)) {
-        errors.value[name] = issue.message
-      }
-    }
-    return false
+  return map.size === 0;
+}
+
+/**
+ * Validates the whole schema (reliable for nested + refinements),
+ * then updates error state for ONLY the requested field (and removes it if fixed).
+ */
+async function validateField(name: string): Promise<boolean> {
+  const key = normalizePath(name);
+
+  const result = schema.safeParse(state);
+  if (result.success) {
+    // if whole form valid, remove this field error if any
+    errors.value.delete(key);
+    // also remove form-level error if it exists
+    if (errors.value.has("_form")) errors.value.delete("_form");
+    return true;
   }
 
-  return true
+  const next = zodErrorsToMap(result);
+  const nextMessage = next.get(key);
+
+  if (nextMessage) errors.value.set(key, nextMessage);
+  else errors.value.delete(key);
+
+  // keep/refresh form-level error if present
+  if (next.has("_form")) errors.value.set("_form", next.get("_form")!);
+  else errors.value.delete("_form");
+
+  return !errors.value.has(key);
 }
 
-async function onSubmit(e: SubmitEvent) {
-  e.preventDefault()
+async function handleSubmit(e: Event) {
+  e.preventDefault();
 
-  const ok = await validate()
-  if (!ok) {
-    emit("error", errors.value)
-    return
+  const ok = await validateForm();
+  if (ok) {
+    emit("submit", state as T);
+    return;
   }
 
-  emit("submit", {
-    ...e,
-    data: state.value as InferOutput<any>
-  })
+  // show all errors when submit fails
+  markErrorsAsTouched();
+
+  emit("submit-invalid", {
+    errors: errorsObject.value,
+    errorMap: errors.value,
+  });
 }
 
-provide(FORM_CONTEXT, {
-  state,
+const ctx: FormContext<T> = {
+  state: state as T,
+  schema: schema as any,
+  validateOnChange: toRef(validateOnChange, "value") as any, // keep as Ref<boolean>
+
   errors,
   touched,
-  blurred,
-  dirty,
-  register,
-  unregister,
+  errorsObject,
+  touchedObject,
+  isValid,
+
   setTouched,
-  setBlurred,
-  markBlurred,
-  markTouched,
-  validate
-})
+  isTouched,
+
+  getError,
+  hasError,
+  setError,
+  clearError,
+  clearAllErrors,
+
+  validateForm,
+  validateField,
+
+  getValue,
+  setValue,
+
+  markErrorsAsTouched,
+};
+
+provide(FORM_CONTEXT_KEY, ctx);
 </script>
 
 <template>
-  <form @submit="onSubmit">
+  <form @submit="handleSubmit" :class="props.class">
     <slot />
   </form>
 </template>

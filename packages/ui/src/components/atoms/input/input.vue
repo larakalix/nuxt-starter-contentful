@@ -4,12 +4,9 @@ import { computed } from "vue";
 import { inputVariants } from "./variants";
 import type { InputProps } from "./types";
 
-const props = defineProps<InputProps>();
-
-const emit = defineEmits<{
-  (e: "update:modelValue", value: string | number): void;
-  (e: "blur"): void;
-}>();
+const props = withDefaults(defineProps<InputProps>(), {
+  type: 'text',
+});
 
 const classes = computed(() =>
   clsx(
@@ -17,18 +14,28 @@ const classes = computed(() =>
       variant: props.variant,
       size: props.size,
       rounded: props.rounded,
-      invalid: props.invalid,
     }),
-    props.class
+    props.class,
+    props.invalid ? "invalid" : "",
   )
 );
 
+const emit = defineEmits<{
+  (e: "update:modelValue", v: any): void;
+  (e: "blur"): void;
+}>();
+
 function onInput(e: Event) {
-  emit("update:modelValue", (e.target as HTMLInputElement).value);
+  const el = e.target as HTMLInputElement;
+  emit("update:modelValue", el.value);
+}
+
+function handleBlur() {
+  emit('blur');
 }
 </script>
 
 <template>
-  <input :placeholder="props.placeholder" :disabled="props.disabled" :value="modelValue ?? ''" @input="onInput"
-    @blur="emit('blur')" :type="type" :class="classes" v-bind="$attrs" />
+  <input :name="props.name" :type="props.type" :placeholder="props.placeholder" :disabled="props.disabled"
+    :value="props.modelValue ?? ''" @input="onInput" @blur="handleBlur" :class="classes" />
 </template>

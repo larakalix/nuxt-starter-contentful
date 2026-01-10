@@ -1,39 +1,61 @@
-import type { InjectionKey, Ref } from "vue";
-import type { StandardSchemaV1 } from "@standard-schema/spec";
+import type { ComputedRef, InjectionKey, Ref, PropType } from "vue";
+import type { z } from "zod";
 
-export type FormSchema<
-    I extends object = object,
-    O extends object = I
-> = StandardSchemaV1<I, O>;
+export type AnyZodSchema = z.ZodTypeAny;
 
-export type InferInput<S> = S extends StandardSchemaV1
-    ? StandardSchemaV1.InferInput<S>
-    : never;
+export type ErrorMap = Map<string, string>;
+export type TouchedMap = Map<string, boolean>;
 
-export type InferOutput<S> = S extends StandardSchemaV1
-    ? StandardSchemaV1.InferOutput<S>
-    : never;
+export type ErrorObject = Record<string, string>;
+export type TouchedObject = Record<string, boolean>;
 
-export type FormErrors<T> = Partial<Record<keyof T, string>>;
-
-export type FormSubmitEvent<T> = SubmitEvent & {
-    data: T;
+export type SubmitInvalidPayload = {
+    errors: ErrorObject;
+    errorMap: ErrorMap;
 };
 
-export interface FormContext<T extends object = any> {
-    state: Ref<Partial<T>>;
-    errors: Ref<FormErrors<T>>;
-    touched: Set<keyof T>;
-    blurred: Set<keyof T>;
-    dirty: Set<keyof T>;
-    register(name: keyof T): void;
-    unregister(name: keyof T): void;
-    setTouched(name: keyof T): void;
-    validate(): Promise<boolean>;
-    setBlurred(name: keyof T): void;
-    markBlurred(name: keyof T): void;
-    markTouched(name: keyof T): void;
-}
+export type FormContext<T extends Record<string, any>> = {
+    // inputs
+    state: T;
+    schema: AnyZodSchema;
+    validateOnChange: Ref<boolean>;
 
-export const FORM_CONTEXT: InjectionKey<FormContext<any>> =
-    Symbol("FORM_CONTEXT");
+    // maps
+    errors: Ref<ErrorMap>;
+    touched: Ref<TouchedMap>;
+
+    // object views (template-friendly)
+    errorsObject: ComputedRef<ErrorObject>;
+    touchedObject: ComputedRef<TouchedObject>;
+    isValid: ComputedRef<boolean>;
+
+    // methods
+    setTouched: (name: string, value?: boolean) => void;
+    isTouched: (name: string) => boolean;
+
+    getError: (name: string) => string | undefined;
+    hasError: (name: string) => boolean;
+    setError: (name: string, message: string) => void;
+    clearError: (name: string) => void;
+    clearAllErrors: () => void;
+
+    validateForm: () => Promise<boolean>;
+    validateField: (name: string) => Promise<boolean>;
+
+    // path helpers
+    getValue: (path: string) => any;
+    setValue: (path: string, value: any) => void;
+
+    // submit helper
+    markErrorsAsTouched: () => void;
+};
+
+export const FORM_CONTEXT_KEY: InjectionKey<FormContext<any>> =
+    Symbol("FORM_CONTEXT_KEY");
+
+export type FormProps<T extends Record<string, any>> = {
+    schema: AnyZodSchema;
+    state: T;
+    validateOnChange?: boolean;
+    class?: string;
+};

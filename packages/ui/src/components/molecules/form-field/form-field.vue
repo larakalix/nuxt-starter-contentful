@@ -1,26 +1,28 @@
 <script setup lang="ts">
-import { useFormField } from "../../composables";
+import { computed } from "vue";
 import { FormError } from "../form-error";
+import { useFormField } from "../../composables";
 import type { FormFieldProps } from "./types";
 
-const props = defineProps<FormFieldProps>();
-const field = useFormField(props.name);
+const props = withDefaults(defineProps<FormFieldProps>(), {
+  description: '',
+});
+
+const { field, error, touched, invalid } = useFormField(props.name);
+
+const showError = computed(() => touched.value && Boolean(error.value));
 </script>
 
 <template>
-  <div class="space-y-1">
-    <label v-if="props.label" :for="field.id" class="text-sm font-medium">
-      {{ props.label }}
-    </label>
+  <div class="flex flex-col gap-y-0 mb-2">
+    <label v-if="props.label" class="text-sm font-medium text-gray-700" :for="props.name">{{ props.label }}</label>
 
-    <slot :field="field" />
+    <slot :field="field" :error="error" :touched="touched" :invalid="invalid" />
 
-    <p v-if="props.description && !field.error" class="text-xs text-muted">
-      {{ props.description }}
-    </p>
+    <p v-if="props.description" class="form-description">{{ props.description }}</p>
 
-    <FormError v-if="field.error" :id="`field-${props.name}-error`">
-      {{ field.error }}
+    <FormError v-if="showError" role="alert">
+      {{ error }}
     </FormError>
   </div>
 </template>
