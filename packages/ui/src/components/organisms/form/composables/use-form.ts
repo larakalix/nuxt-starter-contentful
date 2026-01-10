@@ -18,7 +18,7 @@ import {
 
 export function validateFormContext<T extends Record<string, any>>() {
     const ctx = inject<FormContext<T>>(FORM_CONTEXT_KEY);
-    if (!ctx) throw new Error("useInitForm() must be used inside <Form>.");
+    if (!ctx) throw new Error("useForm() must be used inside <Form>.");
 
     return ctx as FormContext<T>;
 }
@@ -163,7 +163,7 @@ export function createFormContext<T extends Record<string, any>>(
         if (options.shouldValidate) validateForm();
     }
 
-    const ctx: FormContext<T> = {
+    return {
         state,
         isSubmitting,
         schema,
@@ -188,9 +188,7 @@ export function createFormContext<T extends Record<string, any>>(
         markErrorsAsTouched,
         reset,
         setValues,
-    };
-
-    return ctx;
+    } as FormContext<T>;
 }
 
 export function useForm<T extends Record<string, any>>(

@@ -2,102 +2,102 @@
 import { computed, provide, ref } from "vue";
 import { FORM_WIZARD_KEY, type WizardStepMeta } from "./types";
 import { validateFormContext } from "../form/composables/use-form";
+import { createWizardContext } from "./composables/use-form-wizard";
 
-const form = validateFormContext();
+// const form = validateFormContext();
 
-const currentStep = ref(0);
-const steps = ref<WizardStepMeta[]>([]);
+// const currentStep = ref(0);
+// const steps = ref<WizardStepMeta[]>([]);
 
-function registerStep(step: WizardStepMeta) {
-  const index = steps.value.length;
-  steps.value.push(step);
-  return index;
-}
+// function registerStep(step: WizardStepMeta) {
+//   const index = steps.value.length;
+//   steps.value.push(step);
+//   return index;
+// }
 
-const stepsComputed = computed(() => steps.value);
+// const stepsComputed = computed(() => steps.value);
+// const visitedSteps = ref<Set<number>>(new Set([0]));
+// const attemptedSteps = ref<Set<number>>(new Set());
+// const isFirstStep = computed(() => currentStep.value === 0);
+// const isLastStep = computed(
+//   () => currentStep.value === steps.value.length - 1
+// );
 
-const isFirstStep = computed(() => currentStep.value === 0);
-const isLastStep = computed(
-  () => currentStep.value === steps.value.length - 1
-);
+// function hasStepError(stepIndex: number): boolean {
+//   const step = steps.value[stepIndex];
+//   if (!step?.fields?.length) return false;
 
-async function validateCurrentStep(): Promise<boolean> {
-  const step = steps.value[currentStep.value];
-  if (!step?.fields?.length) {
-    // fallback: validate whole form
-    const valid = await form.validateForm();
-    if (!valid) form.markErrorsAsTouched();
-    return valid;
-  }
+//   const isRelevant =
+//     visitedSteps.value.has(stepIndex) ||
+//     attemptedSteps.value.has(stepIndex);
 
-  const valid = await form.validateForm();
-  if (valid) return true;
+//   if (!isRelevant) return false;
 
-  let hasStepErrors = false;
+//   return step.fields.some((field) => form.hasError(field));
+// }
 
-  for (const field of step.fields) {
-    if (form.hasError(field)) {
-      form.setTouched(field, true);
-      hasStepErrors = true;
-    }
-  }
+// function isStepVisited(stepIndex: number): boolean {
+//   return visitedSteps.value.has(stepIndex);
+// }
 
-  return !hasStepErrors;
-}
+// function markVisited(stepIndex: number) {
+//   visitedSteps.value.add(stepIndex);
+// }
 
-async function canLeaveCurrentStep(): Promise<boolean> {
-  const step = steps.value[currentStep.value];
+// async function canLeaveCurrentStep(): Promise<boolean> {
+//   const step = steps.value[currentStep.value];
 
-  // no fields -> allow
-  if (!step?.fields?.length) return true;
+//   // no fields -> allow
+//   if (!step?.fields?.length) return true;
 
-  const ok = await form.validateFields(step.fields);
+//   const ok = await form.validateFields(step.fields);
 
-  if (!ok) {
-    // touch only current step fields
-    for (const f of step.fields) form.setTouched(f, true);
-  }
+//   if (!ok) {
+//     // touch only current step fields
+//     for (const f of step.fields) form.setTouched(f, true);
+//   }
 
-  return ok;
-}
+//   return ok;
+// }
 
-async function next() {
-  const ok = await canLeaveCurrentStep();
-  if (!ok) return;
+// async function next() {
+//   attemptedSteps.value.add(currentStep.value);
 
-  if (!isLastStep.value) currentStep.value++;
-}
+//   const ok = await canLeaveCurrentStep();
+//   if (!ok) return;
 
-function previous() {
-  if (!isFirstStep.value) currentStep.value--;
-}
+//   if (!isLastStep.value) {
+//     currentStep.value++;
+//     markVisited(currentStep.value);
+//   }
+// }
 
-async function goTo(stepIndex: number) {
-  if (stepIndex < 0 || stepIndex >= steps.value.length) return;
+// function previous() {
+//   if (!isFirstStep.value) currentStep.value--;
+// }
 
-  // going backwards should always be allowed
-  if (stepIndex <= currentStep.value) {
-    currentStep.value = stepIndex;
-    return;
-  }
+// async function goTo(stepIndex: number) {
+//   if (stepIndex < 0 || stepIndex >= steps.value.length) return;
 
-  // going forward: cannot leave current step if invalid
-  const ok = await canLeaveCurrentStep();
-  if (!ok) return;
+//   // backwards is always allowed
+//   if (stepIndex <= currentStep.value) {
+//     currentStep.value = stepIndex;
+//     markVisited(stepIndex);
+//     return;
+//   }
 
-  currentStep.value = stepIndex;
-}
+//   // forward navigation
+//   attemptedSteps.value.add(currentStep.value);
+//   const ok = await canLeaveCurrentStep();
+//   if (!ok) return;
 
-provide(FORM_WIZARD_KEY, {
-  currentStep,
-  steps: stepsComputed,
-  isFirstStep,
-  isLastStep,
-  next,
-  previous,
-  goTo,
-  registerStep,
-});
+//   currentStep.value = stepIndex;
+//   markVisited(stepIndex);
+// }
+
+const ctx = createWizardContext();
+
+provide(FORM_WIZARD_KEY, ctx);
 </script>
 
 <template>

@@ -15,6 +15,8 @@ export type WizardContext = {
     previous(): void;
     goTo(step: number): void;
     registerStep(step: WizardStepMeta): number;
+    hasStepError(stepIndex: number): boolean;
+    isStepVisited(stepIndex: number): boolean;
 };
 
 export const FORM_WIZARD_KEY: InjectionKey<WizardContext> =
