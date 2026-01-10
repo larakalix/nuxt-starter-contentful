@@ -48,12 +48,15 @@ export function useFormField<T = any>(name: string, validate?: FieldValidator) {
     }
 
     return {
-        id: `field-${name}`,
-        name,
         model,
-        error,
-        invalid,
+        "onUpdate:modelValue": (v: T) => {
+            model.value = v;
+        },
+        "aria-invalid": !!error.value,
         meta,
+        name,
+        error,
+        id: `field-${name}`,
         onBlur,
         onInput,
     };

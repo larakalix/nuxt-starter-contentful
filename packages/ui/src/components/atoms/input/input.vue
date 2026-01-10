@@ -18,7 +18,6 @@ const classes = computed(() =>
       size: props.size,
       rounded: props.rounded,
       invalid: props.invalid,
-      disabled: props.disabled,
     }),
     props.class
   )

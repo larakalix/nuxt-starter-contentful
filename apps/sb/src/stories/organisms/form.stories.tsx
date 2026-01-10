@@ -55,24 +55,24 @@ export const Login: StoryFn = () => ({
     },
     template: `
     <Form :schema="LoginSchema" :state="state" class="space-y-4 p-4" @submit="onSubmit">
-      <FormField name="email" label="Email" v-slot="{ model, meta, error, onBlur, onInput }">
-        <Input type="text" v-model="model.value" @input="onInput" @blur="onBlur"   />
+      <FormField name="email" label="Email" v-slot="{ field }">
+        <Input type="text" v-bind="field" />
 
         <pre class="text-xs mt-2">{{ {
           state,
           model,
-          meta: { touched: meta.touched, dirty: meta.dirty, blurred: meta.blurred },
+          meta: { touched: field.meta.touched, dirty: field.meta.dirty, blurred: field.meta.blurred },
           error
         } }}</pre>
       </FormField>
 
-      <FormField name="password" label="Password" v-slot="{ model, meta, error, onBlur, onInput }">
-        <Input type="password" v-model="model.value" @input="onInput" @blur="onBlur" />
+      <FormField name="password" label="Password" v-slot="{ field }">
+        <Input type="password" v-bind="field.bind" />
 
         <pre class="text-xs mt-2">{{ {
           state,
           model,
-          meta: { touched: meta.touched, dirty: meta.dirty, blurred: meta.blurred },
+          meta: { touched: field.meta.touched, dirty: field.meta.dirty, blurred: field.meta.blurred },
           error
         } }}</pre>
       </FormField>

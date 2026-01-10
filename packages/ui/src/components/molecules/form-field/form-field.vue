@@ -13,9 +13,7 @@ const field = useFormField(props.name);
       {{ props.label }}
     </label>
 
-    <!-- ✅ expose top-level model (ref), plus field if needed -->
-    <slot :model="field.model" :error="field.error" :meta="field.meta" :invalid="field.invalid" :onBlur="field.onBlur"
-      :onInput="field.onInput" />
+    <slot :field="field" />
 
     <p v-if="props.description && !field.error" class="text-xs text-muted">
       {{ props.description }}

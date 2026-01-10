@@ -58,6 +58,7 @@ export const Invalid: Story = {
         type: "text",
         placeholder: "Enter text",
         invalid: true,
+        variant: "error",
     },
 };
 
