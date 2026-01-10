@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite";
 import { SwitchCard } from "@starter/ui/molecules";
-import { ref } from "vue/dist/vue.js";
+import { ref } from "vue";
 
 const meta = {
     title: "Molecules/Switch Card",
@@ -32,19 +32,6 @@ export default meta;
 type Story = StoryObj<typeof SwitchCard>;
 
 export const Default: Story = {
-    render: (args) => ({
-        components: { SwitchCard },
-        setup() {
-            const value = ref(false);
-            return { value, args };
-        },
-        template: `
-            <SwitchCard v-model="value" v-bind="args" />
-    `,
-    }),
-};
-
-export const WithLabel: Story = {
     render: () => ({
         components: { SwitchCard },
         setup() {
@@ -52,10 +39,14 @@ export const WithLabel: Story = {
             return { value };
         },
         template: `
-      <SwitchCard
-        v-model="value"
-        label="Enable Notifications"
-      />
-    `,
+            <SwitchCard
+                v-model="value"
+                label="Energy Saving"
+                sublabel="Recommended"
+                description="Enable smart energy optimization."
+                icon="energy"
+                variant="success"
+            />
+            `,
     }),
 };
