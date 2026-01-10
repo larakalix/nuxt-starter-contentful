@@ -1,5 +1,5 @@
 import { computed, inject } from "vue";
-import { FORM_CONTEXT } from "../../organisms/form";
+import { FORM_CONTEXT } from "..";
 
 // => USAGE:
 // <script setup>

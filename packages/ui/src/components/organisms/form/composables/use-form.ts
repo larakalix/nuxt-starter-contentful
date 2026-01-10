@@ -1,19 +1,27 @@
 import type { z } from "zod";
-import { computed, reactive, ref } from "vue";
-import { mapToObject, zodErrorsToMap } from "./../../../utils/form.utils";
+import { computed, inject, reactive, ref } from "vue";
+import { mapToObject, zodErrorsToMap } from "../../../../utils/form.utils";
 import {
+    FORM_CONTEXT_KEY,
     type ErrorMap,
     type FormContext,
     type FormProps,
     type ResetOptions,
     type SetValuesOptions,
     type TouchedMap,
-} from "../../organisms";
+} from "../..";
 import {
     getByPath,
     normalizePath,
     setByPath,
-} from "./../../../utils/path.utils";
+} from "../../../../utils/path.utils";
+
+export function validateFormContext<T extends Record<string, any>>() {
+    const ctx = inject<FormContext<T>>(FORM_CONTEXT_KEY);
+    if (!ctx) throw new Error("useInitForm() must be used inside <Form>.");
+
+    return ctx as FormContext<T>;
+}
 
 export function createFormContext<T extends Record<string, any>>(
     options: FormProps<T>
@@ -23,6 +31,7 @@ export function createFormContext<T extends Record<string, any>>(
     const schema = options.schema as z.ZodType<T>;
     const validateOnChange = ref(Boolean(options.validateOnChange));
 
+    const isSubmitting = ref(false);
     const errors = ref<ErrorMap>(new Map());
     const touched = ref<TouchedMap>(new Map());
     const errorsObject = computed(() => mapToObject(errors.value));
@@ -127,6 +136,7 @@ export function createFormContext<T extends Record<string, any>>(
 
     const ctx: FormContext<T> = {
         state,
+        isSubmitting,
         schema,
         validateOnChange,
         errors,

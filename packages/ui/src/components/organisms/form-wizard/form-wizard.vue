@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, provide, ref } from 'vue';
-import { FORM_WIZARD_KEY } from '../../composables/forms/use-form-wizard';
+import { FORM_WIZARD_KEY } from './composables/use-form-wizard';
 import type { FormWizardProps } from './types';
 
 const props = defineProps<FormWizardProps>()

@@ -24,6 +24,7 @@ export type FormContext<T extends Record<string, any>> = {
     state: T;
     schema: z.ZodType<T>;
     validateOnChange: Ref<boolean>;
+    isSubmitting: Ref<boolean>;
     // maps
     errors: Ref<ErrorMap>;
     // object views (template-friendly)
@@ -62,4 +63,9 @@ export type FormProps<T extends Record<string, any>> = {
     state: T;
     validateOnChange?: boolean;
     class?: string;
+};
+
+export type FieldArrayItem<T> = {
+    key: string;
+    value: T;
 };

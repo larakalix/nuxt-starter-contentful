@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import { FormError } from "../form-error";
-import { useFormField } from "../../composables";
+import { useFormField } from "../../../../composables";
 import type { FormFieldProps } from "./types";
 
 const props = defineProps<FormFieldProps>();

@@ -1,6 +1,6 @@
-import { computed, inject } from "vue";
-import { normalizePath } from "./../../../utils/path.utils";
-import { FORM_CONTEXT_KEY, type FormContext } from "../../organisms";
+import { computed } from "vue";
+import { normalizePath } from "../../../../utils/path.utils";
+import { validateFormContext } from "./use-form";
 
 export type FieldBinding = {
     name: string;
@@ -12,11 +12,7 @@ export type FieldBinding = {
 export function useFormField<T extends Record<string, any>, V = any>(
     name: string
 ) {
-    const ctx = inject<FormContext<T>>(FORM_CONTEXT_KEY);
-    if (!ctx) throw new Error("useInitForm() must be used inside <Form>.");
-
-    const form = ctx as FormContext<T>;
-
+    const form = validateFormContext<T>();
     const fieldName = normalizePath(name);
 
     const value = computed<V>({
@@ -35,7 +31,7 @@ export function useFormField<T extends Record<string, any>, V = any>(
 
     async function onChange(v: any) {
         value.value = v;
-        // validate on change only after touched + form-level flag
+        // Validate on change only after touched
         if (form.validateOnChange.value && form.isTouched(fieldName)) {
             await form.validateField(fieldName);
         }

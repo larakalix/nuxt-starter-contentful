@@ -7,7 +7,7 @@
 
 <script setup lang="ts">
 import { computed, watch } from 'vue';
-import { useFormWizard } from '../../composables/forms/use-form-wizard';
+import { useFormWizard } from '../../organisms/form-wizard/composables/use-form-wizard';
 import type { FormStepProps } from './types';
 
 const props = defineProps<FormStepProps>()

@@ -1,7 +1,9 @@
 <script setup lang="ts" generic="T extends Record<string, any>">
-import { provide } from 'vue';
-import { createFormContext } from '../../composables/forms/use-form';
+import { onMounted, onUnmounted, provide } from 'vue';
+import { createFormContext } from './composables/use-form';
 import { FORM_CONTEXT_KEY, type FormContext, type FormProps, type SubmitInvalidPayload } from "./types";
+import { generateNanoid } from './../../../utils/string.utils';
+import type { ZodAny } from 'zod';
 
 const props = defineProps<FormProps<T>>();
 
@@ -11,6 +13,18 @@ const emit = defineEmits<{
 }>();
 
 const ctx = props.form ?? createFormContext(props);
+
+if (window.__FORM_DEVTOOLS__) {
+  const id = generateNanoid();
+
+  onMounted(() => {
+    window.__FORM_DEVTOOLS__?.register({ id, form: ctx as FormContext<any> });
+  });
+
+  onUnmounted(() => {
+    window.__FORM_DEVTOOLS__?.unregister(id);
+  });
+}
 
 async function handleSubmit(e: Event) {
   e.preventDefault();

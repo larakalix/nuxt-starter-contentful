@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useFormWizard } from '../../composables/forms/use-form-wizard';
+import { useFormWizard } from '../../organisms/form-wizard/composables/use-form-wizard';
 import type { FormWizardProgressProps } from './types';
 
 const props = defineProps<FormWizardProgressProps>()

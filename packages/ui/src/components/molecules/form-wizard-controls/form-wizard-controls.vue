@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Button } from '../../atoms';
-import { useFormWizard } from '../../composables/forms/use-form-wizard';
+import { useFormWizard } from '../../organisms/form-wizard/composables/use-form-wizard';
 
 const wizard = useFormWizard()
 </script>
