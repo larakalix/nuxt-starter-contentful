@@ -8,10 +8,12 @@ const props = withDefaults(defineProps<InputProps>(), {
   type: 'text',
 });
 
+const variant = computed(() => props.invalid ? 'error' : props.variant);
+
 const classes = computed(() =>
   clsx(
     inputVariants({
-      variant: props.variant,
+      variant: variant.value,
       size: props.size,
       rounded: props.rounded,
     }),

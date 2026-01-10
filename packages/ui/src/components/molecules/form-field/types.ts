@@ -4,4 +4,5 @@ export type FormFieldProps = {
     name: string;
     label?: string;
     description?: string;
+    class?: string;
 };

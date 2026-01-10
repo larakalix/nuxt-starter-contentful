@@ -1,6 +1,6 @@
 import { computed, inject } from "vue";
-import { FORM_CONTEXT_KEY, type FormContext } from "../../organisms";
 import { normalizePath } from "./../../../utils/path.utils";
+import { FORM_CONTEXT_KEY, type FormContext } from "../../organisms";
 
 export type FieldBinding = {
     name: string;
@@ -9,19 +9,14 @@ export type FieldBinding = {
     onBlur: () => void;
 };
 
-export function useForm<T extends Record<string, any>>() {
-    const ctx = inject<FormContext<T>>(FORM_CONTEXT_KEY);
-    if (!ctx) {
-        throw new Error("useForm() must be used inside <Form>.");
-    }
-
-    return ctx;
-}
-
 export function useFormField<T extends Record<string, any>, V = any>(
     name: string
 ) {
-    const form = useForm<T>();
+    const ctx = inject<FormContext<T>>(FORM_CONTEXT_KEY);
+    if (!ctx) throw new Error("useInitForm() must be used inside <Form>.");
+
+    const form = ctx as FormContext<T>;
+
     const fieldName = normalizePath(name);
 
     const value = computed<V>({

@@ -37,90 +37,90 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
-    render: (args) => ({
-        components: {
-            FormWizard,
-            FormStep,
-            FormWizardProgress,
-            FormWizardControls,
-            Form,
-            FormField,
-            Input,
-        },
-        setup() {
-            const schema = z.object({
-                email: z.email("Invalid email address"),
-                name: z.string().min(2, "Must be at least 2 characters"),
-                company: z.string().min(2, "Must be at least 2 characters"),
-            });
+// export const Default: Story = {
+//     render: (args) => ({
+//         components: {
+//             FormWizard,
+//             FormStep,
+//             FormWizardProgress,
+//             FormWizardControls,
+//             Form,
+//             FormField,
+//             Input,
+//         },
+//         setup() {
+//             const schema = z.object({
+//                 email: z.email("Invalid email address"),
+//                 name: z.string().min(2, "Must be at least 2 characters"),
+//                 company: z.string().min(2, "Must be at least 2 characters"),
+//             });
 
-            type LoginSchemaType = z.infer<typeof schema>;
+//             type LoginSchemaType = z.infer<typeof schema>;
 
-            const state = reactive<LoginSchemaType>({
-                email: "",
-                name: "",
-                company: "",
-            });
+//             const state = reactive<LoginSchemaType>({
+//                 email: "",
+//                 name: "",
+//                 company: "",
+//             });
 
-            const steps = [
-                { name: "account", label: "Account" },
-                { name: "profile", label: "Profile" },
-                { name: "confirm", label: "Confirm" },
-            ];
+//             const steps = [
+//                 { name: "account", label: "Account" },
+//                 { name: "profile", label: "Profile" },
+//                 { name: "confirm", label: "Confirm" },
+//             ];
 
-            const submittedData = ref<LoginSchemaType | null>(null);
+//             const submittedData = ref<LoginSchemaType | null>(null);
 
-            function onSubmit(data: LoginSchemaType) {
-                console.log("Form submitted!", data);
-                submittedData.value = data;
-                alert(`Login successful for ${data.email}`);
-            }
+//             function onSubmit(data: LoginSchemaType) {
+//                 console.log("Form submitted!", data);
+//                 submittedData.value = data;
+//                 alert(`Login successful for ${data.email}`);
+//             }
 
-            return { schema, state, steps, onSubmit, submittedData, args };
-        },
-        template: `
-          <FormWizard
-              :steps="steps"
-              class="space-y-4 p-4">
-            <FormWizardProgress />
+//             return { schema, state, steps, onSubmit, submittedData, args };
+//         },
+//         template: `
+//           <FormWizard
+//               :steps="steps"
+//               class="space-y-4 p-4">
+//             <FormWizardProgress />
 
-            <FormStep name="account" :valid="step1Valid">
-              <Form
-                :schema="schema"
-                :state="state"
-                :validateOnChange="true"
-                @submit="onSubmit"
-              >
-                <FormField name="email" label="Email" v-slot="{ field, invalid }">
-                  <Input type="email" v-bind="field" :invalid="invalid" />
-                </FormField>
-              </Form>
-            </FormStep>
+//             <FormStep name="account" :valid="step1Valid">
+//               <Form
+//                 :schema="schema"
+//                 :state="state"
+//                 :validateOnChange="true"
+//                 @submit="onSubmit"
+//               >
+//                 <FormField name="email" label="Email" v-slot="{ field, invalid }">
+//                   <Input type="email" v-bind="field" :invalid="invalid" />
+//                 </FormField>
+//               </Form>
+//             </FormStep>
 
-            <FormStep name="profile" :valid="step2Valid">
-              <Form
-                :schema="schema"
-                :state="state"
-                :validateOnChange="true"
-                @submit="onSubmit"
-              >
-                <FormField label="Name" name="name" v-slot="{ field, invalid }">
-                  <Input type="text" v-bind="field" :invalid="invalid" />
-                </FormField>
+//             <FormStep name="profile" :valid="step2Valid">
+//               <Form
+//                 :schema="schema"
+//                 :state="state"
+//                 :validateOnChange="true"
+//                 @submit="onSubmit"
+//               >
+//                 <FormField label="Name" name="name" v-slot="{ field, invalid }">
+//                   <Input type="text" v-bind="field" :invalid="invalid" />
+//                 </FormField>
 
-                <FormField name="company" label="Company" v-slot="{ field, invalid }">
-                  <Input type="text" v-bind="field" :invalid="invalid" />
-                </FormField>
-              </Form>
-            </FormStep>
+//                 <FormField name="company" label="Company" v-slot="{ field, invalid }">
+//                   <Input type="text" v-bind="field" :invalid="invalid" />
+//                 </FormField>
+//               </Form>
+//             </FormStep>
 
-            <FormStep name="confirm">
-              <pre>{{ state }}</pre>
-            </FormStep>
+//             <FormStep name="confirm">
+//               <pre>{{ state }}</pre>
+//             </FormStep>
 
-            <FormWizardControls />
-          </FormWizard>
-    `,
-    }),
-};
+//             <FormWizardControls />
+//           </FormWizard>
+//     `,
+//     }),
+// };
