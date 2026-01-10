@@ -1,27 +1,8 @@
 import { computed, inject } from "vue";
-import { FORM_CONTEXT } from "..";
-
-// => USAGE:
-// <script setup>
-// const guests = useFormArray("guests")
-// </script>
-
-// <Form>
-//   <div v-for="(guest, i) in guests.items" :key="i">
-//     <FormField :name="`guests.${i}.email`" label="Email">
-//       <template #default="{ field }">
-//         <Input v-model="guest.email" v-bind="field.props" />
-//       </template>
-//     </FormField>
-
-//     <Button @click="guests.remove(i)">Remove</Button>
-//   </div>
-
-//   <Button @click="guests.push({ email: '' })">Add guest</Button>
-// </Form>
+import { FORM_CONTEXT_KEY } from "../types";
 
 export function useFormArray<T = any>(name: string) {
-    const form = inject(FORM_CONTEXT);
+    const form = inject(FORM_CONTEXT_KEY);
     if (!form) {
         throw new Error("useFormArray must be used inside <Form>");
     }

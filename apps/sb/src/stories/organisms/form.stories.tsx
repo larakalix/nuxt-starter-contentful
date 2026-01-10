@@ -1,9 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite";
 import { z } from "zod";
 import { defineComponent, onMounted, reactive, ref } from "vue";
-import { FormField } from "@starter/ui/molecules";
 import { Button, Input } from "@starter/ui/atoms";
-import { Form, useFieldArray } from "@starter/ui/organisms";
+import { Form, FormField, useFieldArray } from "@starter/ui/organisms";
 
 const meta = {
     title: "Organisms/Form",

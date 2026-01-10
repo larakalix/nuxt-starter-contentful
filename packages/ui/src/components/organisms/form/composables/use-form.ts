@@ -92,6 +92,35 @@ export function createFormContext<T extends Record<string, any>>(
     }
 
     // Validation
+    async function validateFields(names: string[]): Promise<boolean> {
+        const keys = names.map(normalizePath);
+
+        const result = schema.safeParse(state);
+
+        // If valid overall, clear only targeted errors
+        if (result.success) {
+            for (const k of keys) errors.value.delete(k);
+            if (errors.value.has("_form")) errors.value.delete("_form");
+            return true;
+        }
+
+        const next = zodErrorsToMap(result);
+
+        // Update ONLY these keys
+        for (const k of keys) {
+            const msg = next.get(k);
+            if (msg) errors.value.set(k, msg);
+            else errors.value.delete(k);
+        }
+
+        // Keep/refresh form-level error if present
+        if (next.has("_form")) errors.value.set("_form", next.get("_form")!);
+        else errors.value.delete("_form");
+
+        // valid if none of the targeted fields has error
+        return keys.every((k) => !errors.value.has(k));
+    }
+
     async function validateForm(): Promise<boolean> {
         const result = schema.safeParse(state);
         errors.value = zodErrorsToMap(result);
@@ -147,6 +176,7 @@ export function createFormContext<T extends Record<string, any>>(
         setValue,
         validateForm,
         validateField,
+        validateFields,
         getError,
         hasError,
         setError,

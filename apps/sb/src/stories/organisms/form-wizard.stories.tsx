@@ -1,13 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite";
 import { z } from "zod";
 import { reactive, ref } from "vue";
-import { Form, FormWizard } from "@starter/ui/organisms";
 import {
+    Form,
     FormField,
     FormStep,
+    FormWizard,
     FormWizardControls,
     FormWizardProgress,
-} from "@starter/ui/molecules";
+} from "@starter/ui/organisms";
 import { Input } from "@starter/ui/atoms";
 
 const meta = {
@@ -63,12 +64,6 @@ export const Default: Story = {
                 company: "",
             });
 
-            const steps = [
-                { name: "account", label: "Account" },
-                { name: "profile", label: "Profile" },
-                { name: "confirm", label: "Confirm" },
-            ];
-
             const submittedData = ref<LoginSchemaType | null>(null);
 
             function onSubmit(data: LoginSchemaType) {
@@ -77,50 +72,46 @@ export const Default: Story = {
                 alert(`Login successful for ${data.email}`);
             }
 
-            return { schema, state, steps, onSubmit, submittedData, args };
+            return { schema, state, onSubmit, submittedData, args };
         },
         template: `
-          <FormWizard
-              :steps="steps"
-              class="space-y-4 p-4">
-            <FormWizardProgress />
+          <Form :schema="schema" :state="state" class="p-4" @submit="onSubmit">
+            <FormWizard>
+              <FormWizardProgress />
 
-            <FormStep name="account" :valid="step1Valid">
-              <Form
-                :schema="schema"
-                :state="state"
-                :validateOnChange="true"
-                @submit="onSubmit"
+              <FormStep
+                name="account"
+                label="Account Info"
+                :fields="['email']"
               >
                 <FormField name="email" label="Email" v-slot="{ field, invalid }">
                   <Input type="email" v-bind="field" :invalid="invalid" />
                 </FormField>
-              </Form>
-            </FormStep>
+              </FormStep>
 
-            <FormStep name="profile" :valid="step2Valid">
-              <Form
-                :schema="schema"
-                :state="state"
-                :validateOnChange="true"
-                @submit="onSubmit"
+              <FormStep
+                name="profile"
+                label="Profile"
+                :fields="['name', 'company']"
               >
-                <FormField label="Name" name="name" v-slot="{ field, invalid }">
+                <FormField name="name" label="Name" v-slot="{ field, invalid }">
                   <Input type="text" v-bind="field" :invalid="invalid" />
                 </FormField>
 
                 <FormField name="company" label="Company" v-slot="{ field, invalid }">
                   <Input type="text" v-bind="field" :invalid="invalid" />
                 </FormField>
-              </Form>
-            </FormStep>
+              </FormStep>
 
-            <FormStep name="confirm">
-              <pre>{{ state }}</pre>
-            </FormStep>
+              <FormStep name="summary" label="Summary">
+                <p><strong>Email:</strong> {{ state.email }}</p>
+                <p><strong>Name:</strong> {{ state.name }}</p>
+                <p><strong>Company:</strong> {{ state.company }}</p>
+              </FormStep>
 
-            <FormWizardControls />
-          </FormWizard>
+              <FormWizardControls />
+            </FormWizard>
+          </Form>
     `,
     }),
 };

@@ -1,56 +1,107 @@
 <script setup lang="ts">
-import { computed, provide, ref } from 'vue';
-import { FORM_WIZARD_KEY } from './composables/use-form-wizard';
-import type { FormWizardProps } from './types';
+import { computed, provide, ref } from "vue";
+import { FORM_WIZARD_KEY, type WizardStepMeta } from "./types";
+import { validateFormContext } from "../form/composables/use-form";
 
-const props = defineProps<FormWizardProps>()
+const form = validateFormContext();
 
-const stepNames = props.steps.map(s => s.name)
+const currentStep = ref(0);
+const steps = ref<WizardStepMeta[]>([]);
 
-const current = ref(props.initial ?? stepNames[0])
-const index = computed(() => stepNames.indexOf(current.value))
-
-const isFirst = computed(() => index.value === 0)
-const isLast = computed(() => index.value === stepNames.length - 1)
-
-const stepErrors = ref<Record<string, boolean>>({})
-
-function setStepValid(step: string, valid: boolean) {
-  stepErrors.value[step] = !valid
+function registerStep(step: WizardStepMeta) {
+  const index = steps.value.length;
+  steps.value.push(step);
+  return index;
 }
 
-const canProceed = computed(() => {
-  const step = props.steps[index.value]
-  if (step.optional) return true
-  return !stepErrors.value[step.name]
-})
+const stepsComputed = computed(() => steps.value);
 
-function next() {
-  if (!canProceed.value || isLast.value) return
-  current.value = stepNames[index.value + 1]
+const isFirstStep = computed(() => currentStep.value === 0);
+const isLastStep = computed(
+  () => currentStep.value === steps.value.length - 1
+);
+
+async function validateCurrentStep(): Promise<boolean> {
+  const step = steps.value[currentStep.value];
+  if (!step?.fields?.length) {
+    // fallback: validate whole form
+    const valid = await form.validateForm();
+    if (!valid) form.markErrorsAsTouched();
+    return valid;
+  }
+
+  const valid = await form.validateForm();
+  if (valid) return true;
+
+  let hasStepErrors = false;
+
+  for (const field of step.fields) {
+    if (form.hasError(field)) {
+      form.setTouched(field, true);
+      hasStepErrors = true;
+    }
+  }
+
+  return !hasStepErrors;
+}
+
+async function canLeaveCurrentStep(): Promise<boolean> {
+  const step = steps.value[currentStep.value];
+
+  // no fields -> allow
+  if (!step?.fields?.length) return true;
+
+  const ok = await form.validateFields(step.fields);
+
+  if (!ok) {
+    // touch only current step fields
+    for (const f of step.fields) form.setTouched(f, true);
+  }
+
+  return ok;
+}
+
+async function next() {
+  const ok = await canLeaveCurrentStep();
+  if (!ok) return;
+
+  if (!isLastStep.value) currentStep.value++;
 }
 
 function previous() {
-  if (!isFirst.value) {
-    current.value = stepNames[index.value - 1]
+  if (!isFirstStep.value) currentStep.value--;
+}
+
+async function goTo(stepIndex: number) {
+  if (stepIndex < 0 || stepIndex >= steps.value.length) return;
+
+  // going backwards should always be allowed
+  if (stepIndex <= currentStep.value) {
+    currentStep.value = stepIndex;
+    return;
   }
+
+  // going forward: cannot leave current step if invalid
+  const ok = await canLeaveCurrentStep();
+  if (!ok) return;
+
+  currentStep.value = stepIndex;
 }
 
 provide(FORM_WIZARD_KEY, {
-  steps: props.steps,
-  current,
-  index,
-  isFirst,
-  isLast,
-  canProceed,
+  currentStep,
+  steps: stepsComputed,
+  isFirstStep,
+  isLastStep,
   next,
   previous,
-  setStepValid,
-})
+  goTo,
+  registerStep,
+});
 </script>
 
 <template>
-  <div class="space-y-6">
+  <div class="form-wizard">
     <slot />
   </div>
 </template>

@@ -44,6 +44,7 @@ export type FormContext<T extends Record<string, any>> = {
     // validation
     validateForm: () => Promise<boolean>;
     validateField: (name: string) => Promise<boolean>;
+    validateFields: (names: string[]) => Promise<boolean>;
     // path helpers
     getValue: (path: string) => any;
     setValue: (path: string, value: any) => void;
