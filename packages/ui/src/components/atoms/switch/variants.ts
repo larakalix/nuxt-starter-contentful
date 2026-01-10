@@ -5,7 +5,7 @@ export const switchStyles = tv({
         root: [
             "relative inline-flex shrink-0 cursor-pointer items-center",
             "relative inline-flex shrink-0 cursor-pointer items-center",
-            "rounded-full border transition-colors",
+            "rounded-full border border-border transition-colors",
             "focus:outline-none focus:ring-2 focus:ring-primary/40",
             "disabled:cursor-not-allowed disabled:opacity-50",
         ],
@@ -32,7 +32,7 @@ export const switchStyles = tv({
                 thumb: "translate-x-full",
             },
             false: {
-                root: "bg-transparent border-gray-600",
+                root: "bg-transparent border-border",
                 thumb: "translate-x-0",
             },
         },

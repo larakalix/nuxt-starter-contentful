@@ -5,4 +5,5 @@ export * from "./checkbox";
 export * from "./textarea";
 export * from "./switch";
 export * from "./switch-button";
+export * from "./select";
 export * from "./versatile-link";
