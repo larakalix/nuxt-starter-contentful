@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { computed } from 'vue';
 import type { SwitchButtonProps } from './types';
+import { switchButtonStyles } from './variants';
 
 const props = withDefaults(defineProps<SwitchButtonProps>(), {
   onLabel: 'ON',
@@ -9,20 +11,34 @@ const props = withDefaults(defineProps<SwitchButtonProps>(), {
 const emit = defineEmits<{
   (e: "update:modelValue", value: boolean): void;
 }>();
+
+function set(value: boolean) {
+  if (props.disabled) return;
+  emit("update:modelValue", value);
+}
+
+const styles = computed(() =>
+  switchButtonStyles({
+    size: props.size,
+    variant: props.variant,
+  })
+);
 </script>
 
 <template>
-  <div class="inline-flex rounded-lg border border-gray-600 overflow-hidden">
-    <button type="button" class="px-4 py-2 text-sm transition"
-      :class="props.modelValue ? 'bg-primary text-primary-text' : 'text-gray-400'"
-      @click="emit('update:modelValue', true)">
-      {{ props.onLabel }}
+  <div :class="styles.root()">
+    <!-- ON -->
+    <button type="button" :data-active="modelValue" :disabled="disabled" @click="set(true)" :class="[
+      styles.button({ active: modelValue }),
+    ]">
+      {{ onLabel }}
     </button>
 
-    <button type="button" class="px-4 py-2 text-sm transition"
-      :class="!props.modelValue ? 'bg-secondary text-secondary-text' : 'text-gray-400'"
-      @click="emit('update:modelValue', false)">
-      {{ props.offLabel }}
+    <!-- OFF -->
+    <button type="button" :data-active="!modelValue" :disabled="disabled" @click="set(false)" :class="[
+      styles.button({ active: !modelValue }),
+    ]">
+      {{ offLabel }}
     </button>
   </div>
 </template>
