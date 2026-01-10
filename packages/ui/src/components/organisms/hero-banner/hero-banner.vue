@@ -51,7 +51,7 @@ const classes = computed(() => {
             {{ content.description }}
           </p>
 
-          <div>
+          <div class="w-full md:w-auto">
             <Button v-if="props.content.actions?.length" v-for="(action, index) in content.actions" :key="index"
               :href="action.href" :variant="action.variant" :rounded="action.rounded" :size="action.size"
               :class="action.class">

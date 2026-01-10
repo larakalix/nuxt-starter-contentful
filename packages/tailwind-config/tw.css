@@ -18,6 +18,10 @@
     --radius-md: 0.5rem;
     --radius-lg: 0.75rem;
     --radius-full: 9999px;
+
+    --color-border: oklch(0.9 0 0);
+    --color-border-input: oklch(0.85 0 0);
+    --color-input-placeholder: oklch(0.55 0 0);
 }
 
 /* Default – Blue */
@@ -39,6 +43,10 @@
     --bg-table-header: oklch(0.9 0.03 255);
     --bg-table-odd: oklch(0.97 0.006 260);
     --bg-table-even: oklch(0.99 0 0);
+
+    --color-border: oklch(0.9 0.02 255);
+    --color-border-input: oklch(0.85 0.04 255);
+    --color-input-placeholder: oklch(0.55 0.02 255);
 }
 
 /* Green – Nuxt-ish */
@@ -61,6 +69,10 @@
     --bg-table-header: oklch(94.66% 0.02 189.21);
     --bg-table-odd: oklch(97.43% 0.006 185.27);
     --bg-table-even: oklch(99.4% 0 0);
+
+    --color-border: oklch(0.9 0.015 180);
+    --color-border-input: oklch(0.85 0.03 180);
+    --color-input-placeholder: oklch(0.55 0.015 180);
 }
 
 /* Orange */
@@ -83,6 +95,10 @@
     --bg-table-header: oklch(0.9 0.03 60);
     --bg-table-odd: oklch(0.97 0.006 60);
     --bg-table-even: oklch(0.99 0 0);
+
+    --color-border: oklch(0.9 0.02 60);
+    --color-border-input: oklch(0.85 0.04 60);
+    --color-input-placeholder: oklch(0.55 0.02 60);
 }
 
 /* Mango */
@@ -104,6 +120,10 @@
     --bg-table-header: oklch(0.9 0.03 85);
     --bg-table-odd: oklch(0.97 0.006 85);
     --bg-table-even: oklch(0.99 0 0);
+
+    --color-border: oklch(0.92 0.025 85);
+    --color-border-input: oklch(0.88 0.04 85);
+    --color-input-placeholder: oklch(0.6 0.02 85);
 }
 
 /* Rose – Tinder-ish pink */
@@ -125,6 +145,10 @@
     --bg-table-header: oklch(0.9 0.03 20);
     --bg-table-odd: oklch(0.97 0.006 20);
     --bg-table-even: oklch(0.99 0 0);
+
+    --color-border: oklch(0.9 0.03 20);
+    --color-border-input: oklch(0.85 0.06 20);
+    --color-input-placeholder: oklch(0.55 0.03 20);
 }
 
 /* Violet */
@@ -146,6 +170,170 @@
     --bg-table-header: oklch(0.9 0.03 300);
     --bg-table-odd: oklch(0.97 0.006 300);
     --bg-table-even: oklch(0.99 0 0);
+
+    --color-border: oklch(0.9 0.025 300);
+    --color-border-input: oklch(0.85 0.05 300);
+    --color-input-placeholder: oklch(0.55 0.02 300);
+}
+
+/* Slate */
+.theme-slate {
+    --color-primary: oklch(0.55 0.04 250);
+    --color-primary-text: oklch(0.98 0 0);
+
+    --color-secondary: oklch(0.92 0.01 250);
+    --color-secondary-text: oklch(0.25 0 0);
+
+    --color-success: oklch(0.68 0.12 150);
+    --color-success-text: oklch(1 0 0);
+
+    --color-danger: oklch(0.55 0.23 25);
+    --color-danger-text: oklch(1 0 0);
+
+    --bg-navbar: oklch(0.96 0.01 250);
+
+    --bg-table-header: oklch(0.9 0.015 250);
+    --bg-table-odd: oklch(0.97 0.005 250);
+    --bg-table-even: oklch(0.99 0 0);
+
+    --color-border: oklch(0.88 0.01 250);
+    --color-border-input: oklch(0.82 0.015 250);
+    --color-input-placeholder: oklch(0.55 0.005 250);
+}
+
+/* Ocean */
+.theme-ocean {
+    --color-primary: oklch(0.65 0.12 210);
+    --color-primary-text: oklch(0.98 0 0);
+
+    --color-secondary: oklch(0.92 0.04 210);
+    --color-secondary-text: oklch(0.22 0 0);
+
+    --color-success: oklch(0.7 0.14 165);
+    --color-success-text: oklch(0.98 0 0);
+
+    --color-danger: oklch(0.55 0.23 25);
+    --color-danger-text: oklch(1 0 0);
+
+    --bg-navbar: oklch(0.97 0.02 210);
+
+    --bg-table-header: oklch(0.91 0.03 210);
+    --bg-table-odd: oklch(0.975 0.006 210);
+    --bg-table-even: oklch(0.99 0 0);
+
+    --color-border: oklch(0.9 0.02 210);
+    --color-border-input: oklch(0.85 0.04 210);
+    --color-input-placeholder: oklch(0.55 0.02 210);
+}
+
+/* Twitch  */
+.theme-twitch {
+    --color-primary: oklch(0.55 0.28 295);
+    --color-primary-text: oklch(0.98 0 0);
+
+    --color-secondary: oklch(0.9 0.06 295);
+    --color-secondary-text: oklch(0.2 0 0);
+
+    --color-success: oklch(0.7 0.15 150);
+    --color-success-text: oklch(1 0 0);
+
+    --color-danger: oklch(0.55 0.24 25);
+    --color-danger-text: oklch(1 0 0);
+
+    --bg-navbar: oklch(0.22 0.05 295);
+
+    --bg-table-header: oklch(0.3 0.06 295);
+    --bg-table-odd: oklch(0.26 0.04 295);
+    --bg-table-even: oklch(0.28 0.03 295);
+
+    --color-border: oklch(0.35 0.04 295);
+    --color-border-input: oklch(0.45 0.06 295);
+    --color-input-placeholder: oklch(0.65 0.04 295);
+}
+
+/* Cyberpunk */
+.theme-cyberpunk {
+    --color-primary: oklch(0.75 0.32 330);
+    --color-primary-text: oklch(0.1 0 0);
+
+    --color-secondary: oklch(0.7 0.28 195);
+    --color-secondary-text: oklch(0.1 0 0);
+
+    --color-success: oklch(0.78 0.25 145);
+    --color-success-text: oklch(0.1 0 0);
+
+    --color-danger: oklch(0.65 0.3 25);
+    --color-danger-text: oklch(1 0 0);
+
+    --bg-navbar: oklch(0.18 0.04 300);
+
+    --bg-table-header: oklch(0.22 0.06 300);
+    --bg-table-odd: oklch(0.2 0.05 300);
+    --bg-table-even: oklch(0.24 0.04 300);
+
+    --color-border: oklch(0.4 0.06 300);
+    --color-border-input: oklch(0.6 0.2 330);
+    --color-input-placeholder: oklch(0.7 0.1 330);
+}
+
+/* Obsidian */
+.theme-obsidian {
+    /* Base background & text */
+    --color-bg: oklch(0.14 0.01 260);
+    --color-text: oklch(0.86 0.01 260);
+
+    --color-border: oklch(0.28 0.01 260);
+
+    --color-muted: oklch(0.2 0.01 260);
+    --color-muted-text: oklch(0.62 0.01 260);
+    --color-muted-subtitle-text: oklch(0.55 0.01 260);
+
+    --color-primary: oklch(0.62 0.14 215);
+    --color-primary-text: oklch(0.12 0.01 260);
+
+    --color-secondary: oklch(0.3 0.01 260);
+    --color-secondary-text: oklch(0.75 0.01 260);
+
+    --color-success: oklch(0.6 0.12 155);
+    --color-success-text: oklch(0.12 0.01 260);
+
+    --color-danger: oklch(0.55 0.2 25);
+    --color-danger-text: oklch(0.12 0.01 260);
+
+    --bg-navbar: oklch(0.16 0.01 260);
+
+    --bg-table-header: oklch(0.22 0.01 260);
+    --bg-table-odd: oklch(0.18 0.01 260);
+    --bg-table-even: oklch(0.2 0.01 260);
+
+    --color-border: oklch(0.28 0.01 260);
+    --color-border-input: oklch(0.35 0.02 260);
+    --color-input-placeholder: oklch(0.6 0.01 260);
+}
+
+/* Custom theme - is going to get injected variables */
+.theme-custom {
+    --color-primary: var(--custom-color-primary, oklch(56.07% 0.208 258.05));
+    --color-primary-text: var(--custom-color-primary, oklch(0.98 0.02 255));
+
+    --color-secondary: var(--custom-color-secondary, oklch(0.8 0.06 255));
+    --color-secondary-text: var(--custom-color-secondary, oklch(0.2 0 0));
+
+    --color-success: var(--custom-color-success, oklch(0.68 0.14 150));
+    --color-success-text: var(--custom-color-success, oklch(1 0 0));
+
+    --color-danger: var(--custom-color-danger, oklch(0.55 0.23 25));
+    --color-danger-text: var(--custom-color-danger, oklch(1 0 0));
+
+    --bg-navbar: var(--custom-bg-navbar, oklch(0.98 0.02 255));
+
+    --bg-table-header: var(--custom-bg-table-header, oklch(0.9 0.03 255));
+    --bg-table-odd: var(--custom-bg-table-odd, oklch(0.97 0.006 260));
+    --bg-table-even: var(--custom-bg-table-even, oklch(0.99 0 0));
+
+    --color-border: var(--custom-color-border, oklch(0.9 0 0));
+    --color-border-input: var(--custom-color-border-input, oklch(0.85 0 0));
+    --color-input-placeholder: var(--custom-color-placeholder, oklch(0.55 0 0));
 }
 
 /* Slate */
@@ -291,6 +479,10 @@
 
 /* Tailwind tokens */
 @theme inline {
+    --color-border: var(--color-border);
+    --color-input: var(--color-border-input);
+    --color-placeholder: var(--color-input-placeholder, --color-muted-subtitle-text);
+
     --color-background: var(--color-bg);
     --color-foreground: var(--color-text);
 

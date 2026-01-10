@@ -78,7 +78,7 @@ export const Default: Story = {
         setup: () => ({ args }),
         template: `
             <HeroBanner v-bind="args">
-                <template #form><form class="mt-6 flex flex-col sm:flex-row gap-4">
+                <template #form>
                     <form
                         class="flex flex-col md:flex-row items-start md:items-center justify-between p-6 rounded-lg md:rounded-full w-full max-w-80 md:max-w-200 bg-white shadow-[0px_8px_20px_rgba(0,0,0,0.1)]"
                         style="opacity: 1; transform: none;">
@@ -127,7 +127,7 @@ export const Booking: Story = {
         setup: () => ({ args }),
         template: `
             <HeroBanner v-bind="args">
-                <template #form><form class="mt-6 flex flex-col sm:flex-row gap-4">
+                <template #form>
                     <form
                         class="bg-white text-gray-500 rounded-lg px-6 py-4 flex flex-col md:flex-row max-md:items-start gap-4 max-md:mx-auto">
                         <div>
