@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite";
 import { z } from "zod";
 import { defineComponent, onMounted, reactive, ref } from "vue";
-import { Button, Input } from "@starter/ui/atoms";
+import { Button, Checkbox, Input, Textarea } from "@starter/ui/atoms";
 import { Form, FormField, useFieldArray } from "@starter/ui/organisms";
 
 const meta = {
@@ -23,11 +23,12 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
     render: (args) => ({
-        components: { Form, FormField, Input, Button },
+        components: { Form, FormField, Checkbox, Input, Button },
         setup() {
             const schema = z.object({
                 email: z.email("Invalid email address"),
                 password: z.string().min(8, "Must be at least 8 characters"),
+                rememberMe: z.boolean().optional(),
             });
 
             type LoginSchemaType = z.infer<typeof schema>;
@@ -35,13 +36,13 @@ export const Default: Story = {
             const state = reactive<LoginSchemaType>({
                 email: "",
                 password: "",
+                rememberMe: false,
             });
 
             const submittedData = ref<LoginSchemaType | null>(null);
 
             function onSubmit(data: LoginSchemaType) {
                 submittedData.value = data;
-                alert(`Login successful for ${data.email}`);
             }
 
             return { schema, state, onSubmit, submittedData, args };
@@ -64,6 +65,14 @@ export const Default: Story = {
                 <Input type="password" v-bind="field" :invalid="invalid" />
               </FormField>
 
+              <FormField name="rememberMe" v-slot="{ field }">
+                <Checkbox label="Remember Me" v-bind="field">
+                  <div v-if="value" class="mt-2 text-xs text-gray-400">
+                    You can unsubscribe at any time.
+                  </div>
+                </Checkbox>
+              </FormField>
+
               <Button type="submit">Login</Button>
             </Form>
 
@@ -71,6 +80,7 @@ export const Default: Story = {
               <h3 class="text-sm font-bold text-gray-700 mb-2">Submitted Data:</h3>
               <ul class="text-sm text-gray-600">
                 <li><strong>Email:</strong> {{ submittedData.email }}</li>
+                <li><strong>Remember Me:</strong> {{ submittedData.rememberMe }}</li>
               </ul>
             </div>
           </div>
@@ -80,14 +90,23 @@ export const Default: Story = {
 
 export const WithInitialValues: Story = {
     render: (args) => ({
-        components: { Form, FormField, Input, Button },
+        components: { Form, FormField, Input, Textarea, Button },
         setup() {
             const configFromDb = {
                 minAge: 18,
+                maxBioLength: 180,
             };
 
             const schema = z.object({
                 username: z.string().min(3, "Must be at least 3 characters"),
+                bio: z
+                    .string()
+                    .min(10, "Must be at least 10 characters")
+                    .max(
+                        configFromDb.maxBioLength,
+                        `Must be at most ${configFromDb.maxBioLength} characters`
+                    )
+                    .optional(),
                 age: z
                     .number()
                     .transform((val) => (val ? Number(val) : undefined))
@@ -106,6 +125,7 @@ export const WithInitialValues: Story = {
 
             const state = reactive<UserSchemaType>({
                 username: "John Doe",
+                bio: "",
                 age: 30,
             });
 
@@ -130,6 +150,16 @@ export const WithInitialValues: Story = {
             >
               <FormField name="username" label="Username" v-slot="{ field, invalid }">
                 <Input type="text" v-bind="field" :invalid="invalid" />
+              </FormField>
+
+              <FormField name="bio" label="Bio" v-slot="{ field, invalid }">
+                <Textarea
+                  placeholder="Tell us about yourself"
+                  :maxLength="180"
+                  hint="Short bio"
+                  v-bind="field"
+                  :invalid="invalid"
+                />
               </FormField>
 
               <FormField name="age" label="Age" v-slot="{ field, invalid }">

@@ -5,3 +5,4 @@ export * from "./section-heading";
 export * from "./cta-banner";
 export * from "./rich-text-renderer";
 export * from "./toc-menu";
+export * from "./switch-card";
