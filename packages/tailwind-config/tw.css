@@ -178,7 +178,7 @@
 
 /* Slate */
 .theme-slate {
-    --color-primary: oklch(0.55 0.04 250);
+    --color-primary-color: oklch(0.55 0.04 250);
     --color-primary-text: oklch(0.98 0 0);
 
     --color-secondary: oklch(0.92 0.01 250);
@@ -481,7 +481,10 @@
 @theme inline {
     --color-border: var(--color-border);
     --color-input: var(--color-border-input);
-    --color-placeholder: var(--color-input-placeholder, --color-muted-subtitle-text);
+    --color-placeholder: var(
+        --color-input-placeholder,
+        --color-muted-subtitle-text
+    );
 
     --color-background: var(--color-bg);
     --color-foreground: var(--color-text);
@@ -519,6 +522,21 @@
     --max-width-9xl: 100rem;
     --max-width-10xl: 114rem;
     --max-width-11xl: 120rem;
+
+    /* Date picker specific tokens */
+    /* --dp-primary-color: var(--color-primary); */
+}
+
+.dp__theme_light {
+    --dp-primary-color: var(--color-primary);
+    --dp-border-color: var(--color-border);
+    --dp-border-color-focus: var(--color-primary);
+}
+
+.dp__theme_dark {
+    --dp-primary-color: var(--color-primary);
+    --dp-border-color: var(--color-border);
+    --dp-border-color-focus: var(--color-primary);
 }
 
 .root-app {

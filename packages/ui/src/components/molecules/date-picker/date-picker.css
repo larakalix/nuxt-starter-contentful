@@ -1,0 +1,21 @@
+@import "@vuepic/vue-datepicker/dist/main.css";
+
+.dp__theme_light {
+    --dp-primary-color: var(--color-primary);
+    --dp-border-color: var(--color-border);
+    --dp-border-color-focus: var(--color-primary);
+    --dp-range-between-dates-background-color: var(--color-secondary);
+    --dp-range-between-dates-hover-background-color: var(--color-primary);
+    --dp-border-radius: var(--radius-md);
+    --dp-cell-border-radius: var(--radius-md);
+}
+
+.dp__theme_dark {
+    --dp-primary-color: var(--color-primary);
+    --dp-border-color: var(--color-border);
+    --dp-border-color-focus: var(--color-primary);
+    --dp-range-between-dates-background-color: var(--color-secondary);
+    --dp-range-between-dates-hover-background-color: var(--color-primary);
+    --dp-border-radius: var(--radius-md);
+    --dp-cell-border-radius: var(--radius-md);
+}

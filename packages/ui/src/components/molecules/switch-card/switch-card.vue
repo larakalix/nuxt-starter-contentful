@@ -1,37 +1,56 @@
 <script setup lang="ts">
+import { computed } from 'vue';
 import { Switch } from '../../atoms';
+import { switchCardStyles } from './variants';
+import { BatteryCharging, CreditCard } from 'lucide-vue-next';
+import type { SwitchCardProps } from './types';
 
-
-defineProps<{
-  modelValue: boolean;
-  label: string;
-  sublabel?: string;
-}>();
+const props = withDefaults(defineProps<SwitchCardProps>(), {
+  variant: "default",
+});
 
 const emit = defineEmits<{
   (e: "update:modelValue", value: boolean): void;
 }>();
+
+function update(value: boolean) {
+  if (props.disabled) return;
+  emit("update:modelValue", value);
+}
+
+const styles = computed(() =>
+  switchCardStyles({ variant: props.variant })
+);
+
 </script>
 
 <template>
-  <button type="button" class="
-      flex w-full items-center justify-between gap-4 rounded-xl
-      border border-gray-700 p-4 text-left transition
-      hover:border-primary/60
-      focus:outline-none focus:ring-2 focus:ring-primary/40
-    " @click="emit('update:modelValue', !modelValue)">
-    <div class="flex items-start gap-3">
-      <div class="h-6 w-6 rounded-full bg-gradient-to-br from-yellow-400 to-red-500" />
-      <div class="flex flex-col">
-        <span class="text-sm font-medium text-white">
-          {{ label }}
-        </span>
-        <span class="text-xs text-gray-400">
-          {{ sublabel }}
-        </span>
+  <div :class="styles.root()">
+    <div :class="styles.left()">
+      <!-- Icon -->
+      <div v-if="icon" :class="styles.icon()">
+        <CreditCard v-if="icon === 'payment'" :size="24" />
+        <BatteryCharging v-else-if="icon === 'energy'" />
+      </div>
+
+      <!-- Text -->
+      <div :class="styles.text()">
+        <div>
+          <span :class="styles.label()">
+            {{ label }}
+          </span>
+          <span v-if="subLabel" :class="styles.subLabel()">
+            ({{ subLabel }})
+          </span>
+        </div>
+
+        <p v-if="description" :class="styles.description()">
+          {{ description }}
+        </p>
       </div>
     </div>
 
-    <Switch :modelValue="modelValue" variant="success" @update:modelValue="emit('update:modelValue', $event)" />
-  </button>
+    <!-- Switch -->
+    <Switch :modelValue="modelValue" @update:modelValue="update" :disabled="disabled" />
+  </div>
 </template>

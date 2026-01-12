@@ -1,7 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite";
 import { z } from "zod";
 import { defineComponent, onMounted, reactive, ref } from "vue";
-import { Button, Checkbox, Input, Textarea } from "@starter/ui/atoms";
+import {
+    Button,
+    Checkbox,
+    Input,
+    Select,
+    Switch,
+    Textarea,
+} from "@starter/ui/atoms";
 import { Form, FormField, useFieldArray } from "@starter/ui/organisms";
 
 const meta = {
@@ -183,13 +190,15 @@ export const WithInitialValues: Story = {
 
 export const WithNestedFields: Story = {
     render: (args) => ({
-        components: { Form, FormField, Input, Button },
+        components: { Form, FormField, Switch, Select, Input, Button },
         setup() {
             const schema = z.object({
                 company: z.string().min(2, "Must be at least 2 characters"),
+                subscribe: z.boolean().optional(),
                 user: z.object({
                     name: z.string().min(3, "Must be at least 3 characters"),
                     email: z.email("Invalid email address"),
+                    role: z.string().min(1, "Please select a role"),
                 }),
             });
 
@@ -197,22 +206,37 @@ export const WithNestedFields: Story = {
 
             const state = reactive<UserFormSchema>({
                 company: "",
+                subscribe: false,
                 user: {
                     name: "",
                     email: "",
+                    role: "",
                 },
             });
+
+            const roleOptions = [
+                { label: "Frontend Developer", value: "frontend" },
+                { label: "Backend Developer", value: "backend" },
+                { label: "Fullstack Developer", value: "fullstack" },
+                { label: "Designer", value: "designer" },
+                { label: "Product Manager", value: "pm" },
+                { label: "DevOps Engineer", value: "devops" },
+            ];
 
             const submittedData = ref<UserFormSchema | null>(null);
 
             function onSubmit(data: UserFormSchema) {
                 submittedData.value = data;
-                alert(
-                    `User ${data.user.name} with email ${data.user.email} submitted the form`
-                );
             }
 
-            return { schema, submittedData, state, onSubmit, args };
+            return {
+                schema,
+                submittedData,
+                roleOptions,
+                state,
+                onSubmit,
+                args,
+            };
         },
         template: `
           <div style="max-width: 400px; margin: 2rem auto;">
@@ -236,6 +260,19 @@ export const WithNestedFields: Story = {
                 <Input type="email" v-bind="field" :invalid="invalid" />
               </FormField>
 
+              <FormField name="user.role" label="Role" v-slot="{ field, invalid }">
+                <Select
+                  v-bind="field"
+                  :options="roleOptions"
+                  placeholder="Select a role"
+                  searchable
+                />
+              </FormField>
+
+              <FormField name="subscribe" v-slot="{ field }">
+                <Switch label="Subscribe to newsletter" v-bind="field" />
+              </FormField>
+
               <Button type="submit">Submit</Button>
             </Form>
 
@@ -245,6 +282,8 @@ export const WithNestedFields: Story = {
                 <li><strong>Company:</strong> {{ submittedData.company }}</li>
                 <li><strong>Name:</strong> {{ submittedData.user.name }}</li>
                 <li><strong>Email:</strong> {{ submittedData.user.email }}</li>
+                <li><strong>Role:</strong> {{ submittedData.user.role }}</li>
+                <li><strong>Subscribe:</strong> {{ submittedData.subscribe ? "Yes" : "No" }}</li>
               </ul>
             </div>
           </div>
