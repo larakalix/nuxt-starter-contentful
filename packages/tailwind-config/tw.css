@@ -388,14 +388,6 @@
     --max-width-11xl: 120rem;
 }
 
-.dp__inner_nav {
-    @apply group flex items-center justify-center border border-border rounded-md!;
-}
-
-.dp__icon {
-    @apply text-muted-text group-hover:text-primary;
-}
-
 .root-app {
     @apply flex flex-col min-h-screen;
 }

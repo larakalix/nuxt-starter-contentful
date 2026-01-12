@@ -2,7 +2,6 @@
 
 :root {
     --dp-font-size: var(--text-sm);
-    --dp-action-buttons-padding: 0 0;
 }
 
 .dp__theme_light {
@@ -26,3 +25,11 @@
     --dp-cell-border-radius: var(--radius-md);
     --dp-range-between-border-color: var(--color-secondary);
 }
+/* 
+.dp__inner_nav {
+    @apply flex items-center justify-center border border-border rounded-md!;
+}
+
+.dp__icon {
+    @apply text-muted-text;
+} */
