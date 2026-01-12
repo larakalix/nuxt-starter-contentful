@@ -1,6 +1,7 @@
 import type { Decorator, Preview } from "@storybook/vue3-vite";
 import { THEMES } from "@starter/ui/constants";
 import "@starter/tailwind-config/tailwindcss";
+import "@starter/ui/styles/date-picker";
 
 type ThemeKey = keyof typeof THEMES;
 

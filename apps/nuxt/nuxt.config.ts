@@ -28,7 +28,10 @@ export default defineNuxtConfig({
             extends: "tsconfig/nuxt.json",
         },
     },
-    css: ["@starter/tailwind-config/tailwindcss"],
+    css: [
+        "@starter/tailwind-config/tailwindcss",
+        "@starter/ui/styles/date-picker",
+    ],
     vite: {
         ssr: {
             noExternal: ["@starter/content"],
