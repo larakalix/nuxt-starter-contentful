@@ -386,21 +386,14 @@
     --max-width-9xl: 100rem;
     --max-width-10xl: 114rem;
     --max-width-11xl: 120rem;
-
-    /* Date picker specific tokens */
-    /* --dp-primary-color: var(--color-primary); */
 }
 
-.dp__theme_light {
-    --dp-primary-color: var(--color-primary);
-    --dp-border-color: var(--color-border);
-    --dp-border-color-focus: var(--color-primary);
+.dp__inner_nav {
+    @apply group flex items-center justify-center border border-border rounded-md!;
 }
 
-.dp__theme_dark {
-    --dp-primary-color: var(--color-primary);
-    --dp-border-color: var(--color-border);
-    --dp-border-color-focus: var(--color-primary);
+.dp__icon {
+    @apply text-muted-text group-hover:text-primary;
 }
 
 .root-app {
