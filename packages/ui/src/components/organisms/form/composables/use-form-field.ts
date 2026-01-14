@@ -1,13 +1,7 @@
 import { computed } from "vue";
 import { normalizePath } from "../../../../utils/path.utils";
 import { validateFormContext } from "./use-form";
-
-export type FieldBinding = {
-    name: string;
-    modelValue: any;
-    "onUpdate:modelValue": (v: any) => void;
-    onBlur: () => void;
-};
+import type { FieldBinding } from "../types";
 
 export function useFormField<T extends Record<string, any>, V = any>(
     name: string

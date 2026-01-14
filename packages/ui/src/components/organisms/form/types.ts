@@ -1,5 +1,6 @@
 import type { z } from "zod";
 import type { ComputedRef, InjectionKey, Ref } from "vue";
+import type { FormVariantProps } from "./variant";
 
 export type ErrorMap = Map<string, string>;
 export type TouchedMap = Map<string, boolean>;
@@ -58,7 +59,7 @@ export type FormContext<T extends Record<string, any>> = {
 export const FORM_CONTEXT_KEY: InjectionKey<FormContext<any>> =
     Symbol("FORM_CONTEXT_KEY");
 
-export type FormProps<T extends Record<string, any>> = {
+export type FormProps<T extends Record<string, any>> = FormVariantProps & {
     form?: FormContext<T>;
     schema: z.ZodType<T>;
     state: T;
@@ -69,4 +70,12 @@ export type FormProps<T extends Record<string, any>> = {
 export type FieldArrayItem<T> = {
     key: string;
     value: T;
+};
+
+export type FieldBinding = {
+    name: string;
+    placeholder?: string;
+    modelValue: any;
+    "onUpdate:modelValue": (v: any) => void;
+    onBlur: () => void;
 };

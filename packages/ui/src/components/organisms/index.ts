@@ -5,6 +5,7 @@ export * from "./author-list";
 export * from "./error";
 export * from "./section-grid";
 export * from "./hero-banner";
+export * from "./form-renderer";
 export * from "./form";
 export * from "./form/childs/form-field";
 export * from "./form/childs/form-error";

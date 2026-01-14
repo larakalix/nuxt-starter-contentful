@@ -21,6 +21,9 @@ export const ContentfulType = {
     GRID_SECTION: "GridSection",
     CTA_BANNER: "CtaBanner",
     AUTHOR: "Author",
+    FORM: "Form",
+    FORM_FIELD: "FormField",
+    HERO_BANNER: "HeroBanner",
 } as const;
 
 export type ContentfulType =
