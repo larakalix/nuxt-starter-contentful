@@ -1,4 +1,8 @@
-import type { FunnelGenericPage, FunnelPage } from "../../../types";
+import type {
+    FunnelGenericPage,
+    FunnelPage,
+    SectionFormFields,
+} from "../../../types";
 import { getMockedContentfulData } from "../../mock";
 import { FUNNEL_PAGE_BY_SLUG } from "../../queries/funnel-page";
 import { getBySlug } from "../entries";

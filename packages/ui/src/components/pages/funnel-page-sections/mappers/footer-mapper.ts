@@ -1,5 +1,5 @@
-import type { FooterProps } from "./../../../organisms/footer";
-import type { SectionFooter } from "@starter/content";
+import type { FooterProps } from "@/src/components/organisms";
+import type { SectionFooter } from "@starter/content/section-types";
 
 export const mapFooterProps = (section: SectionFooter): FooterProps => {
     return {

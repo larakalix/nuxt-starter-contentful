@@ -1,4 +1,3 @@
-<!-- packages/ui/src/components/organisms/cta-banner/CtaBanner.vue -->
 <script lang="ts" setup>
 import { computed } from "vue";
 import clsx from "clsx";

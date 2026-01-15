@@ -1,6 +1,6 @@
 import { ApolloClient, InMemoryCache } from "@apollo/client/core";
 import { HttpLink } from "@apollo/client/link/http";
-import { setContentfulClientResolver } from "@starter/content";
+import { setContentfulClientResolver } from "@starter/content/config";
 
 function makeClient(uri: string) {
     return new ApolloClient({

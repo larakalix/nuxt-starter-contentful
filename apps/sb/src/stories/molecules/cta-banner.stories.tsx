@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite";
-import { CtaBanner } from "@starter/ui/molecules";
+import { CtaBanner } from "@starter/ui/molecules/cta-banner";
 
 const meta = {
     title: "Molecules/Cta Banner",

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite";
-import { SwitchButton } from "@starter/ui/atoms";
+import { SwitchButton } from "@starter/ui/atoms/switch-button";
 import { ref } from "vue";
 
 const meta = {

@@ -1,11 +1,11 @@
 import type { Component } from "vue";
+import { ContentfulType } from "@starter/content/contentful-types";
 import {
-    ContentfulType,
     type FunnelPage,
     type SectionType,
-} from "@starter/content";
+} from "@starter/content/section-types";
 import { getRegistryItem } from "./registry";
-import type { OnNavigate } from "@/src/components/atoms";
+import type { OnNavigate } from "@/src/components/atoms/versatile-link";
 import type { BaseSection, RenderItem } from "./types";
 
 export function sectionKey(section: BaseSection, index: number): string {

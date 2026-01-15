@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite";
-import { LandingExample } from "@starter/ui/pages";
+import { LandingExample } from "@starter/ui/pages/landing-example";
 
 const meta = {
     title: "Pages/Landing Example",

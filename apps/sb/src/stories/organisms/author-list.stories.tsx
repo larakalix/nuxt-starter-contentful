@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite";
-import { AuthorList } from "@starter/ui/organisms";
+import { AuthorList } from "@starter/ui/organisms/author-list";
 
 const meta = {
     title: "Organisms/Author List",

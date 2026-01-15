@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite";
-import { SectionHeading } from "@starter/ui/molecules";
+import { SectionHeading } from "@starter/ui/molecules/section-heading";
 
 const meta = {
     title: "Molecules/Section Heading",

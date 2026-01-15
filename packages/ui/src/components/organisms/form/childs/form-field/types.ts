@@ -5,4 +5,5 @@ export type FormFieldProps = {
     label?: string;
     description?: string;
     class?: string;
+    required?: boolean;
 };

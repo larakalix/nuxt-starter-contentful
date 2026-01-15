@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 import clsx from "clsx";
-import { Button, VersatileLink } from "../../atoms";
+import { Button } from "../../atoms/button";
+import { VersatileLink } from "../../atoms/versatile-link";
 import { footerVariants } from "./variants";
 import type { FooterProps } from "./types";
 

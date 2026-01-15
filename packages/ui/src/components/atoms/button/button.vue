@@ -2,7 +2,7 @@
 import { computed } from "vue";
 import clsx from "clsx";
 import { buttonVariants } from "./variants";
-import { VersatileLink } from "../../atoms";
+import { VersatileLink } from "../../atoms/versatile-link";
 import type { ButtonProps } from "./types";
 
 const props = withDefaults(defineProps<ButtonProps>(), {

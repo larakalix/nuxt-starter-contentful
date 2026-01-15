@@ -1,8 +1,14 @@
 <script setup lang="ts">
-import { Button } from '@starter/ui/atoms';
-import { HeroBanner, type HeroBannerProps } from '@starter/ui/organisms';
+import { useRouter } from 'vue-router';
+import { useResources } from '@starter/content/composables';
+import { useBooking } from '../composables/use-booking';
+import { ContentfulType } from '@starter/content/contentful-types';
+import { HeroBanner, type HeroBannerProps } from '@starter/ui/organisms/hero-banner';
+import { FormRenderer } from '@starter/ui/organisms/form-renderer';
+import type { OnNavigate } from '@starter/ui/atoms/versatile-link';
 
 const router = useRouter();
+const { data, loading, error, refetch } = useResources();
 
 const heroBanner: HeroBannerProps = {
   layout: "centered",
@@ -25,35 +31,32 @@ const heroBanner: HeroBannerProps = {
   background: "muted",
 }
 
+const { funnelPage, submitBooking } = useBooking();
+const form = funnelPage.value.template.sectionsCollection.items.find(section => section.__typename === ContentfulType.HERO_BANNER)?.form;
+
+const onNavigate: OnNavigate = async (href, event) => {
+  if (/^[a-z][a-z0-9+.-]*:|^\/\//i.test(href)) return;
+
+  event?.preventDefault();
+
+  const path = href.startsWith("/") ? href : `/${href}`;
+  await router.push(path);
+};
+
 </script>
 
 <template>
   <NuxtLayout>
     <HeroBanner v-bind="heroBanner">
       <template #form>
-        <form
-          class="flex flex-col md:flex-row items-start md:items-center justify-between p-6 rounded-lg md:rounded-full w-full bg-white shadow-[0px_8px_20px_rgba(0,0,0,0.1)]">
-          <div class="flex flex-col md:flex-row items-start md:items-center gap-10 min-md:ml-8">
-            <div class="flex flex-col items-start gap-2">
-              <select required>
-                <option value="">Pickup Location</option>
-                <option value="New York">New York</option>
-                <option value="Los Angeles">Los Angeles</option>
-                <option value="Houston">Houston</option>
-                <option value="Chicago">Chicago</option>
-              </select>
-              <p class="px-1 text-sm text-gray-500">Please select location</p>
-            </div>
-            <div class="flex flex-col items-start gap-2"><label for="pickup-date">Pick-up Date</label><input
-                id="pickup-date" min="2026-01-07" class="text-sm text-gray-500" required type="date" value="">
-            </div>
-            <div class="flex flex-col items-start gap-2"><label for="return-date">Return Date</label><input
-                id="return-date" class="text-sm text-gray-500" required type="date" value="">
-            </div>
-          </div>
-          <Button as="button" rounded="full" size="xl" variant="primary" class="ml-8">Search</Button>
-        </form>
+        <FormRenderer v-if="form" :form="form" @submit="submitBooking" />
       </template>
     </HeroBanner>
+
+    <pre>
+  {{ data, loading, error }}
+</pre>
+
   </NuxtLayout>
+
 </template>

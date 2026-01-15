@@ -3,7 +3,7 @@ import { computed, ref } from "vue";
 import clsx from "clsx";
 import Button from "../../atoms/button/button.vue";
 import { navbarVariants } from "./variant";
-import { VersatileLink } from "../../atoms";
+import { VersatileLink } from "../../atoms/versatile-link";
 import type { NavbarProps } from "./types";
 
 const props = withDefaults(defineProps<NavbarProps>(), {
@@ -57,7 +57,9 @@ const classes = computed(() =>
 
             <!-- DESKTOP NAV ITEMS -->
             <nav class="hidden items-center gap-6 md:flex">
-                <VersatileLink v-for="item in items" :key="item.href" :href="item.href" :class="item.highlight ? 'border-b text-primary/90 hover:text-primary hover:border-transparent' : ''" :onNavigate="props.onNavigate"
+                <VersatileLink v-for="item in items" :key="item.href" :href="item.href"
+                    :class="item.highlight ? 'border-b text-primary/90 hover:text-primary hover:border-transparent' : ''"
+                    :onNavigate="props.onNavigate"
                     class="text-sm font-medium text-foreground/70 hover:text-foreground transition-colors">
                     {{ item.label }}
                 </VersatileLink>

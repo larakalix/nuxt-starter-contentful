@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import { computed } from "vue";
 import clsx from "clsx";
-import { AuthorCard, SectionHeading } from "../../molecules";
+import { AuthorCard } from "../../molecules/author-card";
+import { SectionHeading } from "../../molecules/section-heading";
 import type { AuthorListProps } from "./types";
 import { authorListVariants } from "./variants";
 

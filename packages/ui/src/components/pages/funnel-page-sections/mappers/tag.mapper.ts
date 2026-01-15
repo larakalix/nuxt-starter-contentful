@@ -1,5 +1,5 @@
 import type { BadgeProps } from "@/src/components/atoms";
-import type { SectionTag } from "@starter/content";
+import type { SectionTag } from "@starter/content/section-types";
 
 export const mapTag = (section: SectionTag | undefined): BadgeProps => {
     return {

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { FunnelPageSectionProps } from "./types";
 import { computed } from "vue";
-import { Error } from "@starter/ui/organisms";
+import { Error } from "@starter/ui/organisms/error";
 import { buildRenderItems } from "./section-renderer";
 import { injectTheme } from "./helpers/inject-theme";
 

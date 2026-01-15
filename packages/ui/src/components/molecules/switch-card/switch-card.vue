@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { Switch } from '../../atoms';
+import { Switch } from '../../atoms/switch';
 import { switchCardStyles } from './variants';
 import { BatteryCharging, CreditCard } from 'lucide-vue-next';
 import type { SwitchCardProps } from './types';

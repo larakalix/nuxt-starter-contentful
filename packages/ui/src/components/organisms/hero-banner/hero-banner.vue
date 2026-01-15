@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { heroBannerVariants } from "./variants";
 import type { HeroBannerProps } from "./types";
-import { Button } from "../../atoms";
+import { Button } from "../../atoms/button";
 import clsx from "clsx";
 import { computed } from "vue";
-import { SectionHeading } from "../../molecules";
+import { SectionHeading } from "../../molecules/section-heading";
 
 const props = defineProps<HeroBannerProps>();
 
@@ -51,7 +51,7 @@ const classes = computed(() => {
             {{ content.description }}
           </p>
 
-          <div class="w-full md:w-auto">
+          <div class="w-full">
             <Button v-if="props.content.actions?.length" v-for="(action, index) in content.actions" :key="index"
               :href="action.href" :variant="action.variant" :rounded="action.rounded" :size="action.size"
               :class="action.class">

@@ -29,17 +29,15 @@ export type SectionFooter = {
     newsletterButtonLabel?: string;
 };
 
-export type SectionBlogCardListItemsCollection = {
-    items: BlogCardListItem[];
-};
-
 export type SectionBlogCardList = {
     __typename: typeof ContentfulType.BLOG_CARD_LIST;
     sys: Sys;
     colSpan?: number;
     sectionHeading?: SectionHeading;
     description?: string;
-    itemsCollection: SectionBlogCardListItemsCollection;
+    itemsCollection: {
+        items: BlogCardListItem[];
+    };
     layout?: string;
     columns?: number;
     onNavigate?: (href: string, event?: MouseEvent) => void | Promise<void>;
@@ -82,10 +80,6 @@ export type Author = {
     avatar?: SectionImageAsset;
 };
 
-export type AuthorCollection = {
-    items: Author[];
-};
-
 export type BlogCardListItem = {
     __typename: typeof ContentfulType.BLOG_CARD_LIST_ITEM;
     sys: Sys;
@@ -99,14 +93,12 @@ export type BlogCardListItem = {
     tag?: SectionTag;
     layout?: string;
     showTocMenu?: boolean;
-    authorsCollection?: AuthorCollection;
+    authorsCollection?: {
+        items: Author[];
+    };
     bodyContent: {
         json: any;
     };
-};
-
-export type SectionGridSectionsCollection = {
-    items: SectionType[];
 };
 
 export type SectionGrid = {
@@ -115,7 +107,9 @@ export type SectionGrid = {
     class?: string;
     columns?: number;
     tone?: string;
-    sectionsCollection: SectionGridSectionsCollection;
+    sectionsCollection: {
+        items: SectionType[];
+    };
 };
 
 export type SectionCtaBanner = {
@@ -131,19 +125,85 @@ export type SectionCtaBanner = {
     sectionHeading?: SectionHeading;
 };
 
-export type Sys = {
-    id: string;
+export type FormType =
+    | "text"
+    | "email"
+    | "textarea"
+    | "select"
+    | "checkbox"
+    | "radio"
+    | "date"
+    | "date-range"
+    | "time"
+    | "number"
+    | "switch"
+    | "password"
+    | "tel"
+    | "url"
+    | "color";
+
+export type FieldValidation = {
+    required?: boolean;
+    minLength?: number;
+    maxLength?: number;
+    min?: number;
+    max?: number;
+    email?: boolean;
+    errorMessage?: string;
 };
 
-export type StructureTemplateSectionsCollection = {
-    items: SectionType[];
+export type SectionFormFields = {
+    __typename: typeof ContentfulType.FORM_FIELD;
+    sys: Sys;
+    name: string;
+    label?: string;
+    description?: string;
+    defaultValue?: string | number | boolean | Date;
+    type: FormType;
+    validation?: FieldValidation;
+    placeholder?: string;
+    loadCatalogueOptions?: boolean;
+    options?: { label: string; value: string }[];
+};
+
+export type SectionForm = {
+    __typename: typeof ContentfulType.FORM;
+    sys: Sys;
+    validateOnChange?: boolean;
+    fieldsCollection: {
+        items: SectionFormFields[];
+    };
+    variant?: string;
+    submitEndpoint?: string;
+    submitLabel?: string;
+};
+
+export type SectionHeroBanner = {
+    __typename: typeof ContentfulType.HERO_BANNER;
+    sys: Sys;
+    name: string;
+    sectionHeading?: SectionHeading;
+    description?: string;
+    media?: {
+        src: string;
+        alt: string;
+        class?: string;
+    };
+    actions?: { label: string; href: string }[];
+    form?: SectionForm;
+};
+
+export type Sys = {
+    id: string;
 };
 
 export type StructureTemplate = {
     __typename: typeof ContentfulType.TEMPLATE;
     sys: Sys;
     name: string;
-    sectionsCollection: StructureTemplateSectionsCollection;
+    sectionsCollection: {
+        items: SectionType[];
+    };
 };
 
 /*
@@ -180,4 +240,6 @@ export type SectionType =
     | SectionFooter
     | SectionBlogCardList
     | SectionGrid
-    | SectionCtaBanner;
+    | SectionCtaBanner
+    | SectionHeroBanner
+    | SectionForm;

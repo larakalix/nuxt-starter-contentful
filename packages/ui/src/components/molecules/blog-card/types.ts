@@ -1,4 +1,5 @@
-import type { BadgeProps, OnNavigate } from "../../atoms";
+import type { BadgeProps } from "../../atoms/badge/types";
+import type { OnNavigate } from "../../atoms/versatile-link/types";
 import type { AuthorCardProps } from "../author-card";
 import type { BlogCardVariantsProps } from "./variants";
 
@@ -7,7 +8,7 @@ export type BlogCardProps = BlogCardVariantsProps & {
     tag?: BadgeProps;
     title: string;
     imageSrc?: string;
-    imageAlt?: string; 
+    imageAlt?: string;
     authors: AuthorCardProps[];
     dateLabel: string;
     readTimeLabel?: string;

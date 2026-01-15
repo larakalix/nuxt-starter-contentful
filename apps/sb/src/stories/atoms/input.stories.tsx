@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite";
-import { Input } from "@starter/ui/atoms";
+import { Input } from "@starter/ui/atoms/input";
 
 const meta = {
     title: "Atoms/Input",

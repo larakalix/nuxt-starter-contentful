@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 import { AuthorBadge } from "../../author-badge";
-import { Cable, CalendarDays, Clock } from "lucide-vue-next";
+import { CalendarDays, Clock } from "lucide-vue-next";
 import type { BlogCardProps } from "../types";
 
 const props = withDefaults(defineProps<Pick<BlogCardProps, "authors" | "dateLabel" | "readTimeLabel" | "clickable">>(), {

@@ -6,7 +6,7 @@ export default defineNuxtConfig({
     compatibilityDate: "2025-07-15",
     devtools: { enabled: true },
     build: {
-        transpile: ["contentful-module", "@starter/ui", "@starter/content"],
+        transpile: ["contentful-module"],
     },
     typescript: {
         tsConfig: {
@@ -19,10 +19,10 @@ export default defineNuxtConfig({
     ],
     vite: {
         ssr: {
-            noExternal: ["@starter/content"],
+            noExternal: [],
         },
         optimizeDeps: {
-            include: ["@starter/ui", "@starter/content"],
+            include: [],
         },
         plugins: [tailwindcss() as PluginOption],
     },

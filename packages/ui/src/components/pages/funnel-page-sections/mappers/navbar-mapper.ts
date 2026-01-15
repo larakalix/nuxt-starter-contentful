@@ -1,5 +1,5 @@
-import type { NavbarProps } from "./../../../organisms/navbar";
-import type { SectionNavbar } from "@starter/content";
+import type { NavbarProps } from "@/src/components/organisms/navbar";
+import type { SectionNavbar } from "@starter/content/section-types";
 
 export const mapNavbarProps = (section: SectionNavbar): NavbarProps => {
     return {

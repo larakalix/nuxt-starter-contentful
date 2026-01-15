@@ -3,7 +3,7 @@ import { computed } from "vue";
 import clsx from "clsx";
 import { blogCardListVariants } from "./variants";
 import BlogCard from "../../molecules/blog-card/blog-card.vue";
-import { SectionHeading } from "../../molecules";
+import { SectionHeading } from "../../molecules/section-heading";
 import type { BlogCardListProps } from "./types";
 
 const props = withDefaults(defineProps<BlogCardListProps>(), {

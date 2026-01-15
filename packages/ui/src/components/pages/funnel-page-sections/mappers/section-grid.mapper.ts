@@ -1,8 +1,6 @@
 import type { SectionGridProps } from "@/src/components/organisms";
-import {
-    ContentfulType,
-    type SectionGrid as CtSectionGrid,
-} from "@starter/content";
+
+import { type SectionGrid as CtSectionGrid } from "@starter/content/section-types";
 
 export const mapSectionGridProps = (
     section: CtSectionGrid

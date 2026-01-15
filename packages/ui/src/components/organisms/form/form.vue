@@ -1,9 +1,11 @@
 <script setup lang="ts" generic="T extends Record<string, any>">
-import { onMounted, onUnmounted, provide } from 'vue';
+import { computed, onMounted, onUnmounted, provide } from 'vue';
 import { createFormContext } from './composables/use-form';
 import { FORM_CONTEXT_KEY, type FormContext, type FormProps, type SubmitInvalidPayload } from "./types";
 import { generateNanoid } from './../../../utils/string.utils';
 import type { ZodAny } from 'zod';
+import { formVariants } from './variant';
+import clsx from 'clsx';
 
 const props = defineProps<FormProps<T>>();
 
@@ -12,17 +14,26 @@ const emit = defineEmits<{
   (e: "submit-invalid", payload: SubmitInvalidPayload): void;
 }>();
 
+const {
+  root
+} = formVariants({ layout: props.layout });
+
+const styles = computed(() => clsx(
+  root(),
+  props.class,
+));
+
 const ctx = props.form ?? createFormContext(props);
 
-if (window.__FORM_DEVTOOLS__) {
+if (window?.__FORM_DEVTOOLS__) {
   const id = generateNanoid();
 
   onMounted(() => {
-    window.__FORM_DEVTOOLS__?.register({ id, form: ctx as FormContext<any> });
+    window?.__FORM_DEVTOOLS__?.register({ id, form: ctx as FormContext<any> });
   });
 
   onUnmounted(() => {
-    window.__FORM_DEVTOOLS__?.unregister(id);
+    window?.__FORM_DEVTOOLS__?.unregister(id);
   });
 }
 
@@ -49,7 +60,7 @@ provide(FORM_CONTEXT_KEY, ctx);
 </script>
 
 <template>
-  <form @submit="handleSubmit" :class="props?.class">
+  <form @submit="handleSubmit" :class="styles">
     <slot />
   </form>
 </template>

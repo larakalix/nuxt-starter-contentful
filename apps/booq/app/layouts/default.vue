@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import type { OnNavigate } from '@starter/ui/atoms';
-import { Footer, Navbar } from '@starter/ui/organisms';
 import { useHead } from '#imports';
+import { Footer } from '@starter/ui/organisms/footer';
+import { Navbar } from '@starter/ui/organisms/navbar';
+import type { OnNavigate } from '@starter/ui/atoms/versatile-link';
 
 useHead({
     bodyAttrs: {

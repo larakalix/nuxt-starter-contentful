@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import clsx from "clsx";
-import { Error } from "@starter/ui/organisms";
+import { Error } from "@starter/ui/organisms/error";
 import { sectionGridVariants } from "./variants";
 import { buildRenderSections } from "../../pages/funnel-page-sections/section-renderer";
 import type { SectionGridProps } from "./types";

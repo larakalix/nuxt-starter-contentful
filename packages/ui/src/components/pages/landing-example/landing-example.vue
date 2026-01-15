@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
-import { Navbar } from '../../organisms';
+import Navbar from '../../organisms/navbar/navbar.vue';
 import Footer from '../../organisms/footer/footer.vue';
 
 const user = ref<{ name: string } | null>(null);

@@ -9,7 +9,7 @@ import {
     type ResetOptions,
     type SetValuesOptions,
     type TouchedMap,
-} from "../..";
+} from "../";
 import {
     getByPath,
     normalizePath,

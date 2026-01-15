@@ -1,4 +1,5 @@
-import type { AuthorCardProps, SectionHeadingProps } from "../../molecules";
+import type { AuthorCardProps } from "../../molecules/author-card/types";
+import type { SectionHeadingProps } from "../../molecules/section-heading/types";
 import type { AuthorListVariantsProps } from "./variants";
 
 export type AuthorListItem = AuthorCardProps & {

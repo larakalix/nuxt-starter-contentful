@@ -1,4 +1,4 @@
-import type { OnNavigate } from "../../atoms";
+import type { OnNavigate } from "../../atoms/versatile-link/types";
 import type { NavbarVariantsProps } from "./variant";
 
 export type NavItem = {

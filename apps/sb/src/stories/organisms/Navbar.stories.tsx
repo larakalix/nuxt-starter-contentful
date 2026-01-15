@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite";
 import { fn } from "storybook/test";
-import { Navbar } from "@starter/ui/organisms";
+import { Navbar } from "@starter/ui/organisms/navbar";
 
 const meta = {
     title: "Organisms/Navbar",
