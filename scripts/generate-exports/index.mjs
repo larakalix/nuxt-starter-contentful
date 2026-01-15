@@ -1,38 +1,46 @@
 import fs from "fs";
 import path from "path";
 
-const ROOT = path.resolve("packages/ui/src/components");
-const OUT = path.resolve("packages/ui/package.exports.json");
+const UI_ROOT = path.resolve("packages/ui/src/components");
+const PKG_PATH = path.resolve("packages/ui/package.json");
 
-function walk(dir, prefix = "") {
-    const entries = fs.readdirSync(dir, { withFileTypes: true });
+function getComponentExports(type) {
+    const baseDir = path.join(UI_ROOT, type);
+    if (!fs.existsSync(baseDir)) return {};
+
+    const entries = fs.readdirSync(baseDir, { withFileTypes: true });
     const exports = {};
 
     for (const entry of entries) {
         if (!entry.isDirectory()) continue;
 
-        const name = entry.name;
-        const indexFile = path.join(dir, name, "index.ts");
+        const indexFile = path.join(baseDir, entry.name, "index.ts");
+        if (!fs.existsSync(indexFile)) continue;
 
-        if (fs.existsSync(indexFile)) {
-            const exportPath = `./${prefix}${name}`;
-            const filePath = `./src/components/${prefix}${name}/index.ts`;
+        const exportKey = `./${type}/${entry.name}`;
+        const exportPath = `./src/components/${type}/${entry.name}/index.ts`;
 
-            exports[exportPath] = {
-                import: filePath,
-                types: filePath,
-            };
-        }
+        exports[exportKey] = {
+            import: exportPath,
+            types: exportPath,
+        };
     }
 
     return exports;
 }
 
-const exportsMap = {
-    ...walk(path.join(ROOT, "atoms"), "atoms/"),
-    ...walk(path.join(ROOT, "molecules"), "molecules/"),
-    ...walk(path.join(ROOT, "organisms"), "organisms/"),
+const pkg = JSON.parse(fs.readFileSync(PKG_PATH, "utf-8"));
+
+pkg.exports = {
+    ".": {
+        import: "./src/index.ts",
+        types: "./src/index.ts",
+    },
+    ...getComponentExports("atoms"),
+    ...getComponentExports("molecules"),
+    ...getComponentExports("organisms"),
 };
 
-fs.writeFileSync(OUT, JSON.stringify(exportsMap, null, 2));
-console.log("✔ UI exports generated");
+fs.writeFileSync(PKG_PATH, JSON.stringify(pkg, null, 2) + "\n");
+
+console.log("✔ package.json exports updated");

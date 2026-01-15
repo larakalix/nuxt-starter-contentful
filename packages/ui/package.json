@@ -1,59 +1,4 @@
 {
-    "name": "@starter/ui",
-    "version": "0.0.0",
-    "private": true,
-    "type": "module",
-    "main": "./src/index.ts",
-    "module": "./src/index.ts",
-    "types": "./src/index.ts",
-    "exports": {
-        ".": {
-            "import": "./src/index.ts",
-            "types": "./src/index.ts"
-        },
-        "./atoms": {
-            "import": "./src/components/atoms/index.ts",
-            "types": "./src/components/atoms/index.ts"
-        },
-        "./molecules": {
-            "import": "./src/components/molecules/index.ts",
-            "types": "./src/components/molecules/index.ts"
-        },
-        "./organisms": {
-            "import": "./src/components/organisms/index.ts",
-            "types": "./src/components/organisms/index.ts"
-        },
-        "./utils": {
-            "import": "./src/lib/index.ts",
-            "types": "./src/lib/index.ts"
-        },
-        "./styles/date-picker": {
-            "default": "./src/components/molecules/date-picker/date-picker.css",
-            "types": "./src/components/molecules/date-picker/date-picker.css"
-        },
-        "./others": {
-            "import": "./src/others/index.ts",
-            "types": "./src/others/index.ts"
-        },
-        "./pages": {
-            "import": "./src/components/pages/index.ts",
-            "types": "./src/components/pages/index.ts"
-        },
-        "./constants": {
-            "import": "./src/constants/index.ts",
-            "types": "./src/constants/index.ts"
-        }
-    },
-    "sideEffects": [
-        "*.css"
-    ],
-    "scripts": {
-        "lint": "eslint ."
-    },
-    "peerDependencies": {
-        "tailwindcss": "^4.1.5",
-        "vue": "^3.5.18"
-    },
     "dependencies": {
         "@contentful/rich-text-html-renderer": "^17.1.6",
         "@contentful/rich-text-types": "^17.2.5",
@@ -78,5 +23,161 @@
         "superstruct": "^2.0.0",
         "tsconfig": "workspace:*",
         "vue": "^3.5.18"
-    }
+    },
+    "exports": {
+        ".": {
+            "import": "./src/index.ts",
+            "types": "./src/index.ts"
+        },
+        "./atoms/badge": {
+            "import": "./src/components/atoms/badge/index.ts",
+            "types": "./src/components/atoms/badge/index.ts"
+        },
+        "./atoms/button": {
+            "import": "./src/components/atoms/button/index.ts",
+            "types": "./src/components/atoms/button/index.ts"
+        },
+        "./atoms/checkbox": {
+            "import": "./src/components/atoms/checkbox/index.ts",
+            "types": "./src/components/atoms/checkbox/index.ts"
+        },
+        "./atoms/dot-group": {
+            "import": "./src/components/atoms/dot-group/index.ts",
+            "types": "./src/components/atoms/dot-group/index.ts"
+        },
+        "./atoms/input": {
+            "import": "./src/components/atoms/input/index.ts",
+            "types": "./src/components/atoms/input/index.ts"
+        },
+        "./atoms/select": {
+            "import": "./src/components/atoms/select/index.ts",
+            "types": "./src/components/atoms/select/index.ts"
+        },
+        "./atoms/switch": {
+            "import": "./src/components/atoms/switch/index.ts",
+            "types": "./src/components/atoms/switch/index.ts"
+        },
+        "./atoms/switch-button": {
+            "import": "./src/components/atoms/switch-button/index.ts",
+            "types": "./src/components/atoms/switch-button/index.ts"
+        },
+        "./atoms/textarea": {
+            "import": "./src/components/atoms/textarea/index.ts",
+            "types": "./src/components/atoms/textarea/index.ts"
+        },
+        "./atoms/versatile-link": {
+            "import": "./src/components/atoms/versatile-link/index.ts",
+            "types": "./src/components/atoms/versatile-link/index.ts"
+        },
+        "./molecules/author-badge": {
+            "import": "./src/components/molecules/author-badge/index.ts",
+            "types": "./src/components/molecules/author-badge/index.ts"
+        },
+        "./molecules/author-card": {
+            "import": "./src/components/molecules/author-card/index.ts",
+            "types": "./src/components/molecules/author-card/index.ts"
+        },
+        "./molecules/blog-card": {
+            "import": "./src/components/molecules/blog-card/index.ts",
+            "types": "./src/components/molecules/blog-card/index.ts"
+        },
+        "./molecules/card": {
+            "import": "./src/components/molecules/card/index.ts",
+            "types": "./src/components/molecules/card/index.ts"
+        },
+        "./molecules/cta-banner": {
+            "import": "./src/components/molecules/cta-banner/index.ts",
+            "types": "./src/components/molecules/cta-banner/index.ts"
+        },
+        "./molecules/date-picker": {
+            "import": "./src/components/molecules/date-picker/index.ts",
+            "types": "./src/components/molecules/date-picker/index.ts"
+        },
+        "./molecules/radio-group": {
+            "import": "./src/components/molecules/radio-group/index.ts",
+            "types": "./src/components/molecules/radio-group/index.ts"
+        },
+        "./molecules/rich-text-renderer": {
+            "import": "./src/components/molecules/rich-text-renderer/index.ts",
+            "types": "./src/components/molecules/rich-text-renderer/index.ts"
+        },
+        "./molecules/section-heading": {
+            "import": "./src/components/molecules/section-heading/index.ts",
+            "types": "./src/components/molecules/section-heading/index.ts"
+        },
+        "./molecules/switch-card": {
+            "import": "./src/components/molecules/switch-card/index.ts",
+            "types": "./src/components/molecules/switch-card/index.ts"
+        },
+        "./molecules/toc-menu": {
+            "import": "./src/components/molecules/toc-menu/index.ts",
+            "types": "./src/components/molecules/toc-menu/index.ts"
+        },
+        "./organisms/author-list": {
+            "import": "./src/components/organisms/author-list/index.ts",
+            "types": "./src/components/organisms/author-list/index.ts"
+        },
+        "./organisms/blog-card-list": {
+            "import": "./src/components/organisms/blog-card-list/index.ts",
+            "types": "./src/components/organisms/blog-card-list/index.ts"
+        },
+        "./organisms/error": {
+            "import": "./src/components/organisms/error/index.ts",
+            "types": "./src/components/organisms/error/index.ts"
+        },
+        "./organisms/footer": {
+            "import": "./src/components/organisms/footer/index.ts",
+            "types": "./src/components/organisms/footer/index.ts"
+        },
+        "./organisms/form": {
+            "import": "./src/components/organisms/form/index.ts",
+            "types": "./src/components/organisms/form/index.ts"
+        },
+        "./organisms/form-renderer": {
+            "import": "./src/components/organisms/form-renderer/index.ts",
+            "types": "./src/components/organisms/form-renderer/index.ts"
+        },
+        "./organisms/form-wizard": {
+            "import": "./src/components/organisms/form-wizard/index.ts",
+            "types": "./src/components/organisms/form-wizard/index.ts"
+        },
+        "./organisms/hero-banner": {
+            "import": "./src/components/organisms/hero-banner/index.ts",
+            "types": "./src/components/organisms/hero-banner/index.ts"
+        },
+        "./organisms/navbar": {
+            "import": "./src/components/organisms/navbar/index.ts",
+            "types": "./src/components/organisms/navbar/index.ts"
+        },
+        "./organisms/section-grid": {
+            "import": "./src/components/organisms/section-grid/index.ts",
+            "types": "./src/components/organisms/section-grid/index.ts"
+        },
+        "./pages/funnel-page-sections": {
+            "import": "./src/components/pages/funnel-page-sections/index.ts",
+            "types": "./src/components/pages/funnel-page-sections/index.ts"
+        },
+        "./pages/landing-example": {
+            "import": "./src/components/pages/landing-example/index.ts",
+            "types": "./src/components/pages/landing-example/index.ts"
+        }
+    },
+    "main": "./src/index.ts",
+    "module": "./src/index.ts",
+    "name": "@starter/ui",
+    "peerDependencies": {
+        "tailwindcss": "^4.1.5",
+        "vue": "^3.5.18"
+    },
+    "private": true,
+    "scripts": {
+        "gen:exports": "cargo run --quiet --manifest-path ../../tools/ui-exports-gen/Cargo.toml",
+        "lint": "eslint ."
+    },
+    "sideEffects": [
+        "*.css"
+    ],
+    "type": "module",
+    "types": "./src/index.ts",
+    "version": "0.0.0"
 }
