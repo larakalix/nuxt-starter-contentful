@@ -1,11 +1,11 @@
-import type {
-    BlogCardListItem,
-    BlogCardListProps,
-} from "./../../..//organisms";
 import type { SectionBlogCardList } from "@starter/content";
 import clsx from "clsx";
 import { mapBlogCardListItemProps } from "./blog-card-list-item.mapper";
 import { mapSectionHeading } from "./section-heading.mapper";
+import type {
+    BlogCardListItem,
+    BlogCardListProps,
+} from "@/src/components/organisms";
 
 export const mapBlogCardListProps = (
     section: SectionBlogCardList,

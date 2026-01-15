@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite";
-import { HeroBanner } from "@starter/ui/organisms";
-import { Button } from "@starter/ui/atoms";
+import { HeroBanner } from "@starter/ui/organisms/hero-banner";
+import { Button } from "@starter/ui/atoms/button";
 
 const meta = {
     title: "Organisms/Hero Banner",

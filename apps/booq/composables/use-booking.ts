@@ -1,5 +1,5 @@
 import { ContentfulType, type FormType } from "@starter/content";
-import { sys } from "typescript";
+import { ref } from "vue";
 
 export const useBooking = () => {
     const funnelPage = ref(EXAMPLE_BOOKING.data);
@@ -128,7 +128,8 @@ const EXAMPLE_BOOKING = {
                                         defaultValue: new Date()
                                             .toISOString()
                                             .split("T")[0],
-                                        description: "When do you want to pick up the car?",
+                                        description:
+                                            "When do you want to pick up the car?",
                                         type: "date" as FormType,
                                         placeholder: "Select pickup date",
                                         validation: {
@@ -145,7 +146,8 @@ const EXAMPLE_BOOKING = {
                                         },
                                         name: "returnDate",
                                         label: "Return Date",
-                                        description: "When do you want to drop off the car?",
+                                        description:
+                                            "When do you want to drop off the car?",
                                         type: "date" as FormType,
                                         placeholder: "Select return date",
                                         validation: {

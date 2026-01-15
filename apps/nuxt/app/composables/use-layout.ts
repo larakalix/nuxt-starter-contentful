@@ -1,4 +1,5 @@
-import type { FooterProps, NavbarProps } from "@starter/ui/organisms";
+import type { NavbarProps } from "@starter/ui/organisms/navbar";
+import type { FooterProps } from "@starter/ui/organisms/footer";
 import type { Ref } from "vue";
 
 export type ShellState = {

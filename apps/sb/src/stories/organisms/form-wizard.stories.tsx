@@ -1,15 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite";
 import { z } from "zod";
 import { reactive, ref } from "vue";
+import { Form, FormField } from "@starter/ui/organisms/form";
 import {
-    Form,
-    FormField,
-    FormStep,
     FormWizard,
+    FormStep,
     FormWizardControls,
     FormWizardProgress,
-} from "@starter/ui/organisms";
-import { Input } from "@starter/ui/atoms";
+} from "@starter/ui/organisms/form-wizard";
+import { Input } from "@starter/ui/atoms/input";
 
 const meta = {
     title: "Organisms/Form Wizard",

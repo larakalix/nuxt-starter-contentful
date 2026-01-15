@@ -4,20 +4,6 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineNuxtConfig({
     compatibilityDate: "2025-07-15",
-    components: [
-        {
-            path: "@starter/ui/atoms",
-            prefix: "Ui",
-        },
-        {
-            path: "@starter/ui/organisms",
-            prefix: "Ui",
-        },
-        {
-            path: "@starter/ui/molecules",
-            prefix: "Ui",
-        },
-    ],
     devtools: { enabled: true },
     build: {
         transpile: ["contentful-module", "@starter/ui", "@starter/content"],

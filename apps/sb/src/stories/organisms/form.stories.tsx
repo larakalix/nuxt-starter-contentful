@@ -1,15 +1,13 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite";
 import { z } from "zod";
 import { defineComponent, onMounted, reactive, ref } from "vue";
-import {
-    Button,
-    Checkbox,
-    Input,
-    Select,
-    Switch,
-    Textarea,
-} from "@starter/ui/atoms";
-import { Form, FormField, useFieldArray } from "@starter/ui/organisms";
+import { Button } from "@starter/ui/atoms/button";
+import { Checkbox } from "@starter/ui/atoms/checkbox";
+import { Input } from "@starter/ui/atoms/input";
+import { Select } from "@starter/ui/atoms/select";
+import { Switch } from "@starter/ui/atoms/switch";
+import { Textarea } from "@starter/ui/atoms/textarea";
+import { Form, FormField, useFieldArray } from "@starter/ui/organisms/form";
 
 const meta = {
     title: "Organisms/Form",

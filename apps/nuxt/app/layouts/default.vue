@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import type { OnNavigate } from '@starter/ui/atoms';
-import { Footer, Navbar } from '@starter/ui/organisms';
+import type { OnNavigate } from '@starter/ui/atoms/versatile-link';
+import { Navbar } from '@starter/ui/organisms/navbar';
+import { Footer } from '@starter/ui/organisms/footer';
 import { useShellState } from '~/composables/use-layout';
 
 

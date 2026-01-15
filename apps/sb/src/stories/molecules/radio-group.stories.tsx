@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite";
-import { RadioGroup, RadioOption, RadioSwatch } from "@starter/ui/molecules";
+import { RadioGroup, RadioOption, RadioSwatch } from "@starter/ui/molecules/radio-group";
 import { ref } from "vue";
 
 const meta = {

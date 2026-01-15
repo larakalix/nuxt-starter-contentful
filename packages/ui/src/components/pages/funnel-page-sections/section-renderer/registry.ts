@@ -7,13 +7,13 @@ import {
     type SectionCtaBanner,
     type BlogCardListItem,
 } from "@starter/content";
-import { BlogCard, CtaBanner } from "@starter/ui/molecules";
-import {
-    Navbar,
-    Footer,
-    BlogCardList,
-    SectionGrid,
-} from "@starter/ui/organisms";
+import { CtaBanner } from "@starter/ui/molecules/cta-banner";
+import { BlogCard } from "@starter/ui/molecules/blog-card";
+import { Navbar } from "@starter/ui/organisms/navbar";
+import { Footer } from "@starter/ui/organisms/footer";
+import { BlogCardList } from "@starter/ui/organisms/blog-card-list";
+import { SectionGrid } from "@starter/ui/organisms/section-grid";
+
 import {
     mapBlogCardListProps,
     mapNavbarProps,

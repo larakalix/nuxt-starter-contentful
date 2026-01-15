@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite";
-import { Checkbox } from "@starter/ui/atoms";
+import { Checkbox } from "@starter/ui/atoms/checkbox";
 
 const meta = {
     title: "Atoms/Checkbox",

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite";
-import { Button } from "@starter/ui/atoms";
+import { Button } from "@starter/ui/atoms/button";
 import {
     ShoppingBasket,
     LinkIcon,

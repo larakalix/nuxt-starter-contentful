@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { FunnelPageSections, mapFooterProps, mapNavbarProps } from "@starter/ui/pages";
+import { FunnelPageSections, mapFooterProps, mapNavbarProps } from "@starter/ui/pages/funnel-page-sections";
+import { Error } from "@starter/ui/organisms/error";
 import { usePageStatic } from '~/composables/use-page.server'
-import { Error } from "@starter/ui/organisms";
-import type { OnNavigate } from "@starter/ui/atoms";
+import type { OnNavigate } from "@starter/ui/atoms/versatile-link";
 
 const router = useRouter();
 const shell = useShellState();

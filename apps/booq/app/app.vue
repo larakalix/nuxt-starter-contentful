@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { Button, type OnNavigate } from '@starter/ui/atoms';
-import { FormRenderer, HeroBanner, type HeroBannerProps } from '@starter/ui/organisms';
-import { useBooking } from '../composables/use-booking';
-import { ContentfulType, type SectionType } from '@starter/content';
+import { useRouter } from 'vue-router';
 import { useResources } from '@starter/content/composables';
+import { useBooking } from '../composables/use-booking';
+import { ContentfulType } from '@starter/content';
+import { HeroBanner, type HeroBannerProps } from '@starter/ui/organisms/hero-banner';
+import { FormRenderer } from '@starter/ui/organisms/form-renderer';
+import type { OnNavigate } from '@starter/ui/atoms/versatile-link';
 
 const router = useRouter();
 const { data, loading, error, refetch } = useResources();

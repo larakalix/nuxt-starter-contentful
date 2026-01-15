@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite";
-import { DatePicker } from "@starter/ui/molecules";
+import { DatePicker } from "@starter/ui/molecules/date-picker";
 
 const meta = {
     title: "Molecules/Date Picker",

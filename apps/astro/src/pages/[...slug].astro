@@ -1,10 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { Error as ErrorComponent } from "@starter/ui/organisms";
-import { FunnelPageSections } from "@starter/ui/pages";
-import { loadFunnelPage } from "../server/funnel-page";
+import { Error as ErrorComponent } from "@starter/ui/organisms/error";
+import { FunnelPageSections } from "@starter/ui/pages/funnel-page-sections";
 import { getPostsLinks, getPagesSlugs } from "@starter/content";
-import type { OnNavigate } from "@starter/ui/atoms";
+import { loadFunnelPage } from "../server/funnel-page";
+import type { OnNavigate } from "@starter/ui/atoms/versatile-link";
 
 export async function getStaticPaths() {
     const [slugs, paths] = await Promise.all([

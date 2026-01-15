@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/vue3-vite";
-import { BlogCard } from "@starter/ui/molecules";
-import type { BadgeProps } from "@starter/ui/atoms";
+import { BlogCard } from "@starter/ui/molecules/blog-card";
+import type { BadgeProps } from "@starter/ui/atoms/badge";
 
 const meta = {
     title: "Molecules/Blog Card",

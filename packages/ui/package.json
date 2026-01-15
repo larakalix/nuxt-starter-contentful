@@ -69,6 +69,10 @@
             "import": "./src/components/atoms/versatile-link/index.ts",
             "types": "./src/components/atoms/versatile-link/index.ts"
         },
+        "./constants": {
+            "import": "./src/constants/index.ts",
+            "types": "./src/constants/index.ts"
+        },
         "./molecules/author-badge": {
             "import": "./src/components/molecules/author-badge/index.ts",
             "types": "./src/components/molecules/author-badge/index.ts"
@@ -160,6 +164,14 @@
         "./pages/landing-example": {
             "import": "./src/components/pages/landing-example/index.ts",
             "types": "./src/components/pages/landing-example/index.ts"
+        },
+        "./styles/date-picker": {
+            "default": "./src/components/molecules/date-picker/date-picker.css",
+            "types": "./src/components/molecules/date-picker/date-picker.css"
+        },
+        "./utils": {
+            "import": "./src/lib/index.ts",
+            "types": "./src/lib/index.ts"
         }
     },
     "main": "./src/index.ts",
@@ -171,7 +183,6 @@
     },
     "private": true,
     "scripts": {
-        "gen:exports": "cargo run --quiet --manifest-path ../../tools/ui-exports-gen/Cargo.toml",
         "lint": "eslint ."
     },
     "sideEffects": [
