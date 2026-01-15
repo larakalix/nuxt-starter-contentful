@@ -2,7 +2,8 @@
 import { computed } from "vue";
 import clsx from "clsx";
 import { blogCardVariants } from "../variants";
-import { Badge, VersatileLink } from "../../../atoms";
+import { Badge } from "../../../atoms/badge";
+import { VersatileLink } from "../../../atoms/versatile-link";
 import BlogCardMeta from "./blog-card-meta.vue";
 import type { BlogCardProps } from "../types";
 

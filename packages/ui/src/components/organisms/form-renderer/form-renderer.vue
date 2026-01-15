@@ -3,7 +3,7 @@ import { reactive } from "vue";
 import { buildSchema } from "./composables/build-schema";
 import { buildState } from "./composables/build-state";
 import { FIELD_COMPONENTS, type FormType } from "./composables/field-registry";
-import { Button } from "../../atoms";
+import { Button } from "../../atoms/button";
 import { FormField } from "../form/childs/form-field";
 import { Form } from "../form";
 import type { FormRendererProps } from "./types";

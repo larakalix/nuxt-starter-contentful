@@ -1,4 +1,5 @@
-import type { ButtonProps, OnNavigate } from "../../atoms";
+import type { ButtonProps } from "../../atoms/button/types";
+import type { OnNavigate } from "../../atoms/versatile-link/types";
 import type { SectionHeadingProps } from "../section-heading";
 import type { CtaBannerVariantsProps } from "./variants";
 

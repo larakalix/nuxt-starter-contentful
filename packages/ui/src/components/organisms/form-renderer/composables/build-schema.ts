@@ -1,5 +1,8 @@
 import { z } from "zod";
-import type { FormType, SectionFormFields } from "@starter/content";
+import type {
+    FormType,
+    SectionFormFields,
+} from "@starter/content/section-types";
 
 type SchemaFactory = (opts: {
     required?: boolean;

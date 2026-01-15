@@ -1,8 +1,8 @@
-import type { BadgeProps } from "@/src/components/atoms";
-import type { BlogCardProps } from "@/src/components/molecules";
-import type { BlogCardListItem } from "@starter/content";
 import dayjs from "dayjs";
 import localizedFormat from "dayjs/plugin/localizedFormat";
+import type { BadgeProps } from "@/src/components/atoms";
+import type { BlogCardProps } from "@/src/components/molecules";
+import type { BlogCardListItem } from "@starter/content/section-types";
 
 dayjs.extend(localizedFormat);
 

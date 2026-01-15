@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import clsx from 'clsx';
-import { Badge } from "../../../atoms";
-import { CtaBanner, RichTextRenderer, TocMenu, type CtaBannerProps } from "../../../molecules";
+import { Badge } from "../../../atoms/badge";
+import { CtaBanner, type CtaBannerProps } from "../../../molecules/cta-banner"
+import { RichTextRenderer } from "../../../molecules/rich-text-renderer";
+import { TocMenu } from "../../../molecules/toc-menu";
 import BlogCardMeta from './blog-card-meta.vue';
-import { AuthorList, type AuthorListProps } from './../../..//organisms';
+import { AuthorList, type AuthorListProps } from './../../..//organisms/author-list';
 import type { BlogCardProps } from '../types';
 
 const props = withDefaults(defineProps<BlogCardProps>(), {

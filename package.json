@@ -9,7 +9,7 @@
         "lint": "turbo run lint",
         "format": "prettier --write \"**/*.{ts,tsx,md}\"",
         "ui:gen": "node scripts/ui-gen/index.mjs",
-        "cli": "cargo run --quiet --manifest-path tools/repo-cli/Cargo.toml"
+        "tools": "cargo run --quiet --manifest-path tools/repo-cli/Cargo.toml"
     },
     "keywords": [],
     "author": "",

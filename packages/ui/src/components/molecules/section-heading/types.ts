@@ -1,4 +1,4 @@
-import type { BadgeProps } from "../../atoms";
+import type { BadgeProps } from "../../atoms/badge/types";
 import type { SectionHeadingVariantsProps } from "./variants";
 
 export type SectionHeadingProps = SectionHeadingVariantsProps & {

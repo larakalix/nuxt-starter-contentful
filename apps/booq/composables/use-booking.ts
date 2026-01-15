@@ -1,5 +1,6 @@
-import { ContentfulType, type FormType } from "@starter/content";
 import { ref } from "vue";
+import { ContentfulType } from "@starter/content/contentful-types";
+import type { FormType } from "@starter/content/section-types";
 
 export const useBooking = () => {
     const funnelPage = ref(EXAMPLE_BOOKING.data);

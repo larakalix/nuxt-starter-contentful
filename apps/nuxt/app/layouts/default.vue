@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import type { OnNavigate } from '@starter/ui/atoms/versatile-link';
-import { Navbar } from '@starter/ui/organisms/navbar';
-import { Footer } from '@starter/ui/organisms/footer';
-import { useShellState } from '~/composables/use-layout';
+    import { useRouter } from 'vue-router';
+    import { Navbar } from '@starter/ui/organisms/navbar';
+    import { Footer } from '@starter/ui/organisms/footer';
+    import { useShellState } from '~/composables/use-layout';
+    import type { OnNavigate } from '@starter/ui/atoms/versatile-link';
 
 
 const router = useRouter();

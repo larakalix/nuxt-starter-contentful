@@ -1,5 +1,5 @@
-import type { ButtonProps } from "../../atoms";
-import type { SectionHeadingProps } from "../../molecules";
+import type { ButtonProps } from "../../atoms/button/types";
+import type { SectionHeadingProps } from "../../molecules/section-heading/types";
 import type { HeroVariantProps } from "./variants";
 
 export type HeroLayout = {

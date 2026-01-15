@@ -2,7 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 import { Error as ErrorComponent } from "@starter/ui/organisms/error";
 import { FunnelPageSections } from "@starter/ui/pages/funnel-page-sections";
-import { getPostsLinks, getPagesSlugs } from "@starter/content";
+import { getPostsLinks } from "@starter/content/services/get-posts-links";
+import { getPagesSlugs } from "@starter/content/services/get-pages-slugs";
 import { loadFunnelPage } from "../server/funnel-page";
 import type { OnNavigate } from "@starter/ui/atoms/versatile-link";
 

@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { heroBannerVariants } from "./variants";
 import type { HeroBannerProps } from "./types";
-import { Button } from "../../atoms";
+import { Button } from "../../atoms/button";
 import clsx from "clsx";
 import { computed } from "vue";
-import { SectionHeading } from "../../molecules";
+import { SectionHeading } from "../../molecules/section-heading";
 
 const props = defineProps<HeroBannerProps>();
 

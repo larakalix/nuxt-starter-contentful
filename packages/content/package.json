@@ -14,13 +14,33 @@
             "import": "./src/index.ts",
             "types": "./src/index.ts"
         },
-        "./types": {
-            "import": "./src/types/index.ts",
-            "types": "./src/types/index.ts"
+        "./config": {
+            "import": "./src/contentful/config/index.ts",
+            "types": "./src/contentful/config/index.ts"
         },
-        "./services": {
-            "import": "./src/contentful/services/index.ts",
-            "types": "./src/contentful/services/index.ts"
+        "./contentful-types": {
+            "import": "./src/types/landing/contentful-types.ts",
+            "types": "./src/types/landing/contentful-types.ts"
+        },
+        "./section-types": {
+            "import": "./src/types/landing/section-types.ts",
+            "types": "./src/types/landing/section-types.ts"
+        },
+        "./services/get-funnel-by-slug": {
+            "import": "./src/contentful/services/funnel-page/get-funnel-by-slug.ts",
+            "types": "./src/contentful/services/funnel-page/get-funnel-by-slug.ts"
+        },
+        "./services/get-page-by-post-id": {
+            "import": "./src/contentful/services/funnel-page/get-page-by-post-id.ts",
+            "types": "./src/contentful/services/funnel-page/get-page-by-post-id.ts"
+        },
+        "./services/get-posts-links": {
+            "import": "./src/contentful/services/funnel-page/get-posts-links.ts",
+            "types": "./src/contentful/services/funnel-page/get-posts-links.ts"
+        },
+        "./services/get-pages-slugs": {
+            "import": "./src/contentful/services/funnel-page/get-pages-slugs.ts",
+            "types": "./src/contentful/services/funnel-page/get-pages-slugs.ts"
         },
         "./utils": {
             "import": "./src/utils/index.ts",
@@ -29,10 +49,6 @@
         "./client": {
             "import": "./src/contentful/client.ts",
             "types": "./src/contentful/client.ts"
-        },
-        "./config": {
-            "import": "./src/contentful/config/index.ts",
-            "types": "./src/contentful/config/index.ts"
         },
         "./composables": {
             "import": "./src/composables/index.ts",

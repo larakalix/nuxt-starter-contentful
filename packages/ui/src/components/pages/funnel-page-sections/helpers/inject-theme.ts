@@ -1,4 +1,4 @@
-import type { FunnelPage } from "@starter/content";
+import type { FunnelPage } from "@starter/content/section-types";
 
 export const injectTheme = (theme: FunnelPage["theme"] | null | undefined) => {
     if (!theme || typeof document === "undefined") return;

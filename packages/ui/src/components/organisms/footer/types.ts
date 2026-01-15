@@ -1,4 +1,4 @@
-import type { OnNavigate } from "../../atoms";
+import type { OnNavigate } from "../../atoms/versatile-link/types";
 import type { FooterVariantsProps } from "./variants";
 
 type FooterLink = { label: string; href: string };

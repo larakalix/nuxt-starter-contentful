@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { inject } from "vue";
 import { FORM_WIZARD_KEY } from "../../types";
-import { Button } from "./../../../../atoms";
+import { Button } from "./../../../../atoms/button";
 
 const wizard = inject(FORM_WIZARD_KEY);
 if (!wizard) {

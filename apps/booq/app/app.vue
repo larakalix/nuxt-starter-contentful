@@ -2,7 +2,7 @@
 import { useRouter } from 'vue-router';
 import { useResources } from '@starter/content/composables';
 import { useBooking } from '../composables/use-booking';
-import { ContentfulType } from '@starter/content';
+import { ContentfulType } from '@starter/content/contentful-types';
 import { HeroBanner, type HeroBannerProps } from '@starter/ui/organisms/hero-banner';
 import { FormRenderer } from '@starter/ui/organisms/form-renderer';
 import type { OnNavigate } from '@starter/ui/atoms/versatile-link';

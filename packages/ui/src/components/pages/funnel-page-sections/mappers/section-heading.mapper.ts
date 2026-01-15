@@ -1,5 +1,5 @@
 import type { SectionHeadingProps } from "@/src/components/molecules";
-import type { SectionHeading } from "@starter/content";
+import type { SectionHeading } from "@starter/content/section-types";
 import { mapTag } from "./tag.mapper";
 
 export const mapSectionHeading = (

@@ -1,5 +1,5 @@
 import type { CtaBannerProps } from "@/src/components/molecules";
-import type { SectionCtaBanner } from "@starter/content";
+import type { SectionCtaBanner } from "@starter/content/section-types";
 import { mapSectionHeading } from "./section-heading.mapper";
 
 export const mapCtaBannerProps = (

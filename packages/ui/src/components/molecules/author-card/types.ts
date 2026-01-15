@@ -1,4 +1,4 @@
-import type { ButtonProps } from "../../atoms";
+import type { ButtonProps } from "../../atoms/button/types";
 import type { AuthorCardVariantsProps } from "./variants";
 
 export type AuthorSocialType =

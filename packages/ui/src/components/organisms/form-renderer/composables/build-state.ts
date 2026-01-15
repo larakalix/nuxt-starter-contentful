@@ -1,4 +1,7 @@
-import type { FormType, SectionFormFields } from "@starter/content";
+import type {
+    FormType,
+    SectionFormFields,
+} from "@starter/content/section-types";
 
 type StateFactory = (field: { defaultValue?: unknown }) => unknown;
 

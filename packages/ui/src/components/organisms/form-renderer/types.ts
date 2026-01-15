@@ -1,4 +1,4 @@
-import type { SectionForm } from "@starter/content";
+import type { SectionForm } from "@starter/content/section-types";
 
 export type FormRendererProps = {
     form: SectionForm;

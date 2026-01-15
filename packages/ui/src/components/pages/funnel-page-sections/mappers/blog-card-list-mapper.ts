@@ -1,4 +1,4 @@
-import type { SectionBlogCardList } from "@starter/content";
+import type { SectionBlogCardList } from "@starter/content/section-types";
 import clsx from "clsx";
 import { mapBlogCardListItemProps } from "./blog-card-list-item.mapper";
 import { mapSectionHeading } from "./section-heading.mapper";
