@@ -1,6 +1,6 @@
 {
     "extends": "tsconfig/vue.json",
-    "include": ["."],
+    "include": [".", "../content/src/composables/api"],
     "exclude": ["dist", "build", "node_modules"],
     "compilerOptions": {
         "baseUrl": ".",

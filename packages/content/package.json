@@ -34,6 +34,10 @@
             "import": "./src/contentful/config/index.ts",
             "types": "./src/contentful/config/index.ts"
         },
+        "./composables": {
+            "import": "./src/composables/index.ts",
+            "types": "./src/composables/index.ts"
+        },
         "./contentful/astro": {
             "import": "./src/contentful/config/contentful.astro.ts",
             "types": "./src/contentful/config/contentful.astro.ts"
@@ -43,14 +47,19 @@
             "types": "./src/contentful/config/contentful.nuxt.ts"
         }
     },
+    "peerDependencies": {
+        "vue": "^3.5.18"
+    },
     "devDependencies": {
         "@types/node": "^24.10.1",
         "eslint-config": "workspace:*",
         "tsconfig": "workspace:*",
         "tsup": "^8.0.0",
-        "typescript": "~5.9.3"
+        "typescript": "~5.9.3",
+        "vue": "^3.5.18"
     },
     "dependencies": {
+        "@starter/domain": "workspace:*",
         "@apollo/client": "^4.0.10",
         "graphql": "^16.12.0",
         "js-sha256": "^0.11.1"

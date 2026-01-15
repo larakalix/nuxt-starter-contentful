@@ -2,10 +2,11 @@
 import { Button, type OnNavigate } from '@starter/ui/atoms';
 import { FormRenderer, HeroBanner, type HeroBannerProps } from '@starter/ui/organisms';
 import { useBooking } from '../composables/use-booking';
-import { FunnelPageSections } from '@starter/ui/pages';
 import { ContentfulType, type SectionType } from '@starter/content';
+import { useResources } from '@starter/content/composables';
 
 const router = useRouter();
+const { data, loading, error, refetch } = useResources();
 
 const heroBanner: HeroBannerProps = {
   layout: "centered",
@@ -28,16 +29,6 @@ const heroBanner: HeroBannerProps = {
   background: "muted",
 }
 
-// const locationInput = {
-//   placeholder: "Pickup Location",
-//   options: [
-//     { value: "new-york", label: "New York" },
-//     { value: "los-angeles", label: "Los Angeles" },
-//     { value: "houston", label: "Houston" },
-//     { value: "chicago", label: "Chicago" },
-//   ],
-// };
-
 const { funnelPage, submitBooking } = useBooking();
 const form = funnelPage.value.template.sectionsCollection.items.find(section => section.__typename === ContentfulType.HERO_BANNER)?.form;
 
@@ -59,7 +50,11 @@ const onNavigate: OnNavigate = async (href, event) => {
         <FormRenderer v-if="form" :form="form" @submit="submitBooking" />
       </template>
     </HeroBanner>
+
+    <pre>
+  {{ data, loading, error }}
+</pre>
+
   </NuxtLayout>
 
-  <!-- <FunnelPageSections :funnel-page="funnelPage" :pending="pending" :error="error" :on-navigate="onNavigate" /> -->
 </template>
